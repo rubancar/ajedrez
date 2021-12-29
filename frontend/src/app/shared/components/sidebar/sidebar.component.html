@@ -1,0 +1,27 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <div class="header">
+            <h2>Nombre usuario</h2>
+            <h4>correo@correo.com</h4>
+        </div>
+        <img src="https://www.gravatar.com/avatar/15645?s=100&d=identicon&r=PG" alt="Nombre usuario">
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Secciones</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Principal</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/partidas">Partidas</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/partidas">Usuarios</a>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Creadores</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
+        <mat-icon>import_contacts</mat-icon>
+        Contactos
+    </a>
+
+</mat-nav-list>
