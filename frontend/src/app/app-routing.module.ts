@@ -5,6 +5,7 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { LoginComponent } from './modules/login/login.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { PartidasComponent } from './modules/partidas/partidas.component';
+import { JugadoresComponent } from './modules/jugadores/jugadores.component';
 
 const routes: Routes = [{
   path: '',
@@ -16,6 +17,9 @@ const routes: Routes = [{
   }, {
     path: 'partidas',
     component: PartidasComponent
+  }, {
+    path: 'jugadores',
+    component: JugadoresComponent
   }]
 },
 {

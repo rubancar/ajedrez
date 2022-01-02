@@ -13,12 +13,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { JugadoresComponent } from './modules/jugadores/jugadores.component';
+
+import { MatListModule } from '@angular/material/list';
+import { HttpClientModule } from "@angular/common/http";
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PartidasComponent,
+    JugadoresComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,10 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatListModule,
+    HttpClientModule,
+    MatDividerModule
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent]
