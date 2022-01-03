@@ -2,12 +2,12 @@
 
 Tareas Comunes
 
-- login
-- cargar datos del perfil
+- login (Fer)
+- cargar datos del perfil (Fer)
 - Vista administracion de usuarios
 
 
-## /api/jugador
+## (Ruben) /api/jugador
 
 - GET:    Devuelve la lista de jugadores
 - POST:   Crea un jugador
@@ -29,7 +29,7 @@ Esto va dentro:
 - Editar (multar jugador)
 
 
-## /api/partida
+## (Alexis) /api/partida
 
 - GET:    Listar 
 - POST:   Crea
@@ -47,7 +47,7 @@ Esto va dentro:
 - Introducir resultado (se hace en el backend actualizar el elo de los jugadores)
 
 
-## /api/club
+## (Ruben) /api/club
 
 - GET:    Listar 
 - POST:   Crea
@@ -67,7 +67,7 @@ Esto va dentro:
 
 
 
-## /api/torneo
+## (Alexis) /api/torneo
 
 - GET:    Listar 
 - POST:   Crea
@@ -84,7 +84,7 @@ Esto va dentro:
 - Listar partidas  (filtrando lista de partidas)
 
 
-## /api/entrenadores
+## (Fer) /api/entrenadores
 
 - GET:    Listar 
 - POST:   Crea
@@ -97,7 +97,7 @@ Esto va dentro:
 
 - CRUD
 
-## /api/federaciones
+## (Fer) /api/federaciones
 
 - GET:    Listar 
 - POST:   Crea
