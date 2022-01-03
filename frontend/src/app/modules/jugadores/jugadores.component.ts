@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { JugadoresService } from 'src/app/services/jugadores.service';
 import { Jugador } from 'src/app/shared/entidades/jugador';
+import { Subscription } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-jugadores',
@@ -11,10 +13,18 @@ export class JugadoresComponent implements OnInit {
 
   vJugadores:Jugador[] = [];
 
-  constructor(private jugadorService:JugadoresService) { }
+  public dataSource: MatTableDataSource<Jugador>;
+  private serviceSubscribe: Subscription;
+
+  constructor(private jugadorService:JugadoresService) {
+    this.dataSource = new MatTableDataSource<Jugador>();
+  }
 
   ngOnInit() {
-    this.jugadorService.getJugadores().subscribe(jugadores => this.vJugadores=jugadores);
+    this.serviceSubscribe = this.jugadorService.getJugadores().subscribe(res => {
+      console.log(res);
+      this.dataSource.data = res;
+    })
   }
 
 }

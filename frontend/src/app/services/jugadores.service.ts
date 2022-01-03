@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 import { Jugador } from '../shared/entidades/jugador';
@@ -11,9 +12,21 @@ import { Jugador } from '../shared/entidades/jugador';
 })
 export class JugadoresService {
 
-  constructor(private http: HttpClient) { }
+  jugadores$: BehaviorSubject<Jugador[]>;
+  jugadores: Array<Jugador> = [];
+  jugadoresObservable: any;
 
-  getJugadores(): Observable<Jugador[]> {
-    return this.http.get<Jugador[]>("/api/jugador/");
+  constructor(private http: HttpClient) { 
+    this.jugadores$ = new BehaviorSubject([]);
+    this.jugadores = [];
+  }
+
+  getJugadores(): Observable<any> {
+    console.log("getJugadores")
+    return this.http.get<any>("/api/jugador/").pipe(
+      tap(response => {
+        this.jugadores$.next(response)
+      })
+    );
   }
 }
