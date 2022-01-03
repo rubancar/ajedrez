@@ -19,5 +19,5 @@ Para ejecutar esta aplicación es necesario tener [Node.js](https://nodejs.org/)
 git clone git@github.com:rubancar/ajedrez.git
 cd ajedrez
 npm install
-ng serve
+ng serve --proxy-config proxy.conf.json
 ```
