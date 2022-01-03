@@ -21,3 +21,4 @@ cd ajedrez
 npm install
 ng serve --proxy-config proxy.conf.json
 ```
+![CasosDeUso](https://user-images.githubusercontent.com/32294802/147948481-12a3924d-91a8-4003-b3a4-076422337e61.PNG)
