@@ -1,0 +1,14 @@
+::ng-deep th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    font-size: 1 rem;
+  }
+  
+  
+  ::ng-deep th.mat-header-cell {
+    font-weight: bold;
+    text-transform: capitalize;
+    color: black;
+  }
+
+  table {
+    width: 100%;
+  }
