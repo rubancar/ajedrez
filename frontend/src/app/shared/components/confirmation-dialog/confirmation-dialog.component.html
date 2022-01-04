@@ -1,1 +1,7 @@
-<p>confirmation-dialog works!</p>
+<h1 mat-dialog-title>Confirmar acción</h1>
+<div mat-dialog-content>¿Seguro que quieres remover este item?</div>
+<div mat-dialog-actions class="mt-15">
+  <button mat-raised-button color="primary" 
+  [mat-dialog-close]="true" cdkFocusInitial>Sí</button>
+  <button mat-raised-button mat-dialog-close>No</button>
+</div>

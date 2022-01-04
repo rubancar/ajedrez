@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogModule } from '@angular/material';
 
 @Component({
   selector: 'app-confirmation-dialog',

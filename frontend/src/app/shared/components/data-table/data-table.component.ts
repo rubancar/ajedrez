@@ -8,7 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { JugadoresService } from 'src/app/services/jugadores.service';
 import { Jugador } from '../../entidades/jugador';
-
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { MatDialogModule } from '@angular/material';
 
 @Component({
   selector: 'app-data-table',
@@ -49,6 +50,16 @@ export class DataTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     this.serviceSubscribe.unsubscribe();
+  }
+
+  delete(id: any) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.jugadorService.remove(id);
+      }
+    });
   }
 
 }
