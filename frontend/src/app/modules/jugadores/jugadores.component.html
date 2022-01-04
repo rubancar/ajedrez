@@ -2,7 +2,7 @@
 <p>Aquí va el formulario de registro</p>
 <mat-divider></mat-divider>
 <h2>Lista de jugadores</h2>
-<mat-nav-list>
-    <a mat-list-item href="..." *ngFor="let jugador of vJugadores"> {{ jugador.name }} </a>
-</mat-nav-list>
+<app-data-table [dataSource]="dataSource" [displayedColumns]="displayedColumns"
+[actionsFunctions]="actionsFunctions" 
+(callAction)="callAction($event)"></app-data-table>
  
