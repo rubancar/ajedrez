@@ -13,13 +13,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, 
-  MatMenuModule, MatPaginatorModule, MatSelectModule, MatSortModule, MatTableModule } from '@angular/material';
+  MatMenuModule, MatPaginatorModule, MatSelectModule, MatSortModule } from '@angular/material';
 import { JugadoresComponent } from './modules/jugadores/jugadores.component';
+import { DataTableComponent } from './shared/components/data-table/data-table.component';
+import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 
 import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from "@angular/common/http";
 import { MatDividerModule } from '@angular/material/divider';
 import { CdkTableModule } from '@angular/cdk/table';
+import { MatTableModule } from '@angular/material/table'  
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     LoginComponent,
     PartidasComponent,
     JugadoresComponent,
+    DataTableComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     HttpClientModule,
     MatDividerModule,
 
+    // Modulos para implementar DataTable
     CdkTableModule,
     MatTableModule,
     MatPaginatorModule,
@@ -53,6 +59,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatSelectModule
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmationDialogComponent]
 })
 export class AppModule { }

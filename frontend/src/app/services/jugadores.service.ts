@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -28,5 +27,9 @@ export class JugadoresService {
         this.jugadores$.next(response)
       })
     );
+  }
+
+  remove(id): void {
+    console.log(id);
   }
 }
