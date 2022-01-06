@@ -34,9 +34,14 @@ Esto va dentro:
 - GET:    Listar 
 - POST:   Crea
   - id
-  - torneo
-  - jugadores
-  - Resultado
+  - torneo_id
+  - ganador
+  - jugadores[]
+  - resultado
+    - ganador
+    - duracion
+  - fecha
+  - sede
 - PUT:    Editar 
 - DELETE: Eliminar
 
