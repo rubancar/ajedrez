@@ -28,7 +28,7 @@ public class JugadorFactory {
 	
 	public Jugador create(Jugador jugador) throws Exception {
 		
-		if (jugador != null && jugador.getId() == null) {
+		if (jugador != null && (jugador.getId() == null || jugador.getId().isEmpty())) {
 			jugador.setId(UUID.randomUUID().toString());
 			dictionary.put(jugador.getId(), jugador);
 		} else {

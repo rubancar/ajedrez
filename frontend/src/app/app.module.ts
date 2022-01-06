@@ -23,7 +23,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatDividerModule } from '@angular/material/divider';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatTableModule } from '@angular/material/table';
-import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialog-jugador.component'  
+import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialog-jugador.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialo
     // DatePicker
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
