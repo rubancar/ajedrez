@@ -20,7 +20,7 @@ const routes: Routes = [{
     component: PartidasComponent
   }, {
     path: 'jugadores',
-    component: DataTableComponent
+    component: JugadoresComponent
   }]
 },
 {

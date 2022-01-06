@@ -5,7 +5,8 @@ export class Jugador{
     elo: number;
     responsable: string;
     es_moroso: boolean;
-    fecha_registro: any;
+    fecha_nacimiento: any;
+    club: any;
 
     constructor(){
         this.id = -1;
@@ -14,6 +15,7 @@ export class Jugador{
         this.elo = 0;
         this.responsable = "";
         this.es_moroso = false;
-        this.fecha_registro = null;
+        this.fecha_nacimiento = null;
+        this.club = null;
     }
 }
