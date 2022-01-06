@@ -29,6 +29,14 @@ export class JugadoresService {
     );
   }
 
+  editJugador(jugador: Jugador): Observable<any> {
+    return this.http.put<any>("/api/jugador/", jugador.getData())
+  }
+
+  saveJugador(jugador: Jugador): Observable<any> {
+    return this.http.post<any>("/api/jugador/", jugador)
+  }
+
   remove(id): void {
     console.log(id);
   }

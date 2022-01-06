@@ -37,7 +37,7 @@ public class JugadorEndpoint extends HttpServlet {
      */
     public JugadorEndpoint() {
         super();
-        g = new GsonBuilder().setDateFormat("MM/dd/yyyy HH:mm:ss").create();;
+        g = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();;
 		System.out.println("Jugador EndPoint creado");
     }
 
@@ -129,7 +129,10 @@ public class JugadorEndpoint extends HttpServlet {
 
 		Jugador jugador = null;
 		jugador = g.fromJson(new InputStreamReader(stream), Jugador.class);
-		
+		System.out.println(jugador.getName());
+		System.out.println(jugador.getPassword());
+		System.out.println(jugador.getUsuario());
+		System.out.println(jugador.getFecha_nacimiento());
 		if(jugador.getName() == null || jugador.getPassword() == null || jugador.getUsuario() == null 
 				|| jugador.getFecha_nacimiento() == null) {
 			System.out.println("Error validando datos de usuario!!");
