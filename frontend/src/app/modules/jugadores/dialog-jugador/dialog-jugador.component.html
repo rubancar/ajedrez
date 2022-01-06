@@ -1,0 +1,119 @@
+<h1 mat-dialog-title>Jugador</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="jugadorForm">
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nombre *</mat-label>
+                      <input matInput type="text" name="name" formControlName="name">
+                      <mat-error *ngIf="
+                      jugadorForm.controls['name']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+            </td>
+            <td>
+                <div>
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Usuario *</mat-label>
+                      <input matInput type="text" name="usuario" formControlName="usuario" />
+                      <mat-error *ngIf="
+                      jugadorForm.controls['usuario']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Responsable *</mat-label>
+                      <input matInput type="text" name="responsable" formControlName="responsable">
+                      <mat-error *ngIf="
+                      jugadorForm.controls['responsable']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+            </td>
+            <td>
+                <div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Fecha nacimiento *</mat-label>
+                      <input matInput [matDatepicker]="fecha_nacimiento" formControlName="fecha_nacimiento">
+                      
+                        <mat-datepicker-toggle matSuffix [for]="fecha_nacimiento"></mat-datepicker-toggle>
+                        <mat-datepicker #fecha_nacimiento></mat-datepicker>
+                      <mat-error *ngIf="
+                      jugadorForm.controls['fecha_nacimiento']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>ELO *</mat-label>
+                      <input matInput type="number" name="elo" formControlName="elo">
+                      <mat-error *ngIf="
+                      jugadorForm.controls['elo']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <mat-form-field class="fullWidth" appearance="outline">
+                        <mat-label>Club *</mat-label>
+                        <mat-select name="club" formControlName="club">
+                          <mat-option value="Valencia">Valencia</mat-option>
+                          <mat-option value="Valencia2">Valencia2</mat-option>
+                          <mat-option value="Valencia3">Valencia3</mat-option>
+                          <mat-option value="Valencia4">Valencia4</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="jugadorForm.controls['club']?.errors?.required">field required
+                        </mat-error>
+                      </mat-form-field>
+                </div>0
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>&nbsp; 
+                    <mat-checkbox class="example-margin" name="es_moroso"
+                    formControlName="es_moroso">Posee deudas!</mat-checkbox>
+              </div>
+                
+            </td>
+        </tr>
+    </table>
+    
+
+    
+
+    <!--
+    <div class="mt-5">
+      <mat-form-field class="fullWidth" appearance="outline">
+        <mat-label>elo *</mat-label>
+        <mat-select name="job" formControlName="job">
+          <mat-option value="Software Developer">Software Developer</mat-option>
+          <mat-option value="Physician">Physician</mat-option>
+          <mat-option value="Dentist">Dentist</mat-option>
+          <mat-option value="Nurse">Nurse</mat-option>
+        </mat-select>
+        <mat-error *ngIf="jugadorForm.controls['job']?.errors?.required">field required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    -->
+
+  </form>
+</div>
+
+<div class="mt-5" mat-dialog-actions>
+  <button mat-raised-button color="primary" 
+  [disabled]="jugadorForm.dirty && jugadorForm.errors" (click)="onSubmit()"
+    cdkFocusInitial>Guardar</button>
+  <button mat-raised-button mat-dialog-close>Cerrar</button>
+
+</div>

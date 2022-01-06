@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { DialogJugadorComponent } from './dialog-jugador/dialog-jugador.component';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class JugadoresComponent implements OnInit {
   constructor(private jugadorService:JugadoresService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Jugador>();
     this.actionsFunctions = ['edit', 'delete'];
-    this.displayedColumns = ['name', 'usuario', 'elo', 'responsable', 'es_moros',  'fecha_registro'];
+    this.displayedColumns = ['name', 'usuario', 'elo', 'responsable', 'es_moroso',  'fecha_nacimiento'];
   }
 
   ngOnInit() {
@@ -63,5 +64,20 @@ export class JugadoresComponent implements OnInit {
   edit(element: any) {
     console.log("editando elemento");
   }
+
+  newJugador() {
+    const dialogRef = this.dialog.open(DialogJugadorComponent, {
+      width: '60%',
+      data: new Jugador()
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+        //this.personsService.edit(result);
+      }
+    });
+  }
+
 
 }

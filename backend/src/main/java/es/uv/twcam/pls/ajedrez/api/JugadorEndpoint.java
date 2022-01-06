@@ -13,8 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+
+import es.uv.twcam.pls.bug.model.IncorrectBugException;
 import es.uv.twcam.pls.bug.model.Jugador;
 import es.uv.twcam.pls.bug.model.JugadorFactory;
+import es.uv.twcam.pls.bug.model.ValidationException;
 
 /**
  * Servlet implementation class JugadorEndpoint
@@ -33,7 +37,7 @@ public class JugadorEndpoint extends HttpServlet {
      */
     public JugadorEndpoint() {
         super();
-        g = new GsonBuilder().create();
+        g = new GsonBuilder().setDateFormat("MM/dd/yyyy HH:mm:ss").create();;
 		System.out.println("Jugador EndPoint creado");
     }
 
@@ -60,6 +64,7 @@ public class JugadorEndpoint extends HttpServlet {
 		if (result!=null) {
 			EndpointUtils.addSecurityHeaders(response); // <2>
 			PrintWriter pw = response.getWriter();
+			response.setContentType("Application/JSON");
 			pw.println(result);
 			pw.flush();
 			pw.close();
@@ -74,12 +79,9 @@ public class JugadorEndpoint extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	try {
-			
+		
 			Jugador jugador = getJugadorFromInputStream(request.getInputStream());
-
 			jugador = JugadorFactory.getInstance().create(jugador);
-
-
 			StringBuffer msg = new StringBuffer();
 
 			msg.append("POST at:").append(request.getContextPath()).append(" with "+jugador);
@@ -89,14 +91,23 @@ public class JugadorEndpoint extends HttpServlet {
 			EndpointUtils.addSecurityHeaders(response); // <2>
 
 			PrintWriter pw = response.getWriter();
+			response.setContentType("Application/JSON");
 			pw.println(g.toJson(jugador));
 			pw.flush();
 			pw.close();
 			
+		} catch (ValidationException|JsonSyntaxException e) {
+			e.printStackTrace();
+			PrintWriter pw = response.getWriter();
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.setContentType("Application/JSON");
+			pw.println("{\"mensaje\":\"Error validando campos de Jugador\"}");
+			pw.flush();
+			pw.close();
 		} catch (Exception e) {
 			// TO-DO: Devolver el código HTTP adecuado
 			e.printStackTrace();
-		}
+		} 
 	}
 	
 	
@@ -114,19 +125,15 @@ public class JugadorEndpoint extends HttpServlet {
 		return id;
 	}
 	
-	private Jugador getJugadorFromInputStream(InputStream stream) { // <4>
+	private Jugador getJugadorFromInputStream(InputStream stream) throws Exception { // <4>
 
 		Jugador jugador = null;
-
-		try {
-
-			jugador = g.fromJson(new InputStreamReader(stream), Jugador.class);
-
-
-		} catch (Exception e) {
-			jugador = null;
-			System.out.println(e.toString());
-			e.printStackTrace();
+		jugador = g.fromJson(new InputStreamReader(stream), Jugador.class);
+		
+		if(jugador.getName() == null || jugador.getPassword() == null || jugador.getUsuario() == null 
+				|| jugador.getFecha_nacimiento() == null) {
+			System.out.println("Error validando datos de usuario!!");
+			throw new ValidationException("Error en datos de usuario"); 
 		}
 
 		return jugador;
