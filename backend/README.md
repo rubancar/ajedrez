@@ -31,17 +31,16 @@ Esto va dentro:
 
 ## (Alexis) /api/partida
 
-- GET:    Listar 
+- GET:    Listar
 - POST:   Crea
-  - id
-  - torneo_id
-  - ganador
-  - jugadores[]
+  - id: int
+  - torneo_id: int
+  - jugadores[id_1, id_1]
   - resultado
-    - ganador
-    - duracion
-  - fecha
-  - sede
+    - ganador: id
+    - duracion: long
+  - fecha: date
+  - sede: str
 - PUT:    Editar 
 - DELETE: Eliminar
 

@@ -22,7 +22,8 @@ import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from "@angular/common/http";
 import { MatDividerModule } from '@angular/material/divider';
 import { CdkTableModule } from '@angular/cdk/table';
-import { MatTableModule } from '@angular/material/table'  
+import { MatTableModule } from '@angular/material/table';
+import { DetallePartidaComponent } from './modules/detalle-partida/detalle-partida.component'  
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatTableModule } from '@angular/material/table'
     PartidasComponent,
     JugadoresComponent,
     DataTableComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    DetallePartidaComponent
   ],
   imports: [
     BrowserModule,

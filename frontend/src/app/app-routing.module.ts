@@ -7,6 +7,7 @@ import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { PartidasComponent } from './modules/partidas/partidas.component';
 import { JugadoresComponent } from './modules/jugadores/jugadores.component';
 import { DataTableComponent } from './shared/components/data-table/data-table.component';
+import { DetallePartidaComponent } from './modules/detalle-partida/detalle-partida.component';
 
 const routes: Routes = [{
   path: '',
@@ -18,6 +19,9 @@ const routes: Routes = [{
   }, {
     path: 'partidas',
     component: PartidasComponent
+  }, {
+    path: 'partidas/:id',
+    component: DetallePartidaComponent
   }, {
     path: 'jugadores',
     component: DataTableComponent
