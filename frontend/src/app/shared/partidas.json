@@ -3,24 +3,37 @@
     {
       "id": 1,
       "torneo_id": 1,
-      "jugadores": [{"id": 1, "name": "Eric"}, {"id": 2, "name": "Ale"}],
+      "jugador1": {"id": 1, "name": "Eric"},
+      "jugador2": {"id": 2, "name": "Ale"},
       "resultado": {
-        "ganador": 1,
+        "tablas": false,
+        "ganador": 2,
         "duracion": 77388463920
       },
       "fecha": "06-01-2022",
-      "sede": "str"
+      "sede": "Club Capablanca"
     },
     {
       "id": 2,
       "torneo_id": 1,
-      "jugadores": [{"id": 1, "name": "Eric"}, {"id": 2, "name": "Ale"}],
+      "jugador1": {"id": 1, "name": "Eric"},
+      "jugador2": {"id": 2, "name": "Alejo"},
       "resultado": {
-        "ganador": 1,
+        "tablas": true,
+        "ganador": null,
         "duracion": 234377483022
       },
       "fecha": "06-01-2022",
-      "sede": "str"
+      "sede": "Club Capablanca"
+    },
+    {
+      "id": 3,
+      "torneo_id": 1,
+      "jugador1": {"id": 1, "name": "Eric"},
+      "jugador2": {"id": 2, "name": "Alejo"},
+      "resultado": {},
+      "fecha": "06-01-2022",
+      "sede": "Club Capablanca"
     }
   ]
 }

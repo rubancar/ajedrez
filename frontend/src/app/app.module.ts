@@ -12,18 +12,33 @@ import { PartidasComponent } from './modules/partidas/partidas.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, 
-  MatMenuModule, MatPaginatorModule, MatSelectModule, MatSortModule } from '@angular/material';
+import {
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSortModule,
+  MatListModule,
+  MatGridListModule,
+  MatToolbarModule,
+  MatRadioModule,
+  MatCheckboxModule,
+  MatSlideToggleModule,
+  MatProgressSpinnerModule,
+  MatTableModule,
+  MatDividerModule
+} from '@angular/material';
 import { JugadoresComponent } from './modules/jugadores/jugadores.component';
 import { DataTableComponent } from './shared/components/data-table/data-table.component';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 
-import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from "@angular/common/http";
-import { MatDividerModule } from '@angular/material/divider';
 import { CdkTableModule } from '@angular/cdk/table';
-import { MatTableModule } from '@angular/material/table';
-import { DetallePartidaComponent } from './modules/detalle-partida/detalle-partida.component'  
+import { DetallePartidaComponent } from './modules/detalle-partida/detalle-partida.component';
+import { ResultadoPartidaComponent } from './modules/resultado-partida/resultado-partida.component'
 
 @NgModule({
   declarations: [
@@ -33,8 +48,9 @@ import { DetallePartidaComponent } from './modules/detalle-partida/detalle-parti
     JugadoresComponent,
     DataTableComponent,
     ConfirmationDialogComponent,
+    ResultadoPartidaComponent,
     DetallePartidaComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,6 +65,9 @@ import { DetallePartidaComponent } from './modules/detalle-partida/detalle-parti
     MatListModule,
     HttpClientModule,
     MatDividerModule,
+    MatGridListModule,
+    MatToolbarModule,
+    MatRadioModule,
 
     // Modulos para implementar DataTable
     CdkTableModule,
@@ -62,6 +81,6 @@ import { DetallePartidaComponent } from './modules/detalle-partida/detalle-parti
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent]
+  entryComponents: [ConfirmationDialogComponent,DetallePartidaComponent,ResultadoPartidaComponent]
 })
 export class AppModule { }
