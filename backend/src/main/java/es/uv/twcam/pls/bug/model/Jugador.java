@@ -30,24 +30,31 @@ public class Jugador extends Usuario {
 	public Integer getElo() {
 		return elo;
 	}
+	
 	public void setElo(Integer elo) {
 		this.elo = elo;
 	}
+	
 	public String getResponsable() {
 		return responsable;
 	}
+	
 	public void setResponsable(String responsable) {
 		this.responsable = responsable;
 	}
+	
 	public Boolean getEs_moroso() {
 		return es_moroso;
 	}
+	
 	public void setEs_moroso(Boolean es_moroso) {
 		this.es_moroso = es_moroso;
 	}
+	
 	public Date getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
+	
 	public void setFecha_nacimiento(Date fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	} 

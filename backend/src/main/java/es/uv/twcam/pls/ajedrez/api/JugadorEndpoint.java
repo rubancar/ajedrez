@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
+import es.uv.twcam.pls.bug.model.Bug;
+import es.uv.twcam.pls.bug.model.BugFactory;
 import es.uv.twcam.pls.bug.model.IncorrectBugException;
 import es.uv.twcam.pls.bug.model.Jugador;
 import es.uv.twcam.pls.bug.model.JugadorFactory;
@@ -23,7 +25,7 @@ import es.uv.twcam.pls.bug.model.ValidationException;
 /**
  * Servlet implementation class JugadorEndpoint
  */
-@WebServlet("/api/jugador/")
+@WebServlet("/api/jugador/*")
 public class JugadorEndpoint extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -110,22 +112,44 @@ public class JugadorEndpoint extends HttpServlet {
 		} 
 	}
 	
+	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
+		Jugador jugador = null;
+				
+		try {
+	
+			jugador = getJugadorFromRequest(request);
+			jugador = JugadorFactory.getInstance().update(jugador);
+			StringBuffer msg = new StringBuffer();
+			msg.append("PUT at:").append(request.getContextPath()).append(" with "+jugador);
+			System.out.println(msg.toString()); 
+			EndpointUtils.addSecurityHeaders(response);
 			PrintWriter pw = response.getWriter();
 			response.setContentType("Application/JSON");
-			pw.println("{\"data\":\"datados\"}");
+			pw.println(g.toJson(jugador));
 			pw.flush();
 			pw.close();
 			
+		} catch (Exception e) {
+			// TO-DO: Devolver el código HTTP adecuado
+			e.printStackTrace();
+			PrintWriter pw = response.getWriter();
+			response.setContentType("Application/JSON");
+			pw.println("{\"mensaje\":\"Error actualizando jugador\"}");
+			pw.flush();
+			pw.close();
+		}
+				
 	}
+	
 	
 	private String getJugadorId(HttpServletRequest request) {  // <5>
 		
 		String url = request.getRequestURL().toString();
 		int pos = url.lastIndexOf("/");
 		String id = url.substring(pos+1);
-		System.out.println("IDjugador: "+id);// <7>
+		System.out.println("IDjugador: "+id);
 		
 		if (id.trim().isEmpty()) {
 			id = null;
@@ -146,6 +170,27 @@ public class JugadorEndpoint extends HttpServlet {
 				|| jugador.getFecha_nacimiento() == null) {
 			System.out.println("Error validando datos de usuario!!");
 			throw new ValidationException("Error en datos de usuario"); 
+		}
+
+		return jugador;
+
+	}
+	
+	private Jugador getJugadorFromRequest(HttpServletRequest request) {  // <6>
+
+		Jugador jugador = null;
+		
+		String id = getJugadorId(request);
+		
+		
+		try {
+
+			jugador = getJugadorFromInputStream(request.getInputStream());
+			jugador.setId(id);
+
+		} catch (Exception e) {
+			jugador = null;
+			e.printStackTrace();
 		}
 
 		return jugador;

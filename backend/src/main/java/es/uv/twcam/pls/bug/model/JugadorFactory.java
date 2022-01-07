@@ -38,6 +38,17 @@ public class JugadorFactory {
 		return jugador;
 	}
 	
+	public Jugador update(Jugador jugador) throws Exception {
+		
+		if (dictionary.containsKey(jugador.getId())) {
+			dictionary.put(jugador.getId(), jugador);
+		} else {
+			throw new Exception("No existe Jugador");
+		}
+		
+		return jugador;
+	}
+	
 	public List<Jugador> listAll() {
 		List<Jugador> jugadores = new ArrayList<Jugador>();
 		
