@@ -110,6 +110,15 @@ public class JugadorEndpoint extends HttpServlet {
 		} 
 	}
 	
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+			PrintWriter pw = response.getWriter();
+			response.setContentType("Application/JSON");
+			pw.println("{\"data\":\"datados\"}");
+			pw.flush();
+			pw.close();
+			
+	}
 	
 	private String getJugadorId(HttpServletRequest request) {  // <5>
 		
