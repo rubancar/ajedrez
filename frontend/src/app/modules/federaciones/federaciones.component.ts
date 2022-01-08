@@ -25,11 +25,15 @@ export class FederacionesComponent implements OnInit {
     this.displayedColumns = ['nombre', 'direccion'];
   }
 
-  ngOnInit() {
+  refresh() {
     this.serviceSubscribe = this.federacionService.getFederaciones().subscribe(res => {
       console.log(res);
       this.dataSource.data = res;
     })
+  }
+
+  ngOnInit() {
+    this.refresh();
   }
 
   ngOnDestroy(): void {
@@ -55,8 +59,9 @@ export class FederacionesComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.federacionService.remove(element.id);
-      }
+        this.federacionService.deleteFederacion(element.id).subscribe(id => {element.id = id});
+        this.refresh();
+      }     
     });
   }
 
@@ -70,7 +75,7 @@ export class FederacionesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
-        this.federacionService.setFederacion(result);
+        this.refresh();
       }
     });
   }
@@ -84,7 +89,7 @@ export class FederacionesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
-        this.federacionService.addFederacion(result);
+        this.refresh();
       }
     });
   }

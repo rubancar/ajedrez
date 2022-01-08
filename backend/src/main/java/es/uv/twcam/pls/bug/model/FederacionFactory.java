@@ -28,7 +28,9 @@ public class FederacionFactory {
 	
 	public Federacion create(Federacion federacion) throws Exception {
 		
-		if (federacion != null && federacion.getId() == null) {
+		System.out.println(federacion.toString());
+		
+		if (federacion != null && (federacion.getId() == null || federacion.getId().isBlank())) {
 			federacion.setId(UUID.randomUUID().toString());
 			dictionary.put(federacion.getId(), federacion);
 		} else {

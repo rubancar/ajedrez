@@ -22,7 +22,7 @@ import es.uv.twcam.pls.bug.model.ValidationException;
 /**
  * Servlet implementation class EntrenadorEndpoint
  */
-@WebServlet("/api/entrenador/")
+@WebServlet("/api/entrenador/*")
 public class EntrenadorEndpoint extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Gson g;

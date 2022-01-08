@@ -23,14 +23,14 @@ const routes: Routes = [{
   }, {
     path: 'jugadores',
     component: JugadoresComponent
-  },{
+  }, {
     path: 'entrenadores',
     component: EntrenadoresComponent
-  },{
+  }, {
     path: 'federaciones',
     component: FederacionesComponent
   },
-]
+  ]
 },
 {
   path: 'login',

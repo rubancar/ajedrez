@@ -7,9 +7,7 @@ import { ProcesaHTTPMsjService } from './procesa-httpmsj.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
-  'Content-Type': 'application/json',
-  'Authorization': 'my-auth-token'
-  })
+  'content-type': 'application/json;' })
 };
 
 @Injectable({
@@ -36,17 +34,20 @@ export class FederacionesService {
   }
 
   setFederacion(federacion:Federacion): Observable<Federacion> {
-    return this.http.put<Federacion>("/api/federacion/" + federacion.id, federacion, httpOptions)
+    console.log("putFederaciones: " + JSON.stringify(federacion));
+    return this.http.put<Federacion>("/api/federacion/"+federacion.id, federacion, httpOptions)
     .pipe(catchError(this.procesaHttpmsjService.gestionError));
   }
 
   addFederacion(federacion:Federacion): Observable<Federacion> {
-    return this.http.post<Federacion>("/api/federacion/" + federacion.id, federacion, httpOptions)
+    console.log("postFederaciones: " + JSON.stringify(federacion));
+    return this.http.post<Federacion>('/api/federacion/', federacion, httpOptions)
     .pipe(catchError(this.procesaHttpmsjService.gestionError));
   }
 
-
-  remove(id): void {
-    console.log(id);
+  deleteFederacion(id: string): Observable<Federacion> {
+    console.log("deleteFederacion: " + id);
+    return this.http.delete<Federacion>("/api/federacion/"+id, httpOptions)
+    .pipe(catchError(this.procesaHttpmsjService.gestionError));
   }
 }
