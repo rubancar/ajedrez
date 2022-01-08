@@ -28,7 +28,13 @@ export class DetallePartidaComponent implements OnInit {
     let dialogo = this.dialogo.open(ResultadoPartidaComponent,
                                     {width: '500px', height: '450px',
                                     data: {partida: this.partida}});
-    dialogo.afterClosed().subscribe(result => this.partida.resultado = result);
+    dialogo.afterClosed().subscribe(data => {
+      if(data) {
+        console.log("AfterClose: " + data.resultado.ganador);
+        // Esto pincha ya 
+        //this.partida.resultado = data.resultado;
+      }
+    });
   }
 
 
@@ -43,12 +49,6 @@ export class DetallePartidaComponent implements OnInit {
         this.partida.resultado = resp.resultado;
         this.partida.jugador1 = resp.jugador1;
         this.partida.jugador2 = resp.jugador2;
-        // for (let item of resp.jugadores) {
-        //   let jugador = new Jugador();
-        //   jugador.id = item.id;
-        //   jugador.name = item.name;
-        //   this.partida.jugadores.push(jugador);
-        // }
         console.log("pal form: " + this.partida.resultado);
       });
     }
