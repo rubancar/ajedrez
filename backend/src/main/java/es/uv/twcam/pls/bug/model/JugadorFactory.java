@@ -28,11 +28,22 @@ public class JugadorFactory {
 	
 	public Jugador create(Jugador jugador) throws Exception {
 		
-		if (jugador != null && jugador.getId() == null) {
+		if (jugador != null && (jugador.getId() == null || jugador.getId().isEmpty())) {
 			jugador.setId(UUID.randomUUID().toString());
 			dictionary.put(jugador.getId(), jugador);
 		} else {
 			throw new Exception("Error creando al Jugador");
+		}
+		
+		return jugador;
+	}
+	
+	public Jugador update(Jugador jugador) throws Exception {
+		
+		if (dictionary.containsKey(jugador.getId())) {
+			dictionary.put(jugador.getId(), jugador);
+		} else {
+			throw new Exception("No existe Jugador");
 		}
 		
 		return jugador;

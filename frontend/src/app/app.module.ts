@@ -28,6 +28,8 @@ import {
   MatCheckboxModule,
   MatSlideToggleModule,
   MatProgressSpinnerModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   MatTableModule,
   MatDividerModule
 } from '@angular/material';
@@ -39,6 +41,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { CdkTableModule } from '@angular/cdk/table';
 import { DetallePartidaComponent } from './modules/detalle-partida/detalle-partida.component';
 import { ResultadoPartidaComponent } from './modules/resultado-partida/resultado-partida.component'
+import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialog-jugador.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -49,8 +53,9 @@ import { ResultadoPartidaComponent } from './modules/resultado-partida/resultado
     DataTableComponent,
     ConfirmationDialogComponent,
     ResultadoPartidaComponent,
-    DetallePartidaComponent
-    ],
+    DetallePartidaComponent,
+    DialogJugadorComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -77,10 +82,16 @@ import { ResultadoPartidaComponent } from './modules/resultado-partida/resultado
     MatMenuModule,
     MatIconModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+
+    // DatePicker
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent,DetallePartidaComponent,ResultadoPartidaComponent]
+  entryComponents: [ConfirmationDialogComponent,DialogJugadorComponent, DetallePartidaComponent,ResultadoPartidaComponent]
 })
 export class AppModule { }
