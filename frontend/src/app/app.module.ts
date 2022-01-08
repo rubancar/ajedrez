@@ -9,11 +9,11 @@ import { LoginComponent } from './modules/login/login.component';
 import { AuthService } from './services/auth.service';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { PartidasComponent } from './modules/partidas/partidas.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatDialogModule,
+  MatButtonModule,
+  MatCardModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
