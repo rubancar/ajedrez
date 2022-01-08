@@ -42,6 +42,10 @@ export class PartidasComponent implements OnInit {
     this.serviceSubscribe.unsubscribe();
   }
 
+  getRecord(row) {
+    console.log(row.id)
+  }
+
   // delete(element: any) {
   //   const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
