@@ -6,14 +6,16 @@ public class Usuario {
 	private String name;
 	private String password;
 	private String usuario;
+	private String rol;
 	
 	
-	public Usuario(String id, String name, String password, String usuario) {
+	public Usuario(String id, String name, String password, String usuario, String rol) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.usuario = usuario;
+		this.rol = rol;
 	}
 	
 	public Usuario() {
@@ -43,6 +45,13 @@ public class Usuario {
 	}
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 
 	

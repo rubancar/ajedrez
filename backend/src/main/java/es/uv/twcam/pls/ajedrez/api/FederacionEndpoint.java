@@ -43,7 +43,7 @@ public class FederacionEndpoint extends HttpServlet {
 			throws ServletException, IOException {
 		String result = null;
 
-		String id = EndpointUtils.getRequestId(request, "IdFederacoin");
+		String id = EndpointUtils.getRequestId(request, "IdFederacion");
 
 		System.out.println("GET at:" + request.getContextPath() + " with ID: " + id); // <7>
 

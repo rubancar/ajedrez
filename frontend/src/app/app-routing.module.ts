@@ -9,6 +9,7 @@ import { JugadoresComponent } from './modules/jugadores/jugadores.component';
 import { DataTableComponent } from './shared/components/data-table/data-table.component';
 import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.component';
 import { FederacionesComponent } from './modules/federaciones/federaciones.component';
+import { AuthorizatedGuard } from './guards/authorizated.guard';
 
 const routes: Routes = [{
   path: '',
@@ -28,7 +29,8 @@ const routes: Routes = [{
     component: EntrenadoresComponent
   }, {
     path: 'federaciones',
-    component: FederacionesComponent
+    component: FederacionesComponent,
+    canActivate: [ AuthorizatedGuard ]
   },
   ]
 },
