@@ -25,6 +25,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { MatTableModule } from '@angular/material/table';
 import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialog-jugador.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ClubesComponent } from './modules/clubes/clubes.component';
+import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     JugadoresComponent,
     DataTableComponent,
     ConfirmationDialogComponent,
-    DialogJugadorComponent
+    DialogJugadorComponent,
+    ClubesComponent,
+    DialogClubComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +73,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent]
+  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent, DialogClubComponent]
 })
 export class AppModule { }

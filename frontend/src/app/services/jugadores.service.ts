@@ -13,7 +13,6 @@ export class JugadoresService {
 
   jugadores$: BehaviorSubject<Jugador[]>;
   jugadores: Array<Jugador> = [];
-  jugadoresObservable: any;
 
   constructor(private http: HttpClient) { 
     this.jugadores$ = new BehaviorSubject([]);
@@ -24,13 +23,13 @@ export class JugadoresService {
     console.log("getJugadores")
     return this.http.get<any>("/api/jugador/").pipe(
       tap(response => {
-        this.jugadores$.next(response)
+        this.jugadores$.next(response);
       })
     );
   }
 
   editJugador(jugador: Jugador): Observable<any> {
-    return this.http.put<any>("/api/jugador/", jugador.getData())
+    return this.http.put<any>("/api/jugador/", jugador)
   }
 
   saveJugador(jugador: Jugador): Observable<any> {

@@ -18,8 +18,6 @@ import com.google.gson.JsonSyntaxException;
 
 import es.uv.twcam.pls.bug.model.Club;
 import es.uv.twcam.pls.bug.model.ClubFactory;
-import es.uv.twcam.pls.bug.model.Jugador;
-import es.uv.twcam.pls.bug.model.JugadorFactory;
 import es.uv.twcam.pls.bug.model.ValidationException;
 
 /**
@@ -122,7 +120,7 @@ public class ClubEndpoint extends HttpServlet {
 			EndpointUtils.addSecurityHeaders(response);
 			PrintWriter pw = response.getWriter();
 			response.setContentType("Application/JSON");
-			pw.println(g.toJson(club));
+			pw.println(g.toJson(club)); 
 			pw.flush();
 			pw.close();
 			
@@ -182,11 +180,10 @@ public class ClubEndpoint extends HttpServlet {
 		
 		// TODO: agregar validaciones en la creación de Clubes
 		
-		/*if(jugador.getName() == null || jugador.getPassword() == null || jugador.getUsuario() == null 
-				|| jugador.getFecha_nacimiento() == null) {
-			System.out.println("Error validando datos de usuario!!");
-			throw new ValidationException("Error en datos de usuario"); 
-		}*/
+		if(club.getNombre() == null || club.getDireccion() == null) {
+			System.out.println("Error validando datos de club!!");
+			throw new ValidationException("Error en datos de club"); 
+		}
 
 		return club;
 
