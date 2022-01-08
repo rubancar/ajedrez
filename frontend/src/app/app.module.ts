@@ -23,7 +23,10 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatDividerModule } from '@angular/material/divider';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatTableModule } from '@angular/material/table';
-import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialog-jugador.component'  
+import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialog-jugador.component';
+import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.component';
+import { FederacionesComponent } from './modules/federaciones/federaciones.component';
+import { DialogFederacionComponent } from './modules/federaciones/dialog-federacion/dialog-federacion.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialo
     JugadoresComponent,
     DataTableComponent,
     ConfirmationDialogComponent,
-    DialogJugadorComponent
+    DialogJugadorComponent,
+    EntrenadoresComponent,
+    FederacionesComponent,
+    DialogFederacionComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +73,6 @@ import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialo
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent]
+  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent, DialogFederacionComponent]
 })
 export class AppModule { }

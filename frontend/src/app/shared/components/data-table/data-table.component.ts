@@ -1,12 +1,8 @@
 import { AfterViewInit, Component, Input, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-
-import { JugadoresService } from 'src/app/services/jugadores.service';
-import { Jugador } from '../../entidades/jugador';
 
 @Component({
   selector: 'app-data-table',
@@ -22,15 +18,14 @@ export class DataTableComponent implements OnInit, AfterViewInit {
 
   public columnsFilters = {};
 
-  @Input() dataSource: MatTableDataSource<Jugador>;
+  @Input() dataSource;
   @Input() actionsFunctions: any[];
   @Input() displayedColumns: string[];
   @Output('callAction') callAction: EventEmitter<any> = new EventEmitter();
 
-  constructor(private jugadorService: JugadoresService, public dialog: MatDialog) { 
-    this.dataSource = new MatTableDataSource<Jugador>();
+  constructor(public dialog: MatDialog) { 
+    this.dataSource = new MatTableDataSource();
   }
-  
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;

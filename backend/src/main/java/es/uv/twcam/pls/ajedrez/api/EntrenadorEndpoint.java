@@ -76,7 +76,7 @@ public class EntrenadorEndpoint extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-
+			
 			Entrenador entrenador = getEntrenadorFromInputStream(request.getInputStream());
 			entrenador = EntrenadorFactory.getInstance().create(entrenador);
 
@@ -175,7 +175,7 @@ public class EntrenadorEndpoint extends HttpServlet {
 		Entrenador entrenador = null;
 		entrenador = g.fromJson(new InputStreamReader(stream), Entrenador.class);
 
-		if (entrenador.getId() == null || entrenador.getNombre() == null || !entrenador.isEntrenamientosOk()) {
+		if (entrenador.getNombre() == null || !entrenador.isEntrenamientosOk()) {
 			System.out.println("Error validando datos del entrenador!!");
 			throw new ValidationException("Error en datos del entrenador");
 		}

@@ -1,0 +1,11 @@
+<section>
+    <h2>Federaciones</h2>
+    <div class="example-button-row">
+        <button mat-raised-button color="primary" (click)="newFederacion()">Nueva Federación</button>
+    </div>
+</section>
+<app-data-table [dataSource]="dataSource" 
+    [displayedColumns]="displayedColumns"
+    [actionsFunctions]="actionsFunctions" 
+    (callAction)="callAction($event)">
+</app-data-table>

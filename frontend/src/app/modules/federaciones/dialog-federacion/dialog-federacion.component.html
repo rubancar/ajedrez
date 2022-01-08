@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Federacion</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="federacionForm">
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nombre *</mat-label>
+                      <input matInput type="text" name="nombre" formControlName="nombre">
+                      <mat-error *ngIf="
+                      federacionForm.controls['nombre']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+            </td>
+            <td>
+                <div>
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Direccion *</mat-label>
+                      <input matInput type="text" name="direccion" formControlName="direccion" />
+                      <mat-error *ngIf="
+                      federacionForm.controls['direccion']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+            </td>
+        </tr>   
+    </table>
+  </form>
+</div>
+
+<div class="mt-5" mat-dialog-actions>
+  <button mat-raised-button color="primary" 
+  [disabled]="federacionForm.dirty && federacionForm.errors" (click)="onSubmit()"
+    cdkFocusInitial>Guardar</button>
+  <button mat-raised-button mat-dialog-close>Cerrar</button>
+
+</div>

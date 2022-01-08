@@ -174,9 +174,9 @@ public class FederacionEndpoint extends HttpServlet {
 		Federacion federacion = null;
 		federacion = g.fromJson(new InputStreamReader(stream), Federacion.class);
 
-		if (federacion.getId() == null || federacion.getNombre() == null || federacion.getDireccion() == null) {
+		if (federacion.getNombre() == null || federacion.getDireccion() == null) {
 			System.out.println("Error validando datos de la federacion!!");
-			throw new ValidationException("Error en datos de federacion");
+			throw new ValidationException("Error en datos de federacion:" + federacion.toString());
 		}
 
 		return federacion;
