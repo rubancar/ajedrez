@@ -27,6 +27,7 @@ import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialo
 import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.component';
 import { FederacionesComponent } from './modules/federaciones/federaciones.component';
 import { DialogFederacionComponent } from './modules/federaciones/dialog-federacion/dialog-federacion.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { DialogFederacionComponent } from './modules/federaciones/dialog-federac
     // DatePicker
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],

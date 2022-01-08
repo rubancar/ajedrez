@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { DialogJugadorComponent } from './dialog-jugador/dialog-jugador.component';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-jugadores',
@@ -20,7 +20,8 @@ export class JugadoresComponent implements OnInit {
   private actionsFunctions: any;
   private displayedColumns: string[];
 
-  constructor(private jugadorService:JugadoresService, public dialog: MatDialog) {
+  constructor(private jugadorService:JugadoresService, public dialog: MatDialog,
+    private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<Jugador>();
     this.actionsFunctions = ['edit', 'delete'];
     this.displayedColumns = ['name', 'usuario', 'elo', 'responsable', 'es_moroso',  'fecha_nacimiento'];
@@ -62,7 +63,12 @@ export class JugadoresComponent implements OnInit {
   }
 
   edit(element: any) {
-    console.log("editando elemento");
+    const dialogEditJugador = this.dialog.open(DialogJugadorComponent, {
+      width: '60%',
+      data: new Jugador(element.id, element.name, element.usuario, element.password, element.elo, element.responsable,
+        element.es_moroso, new Date(element.fecha_nacimiento), element.club)
+    });
+    console.log(element);
   }
 
   newJugador() {
@@ -72,10 +78,8 @@ export class JugadoresComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log(result);
-        //this.personsService.edit(result);
-      }
+      console.log(result);
+      this._snackBar.open("Jugador creado correctamente", "X");
     });
   }
 

@@ -11,36 +11,32 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
-import es.uv.twcam.pls.bug.model.Bug;
-import es.uv.twcam.pls.bug.model.BugFactory;
-import es.uv.twcam.pls.bug.model.IncorrectBugException;
+import es.uv.twcam.pls.bug.model.Club;
+import es.uv.twcam.pls.bug.model.ClubFactory;
 import es.uv.twcam.pls.bug.model.Jugador;
 import es.uv.twcam.pls.bug.model.JugadorFactory;
 import es.uv.twcam.pls.bug.model.ValidationException;
 
 /**
- * Servlet implementation class JugadorEndpoint
+ * Servlet implementation class ClubEndpoint
  */
-@WebServlet("/api/jugador/*")
-public class JugadorEndpoint extends HttpServlet {
+@WebServlet("/api/club/*")
+public class ClubEndpoint extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * Gson parser
-	 */
+      
 	private Gson g;
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JugadorEndpoint() {
+    public ClubEndpoint() {
         super();
-        g = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();;
-		System.out.println("Jugador EndPoint creado");
+        g = new GsonBuilder().create();;
+		System.out.println("CLub EndPoint creado");
     }
 
 	/**
@@ -50,17 +46,17 @@ public class JugadorEndpoint extends HttpServlet {
 		// TODO Auto-generated method stub
 		String result = null;
 		
-		String id = getJugadorId(request);
+		String id = getClubId(request);
 		
 		System.out.println("GET at:"+request.getContextPath()+" with ID: "+id); // <7>
 		
 		if (id==null) {
-			List<Jugador> jugadores = JugadorFactory.getInstance().listAll();
-			result = g.toJson(jugadores);
+			List<Club> clubes = ClubFactory.getInstance().listAll();
+			result = g.toJson(clubes);
 		} else {
-			Jugador jugador = JugadorFactory.getInstance().find(id);
-			if (jugador!=null)
-				result = g.toJson(jugador);
+			Club club = ClubFactory.getInstance().find(id);
+			if (club!=null)
+				result = g.toJson(club);
 		}
 
 		if (result!=null) {
@@ -79,14 +75,14 @@ public class JugadorEndpoint extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	try {
 		
-			Jugador jugador = getJugadorFromInputStream(request.getInputStream());
-			jugador = JugadorFactory.getInstance().create(jugador);
+		try {
+			
+			Club club = getClubFromInputStream(request.getInputStream());
+			club = ClubFactory.getInstance().create(club);
 			StringBuffer msg = new StringBuffer();
 
-			msg.append("POST at:").append(request.getContextPath()).append(" with "+jugador);
+			msg.append("POST at:").append(request.getContextPath()).append(" with "+club);
 
 			System.out.println(msg.toString()); // <7>
 
@@ -94,7 +90,7 @@ public class JugadorEndpoint extends HttpServlet {
 
 			PrintWriter pw = response.getWriter();
 			response.setContentType("Application/JSON");
-			pw.println(g.toJson(jugador));
+			pw.println(g.toJson(club));
 			pw.flush();
 			pw.close();
 			
@@ -103,30 +99,30 @@ public class JugadorEndpoint extends HttpServlet {
 			PrintWriter pw = response.getWriter();
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			response.setContentType("Application/JSON");
-			pw.println("{\"mensaje\":\"Error validando campos de Jugador\"}");
+			pw.println("{\"mensaje\":\"Error validando campos de Club\"}");
 			pw.flush();
 			pw.close();
 		} catch (Exception e) {
 			// TO-DO: Devolver el código HTTP adecuado
 			e.printStackTrace();
 		} 
+		
 	}
 	
-	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-		Jugador jugador = null;
+		
+		Club club = null;
 		
 		try {
-			jugador = getJugadorFromRequest(request);
-			jugador = JugadorFactory.getInstance().update(jugador);
+			club = getClubFromRequest(request);
+			club = ClubFactory.getInstance().update(club);
 			StringBuffer msg = new StringBuffer();
-			msg.append("PUT at:").append(request.getContextPath()).append(" with "+jugador);
+			msg.append("PUT at:").append(request.getContextPath()).append(" with "+club);
 			System.out.println(msg.toString()); 
 			EndpointUtils.addSecurityHeaders(response);
 			PrintWriter pw = response.getWriter();
 			response.setContentType("Application/JSON");
-			pw.println(g.toJson(jugador));
+			pw.println(g.toJson(club));
 			pw.flush();
 			pw.close();
 			
@@ -135,20 +131,19 @@ public class JugadorEndpoint extends HttpServlet {
 			e.printStackTrace();
 			PrintWriter pw = response.getWriter();
 			response.setContentType("Application/JSON");
-			pw.println("{\"mensaje\":\"Error actualizando jugador\"}");
+			pw.println("{\"mensaje\":\"Error actualizando club\"}");
 			pw.flush();
 			pw.close();
 		}
 				
 	}
 	
-	
-	private String getJugadorId(HttpServletRequest request) {  // <5>
+	private String getClubId(HttpServletRequest request) {  // <5>
 		
 		String url = request.getRequestURL().toString();
 		int pos = url.lastIndexOf("/");
 		String id = url.substring(pos+1);
-		System.out.println("IDjugador: "+id);
+		System.out.println("IDclub: "+id);
 		
 		if (id.trim().isEmpty()) {
 			id = null;
@@ -157,42 +152,43 @@ public class JugadorEndpoint extends HttpServlet {
 		return id;
 	}
 	
-	private Jugador getJugadorFromInputStream(InputStream stream) throws Exception { // <4>
-
-		Jugador jugador = null;
-		jugador = g.fromJson(new InputStreamReader(stream), Jugador.class);
-		System.out.println(jugador.getName());
-		System.out.println(jugador.getPassword());
-		System.out.println(jugador.getUsuario());
-		System.out.println(jugador.getFecha_nacimiento());
-		if(jugador.getName() == null || jugador.getPassword() == null || jugador.getUsuario() == null 
-				|| jugador.getFecha_nacimiento() == null) {
-			System.out.println("Error validando datos de usuario!!");
-			throw new ValidationException("Error en datos de usuario"); 
-		}
-
-		return jugador;
-
-	}
 	
-	private Jugador getJugadorFromRequest(HttpServletRequest request) {  // <6>
+	private Club getClubFromRequest(HttpServletRequest request) {  // <6>
 
-		Jugador jugador = null;
+		Club club = null;
 		
-		String id = getJugadorId(request);
-		
-		
+		String id = getClubId(request);
+
 		try {
 
-			jugador = getJugadorFromInputStream(request.getInputStream());
-			jugador.setId(id);
+			club = getClubFromInputStream(request.getInputStream());
+			club.setId(id);
 
 		} catch (Exception e) {
-			jugador = null;
+			club = null;
 			e.printStackTrace();
 		}
 
-		return jugador;
+		return club;
+
+	}
+	
+	private Club getClubFromInputStream(InputStream stream) throws Exception { // <4>
+
+		Club club = null;
+		club = g.fromJson(new InputStreamReader(stream), Club.class);
+		System.out.println(club.getNombre());
+		System.out.println(club.getDireccion());
+		
+		// TODO: agregar validaciones en la creación de Clubes
+		
+		/*if(jugador.getName() == null || jugador.getPassword() == null || jugador.getUsuario() == null 
+				|| jugador.getFecha_nacimiento() == null) {
+			System.out.println("Error validando datos de usuario!!");
+			throw new ValidationException("Error en datos de usuario"); 
+		}*/
+
+		return club;
 
 	}
 
