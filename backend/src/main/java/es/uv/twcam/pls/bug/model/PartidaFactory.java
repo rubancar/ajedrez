@@ -1,0 +1,75 @@
+package es.uv.twcam.pls.bug.model;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+public class PartidaFactory {
+
+	private static PartidaFactory the;
+
+	Map<String, Partida> dictionary;
+
+	private PartidaFactory() {
+		dictionary = new Hashtable<String, Partida>();
+	}
+
+	/*
+	 * Retorna la factoria que maneja los partidas, la crea, si esta no existe
+	 */
+	public static PartidaFactory getInstance() {
+
+		if (the == null) {
+			the = new PartidaFactory();
+		}
+
+		return the;
+	}
+
+	public Partida create(Partida partida) throws Exception {
+
+		if (partida != null && partida.getId() == null) {
+			partida.setId(UUID.randomUUID().toString());
+			dictionary.put(partida.getId(), partida);
+		} else {
+			throw new Exception("Error creando la partida");
+		}
+
+		return partida;
+	}
+
+	public List<Partida> listAll() {
+		List<Partida> partidas = new ArrayList<Partida>();
+
+		partidas.addAll(dictionary.values());
+
+		return partidas;
+	}
+
+	public Partida update(Partida partida) throws Exception {
+
+		if (dictionary.containsKey(partida.getId())) {
+			dictionary.put(partida.getId(), partida);
+		} else {
+			throw new EntityNotExistException("La partida con id: " + partida.getId() + " no existe.");
+		}
+
+		return partida;
+	}
+
+	public void delete(String id) throws Exception {
+		if (dictionary.containsKey(id)) {
+			dictionary.remove(id);
+		} else {
+			throw new EntityNotExistException("La partida con id: " + id + " no existe.");
+		}
+	}
+
+	public Partida find(String id) {
+		return dictionary.get(id);
+	}
+
+
+}
