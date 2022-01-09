@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,12 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-
-import es.uv.twcam.pls.bug.model.Bug;
-import es.uv.twcam.pls.bug.model.BugFactory;
 import es.uv.twcam.pls.bug.model.Club;
 import es.uv.twcam.pls.bug.model.ClubFactory;
-import es.uv.twcam.pls.bug.model.IncorrectBugException;
 import es.uv.twcam.pls.bug.model.Jugador;
 import es.uv.twcam.pls.bug.model.JugadorFactory;
 import es.uv.twcam.pls.bug.model.ValidationException;
@@ -42,7 +37,7 @@ public class JugadorEndpoint extends HttpServlet {
      */
     public JugadorEndpoint() {
         super();
-        g = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
+        g = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		System.out.println("Jugador EndPoint creado");
     }
 

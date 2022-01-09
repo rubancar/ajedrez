@@ -6,7 +6,6 @@ import { LoginComponent } from './modules/login/login.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { PartidasComponent } from './modules/partidas/partidas.component';
 import { JugadoresComponent } from './modules/jugadores/jugadores.component';
-import { DataTableComponent } from './shared/components/data-table/data-table.component';
 import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.component';
 import { FederacionesComponent } from './modules/federaciones/federaciones.component';
 import { AuthorizatedGuard } from './guards/authorizated.guard';
