@@ -21,12 +21,12 @@ export class PartidasComponent implements OnInit {
   private serviceSubscribe: Subscription;
   public dataSource: MatTableDataSource<Partida>;
   displayedColumns: string[];
-  @ViewChild(MatSort, {static: false}) sort: MatSort;    
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
   
 
 
   constructor(private partidasService: PartidasService,
-    private router : Router ,
+    private router : Router,
     private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<Partida>();
     // this.actionsFunctions = ['edit', 'delete'];

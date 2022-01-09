@@ -39,8 +39,8 @@ import { ConfirmationDialogComponent } from './shared/components/confirmation-di
 
 import { HttpClientModule } from "@angular/common/http";
 import { CdkTableModule } from '@angular/cdk/table';
-import { DetallePartidaComponent } from './modules/detalle-partida/detalle-partida.component';
-import { ResultadoPartidaComponent } from './modules/resultado-partida/resultado-partida.component'
+import { DetallePartidaComponent } from './modules/partidas/detalle-partida/detalle-partida.component';
+import { ResultadoPartidaComponent } from './modules/partidas/resultado-partida/resultado-partida.component'
 import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialog-jugador.component';
 import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.component';
 import { FederacionesComponent } from './modules/federaciones/federaciones.component';
@@ -52,6 +52,9 @@ import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.co
 import { CalendarioEntrenamientosComponent } from './modules/calendario-entrenamientos/calendario-entrenamientos.component';
 import { DialogEntrenadorComponent } from './modules/entrenadores/dialog-entrenador/dialog-entrenador.component';
 import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
+import { TorneosComponent } from './modules/torneos/torneos.component';
+import { DetalleTorneoComponent } from './modules/torneos/detalle-torneo/detalle-torneo.component';
+import { DialogTorneoComponent } from './modules/torneos/dialog-torneo/dialog-torneo.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.compo
     DialogJugadorComponent,
     CalendarioEntrenamientosComponent,
     DialogEntrenadorComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    TorneosComponent,
+    DetalleTorneoComponent,
+    DialogTorneoComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,6 +116,6 @@ import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.compo
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, AuthorizatedGuard], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent, DialogFederacionComponent, DialogClubComponent, DetallePartidaComponent, ResultadoPartidaComponent, DialogEntrenadorComponent]
+  entryComponents: [DialogTorneoComponent, ConfirmationDialogComponent, DialogJugadorComponent, DialogFederacionComponent, DialogClubComponent, DetallePartidaComponent, ResultadoPartidaComponent, DialogEntrenadorComponent]
 })
 export class AppModule { }
