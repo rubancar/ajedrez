@@ -10,9 +10,8 @@ public class Federacion {
 		super();
 	}
 
-	public Federacion(String id, String nombre, String direccion) {
+	public Federacion(String nombre, String direccion) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.direccion = direccion;
 	}

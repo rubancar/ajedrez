@@ -12,9 +12,8 @@ public class Entrenador {
 		super();
 	}
 
-	public Entrenador(String id, String nombre, ArrayList<Entrenamiento> calendarioEntrenamientos) {
+	public Entrenador(String nombre, ArrayList<Entrenamiento> calendarioEntrenamientos) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.calendarioEntrenamientos = calendarioEntrenamientos;
 	}

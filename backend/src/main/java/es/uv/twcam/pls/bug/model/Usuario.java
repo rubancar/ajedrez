@@ -9,9 +9,8 @@ public class Usuario {
 	private String rol;
 	
 	
-	public Usuario(String id, String name, String password, String usuario, String rol) {
+	public Usuario(String name, String password, String usuario, String rol) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.usuario = usuario;

@@ -17,8 +17,8 @@ public class Jugador extends Usuario {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Jugador(String id, String name, String password, String usuario, String rol, Integer elo, String responsable, Boolean es_moroso, Date fecha_nacimiento) {
-		super(id, name, password, usuario, rol);
+	public Jugador(String name, String password, String usuario, String rol, Integer elo, String responsable, Boolean es_moroso, Date fecha_nacimiento) {
+		super(name, password, usuario, rol);
 		this.elo = elo;
 		this.responsable = responsable;
 		this.es_moroso = es_moroso;
