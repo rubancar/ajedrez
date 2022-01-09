@@ -13,7 +13,7 @@ import { Usuario } from '../../shared/entidades/usuario';
 export class LoginComponent {
   public loginForm: FormGroup;
   public submitted: Boolean = false;
-  public error: {code: number, message: string} = null;
+  public error: "";
   user : Usuario
 
   constructor(private formBuilder: FormBuilder,
@@ -38,19 +38,25 @@ export class LoginComponent {
       console.log(this.user);
 
       this.loginService.login(this.user).subscribe(
-        usuario => {this.user = usuario;},
-        () => this.processLogin(this.user)
+        data => {
+          if(data.mensaje != null){
+            this.error = data.mensaje;
+            this.user = null;
+          }else{
+            this.user = data;
+          }
+          this.processLogin(this.user)
+        }
       )
     }
   }
 
-  private processLogin(usuario: any){
-
-    if(usuario.mensaje != null){
-      this.error.message = usuario.mensaje;
-    }else{
-      localStorage.setItem("currentUser", usuario.usuario)
+  private processLogin(user : Usuario){
+    if(user != null){
+      localStorage.setItem("currentUser", user.usuario);
       this.router.navigate(['']);
+    }else{
+      localStorage.setItem("currentUser", "");
     }
   }
 }

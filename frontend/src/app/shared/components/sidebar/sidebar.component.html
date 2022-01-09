@@ -1,8 +1,8 @@
 <mat-nav-list>
     <div class="profile-card">
-        <div class="header">
-            <h2>Nombre usuario</h2>
-            <h4>correo@correo.com</h4>
+        <div *ngIf="user" class="header">
+            <h2>{{user.usuario}}</h2>
+            <h4>{{user.usuario}}@ajedrez.com</h4>
         </div>
         <img src="https://www.gravatar.com/avatar/15645?s=100&d=identicon&r=PG" alt="Nombre usuario">
     </div>
