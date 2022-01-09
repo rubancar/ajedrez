@@ -32,6 +32,10 @@ export class ClubesComponent implements OnInit {
   refreshDataTable() {
     this.clubService.getClubes().subscribe(res => {
       console.log(res);
+      res.forEach(element => {
+        element['federacion_id'] = element.federacion.id;
+        element['federacion'] = element.federacion.nombre;
+      });
       this.dataSource.data = res;
     })
   }

@@ -1,7 +1,9 @@
 package es.uv.twcam.pls.ajedrez.api;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -60,12 +62,15 @@ public class AjedrezContextListener implements ServletContextListener {
 		
 		
 		Club club1 = new Club("Master TWCAM", "ETSE Burjassot", "Entrenador1", federacion1);
+		Club club2 = new Club("Valencia", "Carrer Valencia 214", "Entrenador2", federacion1);
 		ClubFactory.getInstance().create(club1);
+		ClubFactory.getInstance().create(club2);
 		
-		
-		Jugador jugador1 = new Jugador("Fernando", "12345", "fer", "player", 1346, "", false, new Date(1996,7,18), club1);
-		Jugador jugador2 = new Jugador("Ruben", "12345", "ruben", "player", 1498, "", false, new Date(1999,7,18), club1);
-		Jugador jugador3 = new Jugador("Alexis", "12345", "alexis", "player", 1411, "", false, new Date(1990,7,18), club1);
+		Calendar myCalendar = new GregorianCalendar(1995,GregorianCalendar.SEPTEMBER,12);
+		Date jugadorDate = myCalendar.getTime();
+		Jugador jugador1 = new Jugador("Fernando", "12345", "fer", "player", 1346, "", false, jugadorDate, club1);
+		Jugador jugador2 = new Jugador("Ruben", "12345", "ruben", "player", 1498, "", false, jugadorDate, club1);
+		Jugador jugador3 = new Jugador("Alexis", "12345", "alexis", "player", 1411, "", false, jugadorDate, club1);
 		JugadorFactory.getInstance().create(jugador1);
 		JugadorFactory.getInstance().create(jugador2);
 		JugadorFactory.getInstance().create(jugador3);

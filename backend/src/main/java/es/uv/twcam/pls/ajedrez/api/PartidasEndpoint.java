@@ -90,6 +90,7 @@ public class PartidasEndpoint extends HttpServlet {
 			EndpointUtils.addSecurityHeaders(response); // <2>
 
 			PrintWriter pw = response.getWriter();
+			response.setStatus(HttpServletResponse.SC_CREATED);
 			response.setContentType("Application/JSON");
 			pw.println(g.toJson(partida));
 			pw.flush();
@@ -178,10 +179,9 @@ public class PartidasEndpoint extends HttpServlet {
 		Partida partida = null;
 		partida = g.fromJson(new InputStreamReader(stream), Partida.class);
 		System.out.println("from inputstream, partida: " + partida.getId());
-		System.out.println("from inputstream, resultado: " + partida.getResultado());
+		System.out.println("from inputstream, sede: " + partida.getSede());
 
-//		if (partida.getId() == null || partida.getSede() == null) {
-		if (partida.getSede() == null) {
+		if (partida.getSede() == null || partida.getJugador1() == null || partida.getJugador2() == null) {
 			System.out.println("Error validando datos de partida!!");
 			throw new ValidationException("Error en datos de partida");
 		}
@@ -198,9 +198,6 @@ public class PartidasEndpoint extends HttpServlet {
 
 			partida = getPartidaFromInputStream(request.getInputStream());
 			partida.setId(id);
-			// partida.setSede(id);
-			// partida.setJugador1(jugador);
-			// partida.setId(id);
 
 
 		} catch (Exception e) {
