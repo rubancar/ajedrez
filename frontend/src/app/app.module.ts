@@ -27,6 +27,7 @@ import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialo
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ClubesComponent } from './modules/clubes/clubes.component';
 import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.component';
+import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.co
     ConfirmationDialogComponent,
     DialogJugadorComponent,
     ClubesComponent,
-    DialogClubComponent
+    DialogClubComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

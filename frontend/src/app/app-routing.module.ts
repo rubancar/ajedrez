@@ -6,8 +6,8 @@ import { LoginComponent } from './modules/login/login.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { PartidasComponent } from './modules/partidas/partidas.component';
 import { JugadoresComponent } from './modules/jugadores/jugadores.component';
-import { DataTableComponent } from './shared/components/data-table/data-table.component';
-import { ClubesComponent } from './modules/clubes/clubes.component'; 
+import { ClubesComponent } from './modules/clubes/clubes.component';
+import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [{
   path: '',
@@ -30,7 +30,10 @@ const routes: Routes = [{
 {
   path: 'login',
   component: LoginComponent
-}];
+},
+//Wild Card Route for 404 request
+{ path: '**', pathMatch: 'full', component: PagenotfoundComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
