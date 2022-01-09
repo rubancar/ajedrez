@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { stringify } from 'querystring';
 import { ClubService } from 'src/app/services/club.service';
 import { Club } from 'src/app/shared/entidades/club';
 
@@ -37,7 +36,7 @@ export class DialogClubComponent implements OnInit {
   onSubmit() {
     this.club = this.clubForm.value;
     // se extrae el valor del id
-    var id = this.club.id;
+    const id = this.club.id;
     console.log(id);
 
     // si id está presente entonces estamos editando
