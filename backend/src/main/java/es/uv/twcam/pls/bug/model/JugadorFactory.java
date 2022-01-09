@@ -39,7 +39,7 @@ public class JugadorFactory {
 	}
 	
 	public Jugador update(Jugador jugador) throws Exception {
-		
+		System.out.println(jugador.getId());
 		if (dictionary.containsKey(jugador.getId())) {
 			dictionary.put(jugador.getId(), jugador);
 		} else {

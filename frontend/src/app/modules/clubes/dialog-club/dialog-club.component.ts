@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { stringify } from 'querystring';
 import { ClubService } from 'src/app/services/club.service';
 import { Club } from 'src/app/shared/entidades/club';
 
@@ -37,35 +36,33 @@ export class DialogClubComponent implements OnInit {
   onSubmit() {
     this.club = this.clubForm.value;
     // se extrae el valor del id
-    var id = this.club.id;
+    const id = this.club.id;
     console.log(id);
 
     // si id está presente entonces estamos editando
     if(id == null || id === "") {
       this.clubService.saveClub(this.club).subscribe(response => {
         console.log("Response save from API:", response);
-        this.clubForm.reset({
-          "id": "",
-          "nombre": "",
-          "direccion": "",
-          "usuario_entrenador": "",
-          "federacion_id": ""
-        });
+        this.resetForm();
         this.dialogRef.close("Guardado correctamente");
       })
     } else {
       this.clubService.editClub(this.club).subscribe(response => {
         console.log("Response edit from API:", response);
-        this.clubForm.reset({
-          "id": "",
-          "nombre": "",
-          "direccion": "",
-          "usuario_entrenador": "",
-          "federacion_id": ""
-        });
+        this.resetForm();
         this.dialogRef.close("Editado correctamente");
       })
     }
+  }
+
+  resetForm() {
+    this.clubForm.reset({
+      "id": "",
+      "nombre": "",
+      "direccion": "",
+      "usuario_entrenador": "",
+      "federacion_id": ""
+    });
   }
 
 }

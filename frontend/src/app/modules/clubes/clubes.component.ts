@@ -26,6 +26,10 @@ export class ClubesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.refreshDataTable();
+  }
+
+  refreshDataTable() {
     this.clubService.getClubes().subscribe(res => {
       console.log(res);
       this.dataSource.data = res;
@@ -77,6 +81,7 @@ export class ClubesComponent implements OnInit {
 
   actionAfterClosingDialog(dialogRef: any) {
     dialogRef.afterClosed().subscribe(result => {
+      this.refreshDataTable();
       if(result) {
         this._snackBar.open(result, "X");
       }
