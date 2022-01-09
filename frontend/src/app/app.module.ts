@@ -9,20 +9,38 @@ import { LoginComponent } from './modules/login/login.component';
 import { AuthService } from './services/auth.service';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { PartidasComponent } from './modules/partidas/partidas.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, 
-  MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatSelectModule, MatSortModule } from '@angular/material';
+import {
+  MatDialogModule,
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSortModule,
+  MatListModule,
+  MatGridListModule,
+  MatToolbarModule,
+  MatRadioModule,
+  MatCheckboxModule,
+  MatSlideToggleModule,
+  MatProgressSpinnerModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatTableModule,
+  MatDividerModule
+} from '@angular/material';
 import { JugadoresComponent } from './modules/jugadores/jugadores.component';
 import { DataTableComponent } from './shared/components/data-table/data-table.component';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 
-import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from "@angular/common/http";
-import { MatDividerModule } from '@angular/material/divider';
 import { CdkTableModule } from '@angular/cdk/table';
-import { MatTableModule } from '@angular/material/table';
+import { DetallePartidaComponent } from './modules/detalle-partida/detalle-partida.component';
+import { ResultadoPartidaComponent } from './modules/resultado-partida/resultado-partida.component'
 import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialog-jugador.component';
 import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.component';
 import { FederacionesComponent } from './modules/federaciones/federaciones.component';
@@ -45,7 +63,10 @@ import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.co
     FederacionesComponent,
     DialogFederacionComponent,
     ClubesComponent,
-    DialogClubComponent
+    DialogClubComponent,
+    ResultadoPartidaComponent,
+    DetallePartidaComponent,
+    DialogJugadorComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +82,9 @@ import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.co
     MatListModule,
     HttpClientModule,
     MatDividerModule,
+    MatGridListModule,
+    MatToolbarModule,
+    MatRadioModule,
 
     // Modulos para implementar DataTable
     CdkTableModule,
@@ -80,6 +104,6 @@ import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.co
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, AuthorizatedGuard], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent, DialogFederacionComponent, DialogClubComponent]
+  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent, DialogFederacionComponent, DialogClubComponent, DetallePartidaComponent,ResultadoPartidaComponent]
 })
 export class AppModule { }

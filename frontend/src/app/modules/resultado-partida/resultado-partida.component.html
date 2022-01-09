@@ -1,0 +1,19 @@
+
+<h1 mat-dialog-title>Resultado de partida</h1>
+
+<form novalidate [formGroup]="resultsForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-radio-group class="radio-group" formControlName ="result">
+      <mat-radio-button [value]="-1">Tablas</mat-radio-button>
+      <mat-radio-button [value]="partida?.jugador1.id">Ganó {{partida?.jugador1.name}}</mat-radio-button>
+      <mat-radio-button [value]="partida?.jugador2.id">Ganó {{partida?.jugador2.name}}</mat-radio-button>
+    </mat-radio-group>
+    
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button type="submit" mat-button class="background-primary text-floral-white">Salvar</button>
+  </mat-dialog-actions>
+  
+  </form>

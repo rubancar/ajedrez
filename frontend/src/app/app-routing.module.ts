@@ -11,6 +11,7 @@ import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.compo
 import { FederacionesComponent } from './modules/federaciones/federaciones.component';
 import { AuthorizatedGuard } from './guards/authorizated.guard';
 import { ClubesComponent } from './modules/clubes/clubes.component'; 
+import { DetallePartidaComponent } from './modules/detalle-partida/detalle-partida.component';
 
 const routes: Routes = [{
   path: '',
@@ -22,6 +23,9 @@ const routes: Routes = [{
   }, {
     path: 'partidas',
     component: PartidasComponent
+  }, {
+    path: 'partidas/:id',
+    component: DetallePartidaComponent
   }, {
     path: 'jugadores',
     component: JugadoresComponent
