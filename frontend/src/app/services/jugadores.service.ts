@@ -29,7 +29,9 @@ export class JugadoresService {
   }
 
   editJugador(jugador: Jugador): Observable<any> {
-    return this.http.put<any>("/api/jugador/", jugador)
+    const jugador_id = jugador.id;
+    console.log(jugador_id);
+    return this.http.put<any>(`/api/jugador/${jugador_id}`, jugador)
   }
 
   saveJugador(jugador: Jugador): Observable<any> {

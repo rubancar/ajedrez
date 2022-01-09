@@ -17,6 +17,8 @@ import com.google.gson.JsonSyntaxException;
 
 import es.uv.twcam.pls.bug.model.Bug;
 import es.uv.twcam.pls.bug.model.BugFactory;
+import es.uv.twcam.pls.bug.model.Club;
+import es.uv.twcam.pls.bug.model.ClubFactory;
 import es.uv.twcam.pls.bug.model.IncorrectBugException;
 import es.uv.twcam.pls.bug.model.Jugador;
 import es.uv.twcam.pls.bug.model.JugadorFactory;
@@ -33,13 +35,14 @@ public class JugadorEndpoint extends HttpServlet {
 	 * Gson parser
 	 */
 	private Gson g;
+	private ClubFactory clubFactory;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public JugadorEndpoint() {
         super();
-        g = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();;
+        g = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
 		System.out.println("Jugador EndPoint creado");
     }
 
@@ -161,14 +164,22 @@ public class JugadorEndpoint extends HttpServlet {
 
 		Jugador jugador = null;
 		jugador = g.fromJson(new InputStreamReader(stream), Jugador.class);
-		System.out.println(jugador.getName());
-		System.out.println(jugador.getPassword());
-		System.out.println(jugador.getUsuario());
-		System.out.println(jugador.getFecha_nacimiento());
+		System.out.println("Name: " + jugador.getName());
+		System.out.println("Password: " +jugador.getPassword());
+		System.out.println("Usuario: " +jugador.getUsuario());
+		System.out.println("F. Nacimiento: " +jugador.getFecha_nacimiento());
+		System.out.println("Id: " +jugador.getId());
+		System.out.println("Club Id: " +jugador.getClub_id());
 		if(jugador.getName() == null || jugador.getPassword() == null || jugador.getUsuario() == null 
 				|| jugador.getFecha_nacimiento() == null) {
 			System.out.println("Error validando datos de usuario!!");
 			throw new ValidationException("Error en datos de usuario"); 
+		}
+		
+		if(jugador.getClub_id() != null) {
+			Club club = clubFactory.getInstance().find(jugador.getClub_id());
+			System.out.println("Registrando club a Jugador!!");
+			jugador.setClub(club);
 		}
 
 		return jugador;

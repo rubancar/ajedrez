@@ -44,28 +44,26 @@ export class DialogClubComponent implements OnInit {
     if(id == null || id === "") {
       this.clubService.saveClub(this.club).subscribe(response => {
         console.log("Response save from API:", response);
-        this.clubForm.reset({
-          "id": "",
-          "nombre": "",
-          "direccion": "",
-          "usuario_entrenador": "",
-          "federacion_id": ""
-        });
+        this.resetForm();
         this.dialogRef.close("Guardado correctamente");
       })
     } else {
       this.clubService.editClub(this.club).subscribe(response => {
         console.log("Response edit from API:", response);
-        this.clubForm.reset({
-          "id": "",
-          "nombre": "",
-          "direccion": "",
-          "usuario_entrenador": "",
-          "federacion_id": ""
-        });
+        this.resetForm();
         this.dialogRef.close("Editado correctamente");
       })
     }
+  }
+
+  resetForm() {
+    this.clubForm.reset({
+      "id": "",
+      "nombre": "",
+      "direccion": "",
+      "usuario_entrenador": "",
+      "federacion_id": ""
+    });
   }
 
 }

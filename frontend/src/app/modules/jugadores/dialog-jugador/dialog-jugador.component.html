@@ -65,13 +65,14 @@
                 <div>
                     <mat-form-field class="fullWidth" appearance="outline">
                         <mat-label>Club *</mat-label>
-                        <mat-select name="club" formControlName="club">
-                          <mat-option value="Valencia">Valencia</mat-option>
-                          <mat-option value="Valencia2">Valencia2</mat-option>
-                          <mat-option value="Valencia3">Valencia3</mat-option>
-                          <mat-option value="Valencia4">Valencia4</mat-option>
+                        <mat-select name="club_id" formControlName="club_id">
+
+                          <ng-template ngFor let-club [ngForOf]="clubes" let-i="index" [ngForTrackBy]="trackByFn">
+                            <mat-option value="{{club.id}}">{{club.nombre}}</mat-option>
+                          </ng-template>
+
                         </mat-select>
-                        <mat-error *ngIf="jugadorForm.controls['club']?.errors?.required">field required
+                        <mat-error *ngIf="jugadorForm.controls['club_id']?.errors?.required">field required
                         </mat-error>
                       </mat-form-field>
                 </div>

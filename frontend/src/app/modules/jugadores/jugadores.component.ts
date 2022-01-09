@@ -16,7 +16,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class JugadoresComponent implements OnInit {
 
   public dataSource: MatTableDataSource<Jugador>;
-  private serviceSubscribe: Subscription;
   private actionsFunctions: any;
   private displayedColumns: string[];
 
@@ -28,14 +27,14 @@ export class JugadoresComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.serviceSubscribe = this.jugadorService.getJugadores().subscribe(res => {
+    this.refreshDataTable();
+  }
+
+  refreshDataTable() {
+    this.jugadorService.getJugadores().subscribe(res => {
       console.log(res);
       this.dataSource.data = res;
     })
-  }
-
-  ngOnDestroy(): void {
-    this.serviceSubscribe.unsubscribe();
   }
 
   callAction(eventData: any): void{
@@ -63,12 +62,13 @@ export class JugadoresComponent implements OnInit {
   }
 
   edit(element: any) {
-    const dialogEditJugador = this.dialog.open(DialogJugadorComponent, {
+    console.log(element);
+    const dialogRef = this.dialog.open(DialogJugadorComponent, {
       width: '60%',
       data: new Jugador(element.id, element.name, element.usuario, element.password, element.elo, element.responsable,
-        element.es_moroso, new Date(element.fecha_nacimiento), element.club)
+        element.es_moroso, new Date(element.fecha_nacimiento), element.club.id)
     });
-    console.log(element);
+    this.actionAfterClosingDialog(dialogRef);
   }
 
   newJugador() {
@@ -76,12 +76,16 @@ export class JugadoresComponent implements OnInit {
       width: '60%',
       data: new Jugador()
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this._snackBar.open("Jugador creado correctamente", "X");
-    });
+    this.actionAfterClosingDialog(dialogRef);
   }
 
 
+  actionAfterClosingDialog(dialogRef: any) {
+    dialogRef.afterClosed().subscribe(result => {
+      this.refreshDataTable();
+      if(result) {
+        this._snackBar.open(result, "X");
+      }
+    });
+  }
 }
