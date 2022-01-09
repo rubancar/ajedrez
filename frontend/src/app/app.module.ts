@@ -45,10 +45,12 @@ import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialo
 import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.component';
 import { FederacionesComponent } from './modules/federaciones/federaciones.component';
 import { DialogFederacionComponent } from './modules/federaciones/dialog-federacion/dialog-federacion.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {AuthorizatedGuard} from "./guards/authorizated.guard";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthorizatedGuard } from "./guards/authorizated.guard";
 import { ClubesComponent } from './modules/clubes/clubes.component';
 import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.component';
+import { CalendarioEntrenamientosComponent } from './modules/calendario-entrenamientos/calendario-entrenamientos.component';
+import { DialogEntrenadorComponent } from './modules/entrenadores/dialog-entrenador/dialog-entrenador.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.co
     DialogClubComponent,
     ResultadoPartidaComponent,
     DetallePartidaComponent,
-    DialogJugadorComponent
+    DialogJugadorComponent,
+    CalendarioEntrenamientosComponent,
+    DialogEntrenadorComponent
   ],
   imports: [
     BrowserModule,
@@ -104,6 +108,6 @@ import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.co
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, AuthorizatedGuard], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent, DialogFederacionComponent, DialogClubComponent, DetallePartidaComponent,ResultadoPartidaComponent]
+  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent, DialogFederacionComponent, DialogClubComponent, DetallePartidaComponent, ResultadoPartidaComponent, DialogEntrenadorComponent]
 })
 export class AppModule { }

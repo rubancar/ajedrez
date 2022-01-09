@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Calendario entrenador: {{entrenador.nombre}}</h1>
+
+<div mat-dialog-content>
+    <mat-label>Fecha:</mat-label>
+    <input matInput [matDatepicker]="fecha_nacimiento" formControlName="fecha_nacimiento">
+    
+      <mat-datepicker-toggle matSuffix [for]="fecha_nacimiento"></mat-datepicker-toggle>
+      <mat-datepicker #fecha_nacimiento></mat-datepicker>
+    <button mat-raised-button mat-dialog-close>Cerrar</button>
+  
+  </div>
+  

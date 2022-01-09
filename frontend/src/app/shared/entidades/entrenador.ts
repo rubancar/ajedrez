@@ -1,12 +1,13 @@
+import { Entrenamiento } from "./entrenamiento";
+
 export class Entrenador{
     id:string;
     nombre:string;
-    calendarioEntrenamientos:string;
+    calendarioEntrenamientos: Array<Entrenamiento>;
 
     constructor(){
         this.id= "";
         this.nombre = "";
-        this.calendarioEntrenamientos = "";
+        this.calendarioEntrenamientos = null;
     }
-
 }

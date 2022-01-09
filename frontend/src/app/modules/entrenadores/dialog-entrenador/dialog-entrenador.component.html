@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Entrenador</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="EntrenadorForm">
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nombre *</mat-label>
+                      <input matInput type="text" name="nombre" formControlName="nombre">
+                      <mat-error *ngIf="
+                      EntrenadorForm.controls['nombre']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+            </td>
+        </tr>   
+    </table>
+  </form>
+</div>
+
+<div class="mt-5" mat-dialog-actions>
+  <button mat-raised-button color="primary" 
+  [disabled]="EntrenadorForm.dirty && EntrenadorForm.errors" (click)="onSubmit()"
+    cdkFocusInitial>Guardar</button>
+  <button mat-raised-button mat-dialog-close>Cerrar</button>
+
+</div>

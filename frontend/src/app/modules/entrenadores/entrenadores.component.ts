@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EntrenadoresService } from '../../services/entrenadores.service';
+import { DialogEntrenadorComponent } from './dialog-entrenador/dialog-entrenador.component';
 
 @Component({
   selector: 'app-entrenadores',
@@ -20,15 +21,19 @@ export class EntrenadoresComponent implements OnInit {
 
   constructor(private entrenadorService:EntrenadoresService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Entrenador>();
-    this.actionsFunctions = ['edit', 'delete'];
+    this.actionsFunctions = ['edit', 'delete', 'calendar_today'];
     this.displayedColumns = ['nombre'];
   }
 
-  ngOnInit() {
+  refresh() {
     this.serviceSubscribe = this.entrenadorService.getEntrenadores().subscribe(res => {
       console.log(res);
       this.dataSource.data = res;
     })
+  }
+
+  ngOnInit() {
+    this.refresh();
   }
 
   ngOnDestroy(): void {
@@ -54,27 +59,39 @@ export class EntrenadoresComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.entrenadorService.remove(element.id);
-      }
+        this.entrenadorService.deleteEntrenador(element.id).subscribe(id => {element.id = id});
+        this.refresh();
+      }     
     });
   }
 
   edit(element: any) {
-    console.log("editando elemento");
-  }
-
-  newFederacion() {
-  /*  const dialogRef = this.dialog.open(DialogJugadorComponent, {
+    //console.log("editando elemento");
+    const dialogRef = this.dialog.open(DialogEntrenadorComponent, {
       width: '60%',
-      data: new Federacion()
+      data: element
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
-        //this.personsService.edit(result);
+        this.refresh();
       }
-    });*/
+    });
+  }
+
+  newEntrenador() {
+    const dialogRef = this.dialog.open(DialogEntrenadorComponent, {
+      width: '60%',
+      data: new Entrenador()
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+        this.refresh();
+      }
+    });
   }
 
 }
