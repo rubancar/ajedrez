@@ -1,9 +1,9 @@
-import { Entrenamiento } from "./entrenamiento";
+import { EntrenamientosDia } from "./entrenamientosDia";
 
 export class Entrenador{
     id:string;
     nombre:string;
-    calendarioEntrenamientos: Array<Entrenamiento>;
+    calendarioEntrenamientos: Array<EntrenamientosDia>;
 
     constructor(){
         this.id= "";

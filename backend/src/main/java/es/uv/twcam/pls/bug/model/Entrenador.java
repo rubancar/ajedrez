@@ -6,13 +6,13 @@ public class Entrenador {
 
 	private String id;
 	private String nombre;
-	private ArrayList<Entrenamiento> calendarioEntrenamientos;
+	private ArrayList<EntrenamientosDia> calendarioEntrenamientos;
 
 	public Entrenador() {
 		super();
 	}
 
-	public Entrenador(String nombre, ArrayList<Entrenamiento> calendarioEntrenamientos) {
+	public Entrenador(String nombre, ArrayList<EntrenamientosDia> calendarioEntrenamientos) {
 		super();
 		this.nombre = nombre;
 		this.calendarioEntrenamientos = calendarioEntrenamientos;
@@ -34,11 +34,11 @@ public class Entrenador {
 		this.nombre = nombre;
 	}
 
-	public ArrayList<Entrenamiento> getCalendarioEntrenamientos() {
+	public ArrayList<EntrenamientosDia> getCalendarioEntrenamientos() {
 		return calendarioEntrenamientos;
 	}
 
-	public void setCalendarioEntrenamientos(ArrayList<Entrenamiento> calendarioEntrenamientos) {
+	public void setCalendarioEntrenamientos(ArrayList<EntrenamientosDia> calendarioEntrenamientos) {
 		this.calendarioEntrenamientos = calendarioEntrenamientos;
 	}
 
@@ -46,8 +46,8 @@ public class Entrenador {
 		boolean isOk = true;
 
 		if (this.calendarioEntrenamientos != null) {
-			for (Entrenamiento entrenamiento : this.calendarioEntrenamientos) {
-				if (!entrenamiento.IsEntrenamientoOk()) {
+			for (EntrenamientosDia entrenamiento : this.calendarioEntrenamientos) {
+				if (!entrenamiento.isEntramientosOK()) {
 					isOk = false;
 					break;
 				}

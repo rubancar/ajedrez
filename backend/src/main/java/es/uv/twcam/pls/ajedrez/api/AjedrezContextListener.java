@@ -12,6 +12,7 @@ import es.uv.twcam.pls.bug.model.ClubFactory;
 import es.uv.twcam.pls.bug.model.Entrenador;
 import es.uv.twcam.pls.bug.model.EntrenadorFactory;
 import es.uv.twcam.pls.bug.model.Entrenamiento;
+import es.uv.twcam.pls.bug.model.EntrenamientosDia;
 import es.uv.twcam.pls.bug.model.Federacion;
 import es.uv.twcam.pls.bug.model.FederacionFactory;
 import es.uv.twcam.pls.bug.model.Jugador;
@@ -69,9 +70,11 @@ public class AjedrezContextListener implements ServletContextListener {
 		JugadorFactory.getInstance().create(jugador2);
 		JugadorFactory.getInstance().create(jugador3);
 		
-		ArrayList<Entrenamiento> entrenamientos = new ArrayList<Entrenamiento>();
-		entrenamientos.add(new Entrenamiento(new Date(2022,1,9), 1, jugador1, club1));
-		entrenamientos.add(new Entrenamiento(new Date(2022,1,9), 2, jugador2, club1));
+		ArrayList<EntrenamientosDia> entrenamientos = new ArrayList<EntrenamientosDia>();
+		EntrenamientosDia entrenamientosHoy =  new EntrenamientosDia("10/01/2022");
+		entrenamientosHoy.setEntrenamiento1(new Entrenamiento(jugador1, club1));
+		entrenamientosHoy.setEntrenamiento3(new Entrenamiento(jugador2, club1));
+		entrenamientos.add(entrenamientosHoy);
 		Entrenador entrenador1 = new Entrenador("Entrenador1", entrenamientos);
 		EntrenadorFactory.getInstance().create(entrenador1);
 		

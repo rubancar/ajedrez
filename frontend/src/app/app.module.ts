@@ -110,6 +110,15 @@ import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.compo
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, AuthorizatedGuard], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent, DialogFederacionComponent, DialogClubComponent, DetallePartidaComponent, ResultadoPartidaComponent, DialogEntrenadorComponent]
+  entryComponents: [
+    ConfirmationDialogComponent, 
+    DialogJugadorComponent, 
+    DialogFederacionComponent, 
+    DialogClubComponent, 
+    DetallePartidaComponent, 
+    ResultadoPartidaComponent, 
+    DialogEntrenadorComponent,
+    CalendarioEntrenamientosComponent
+  ]
 })
 export class AppModule { }

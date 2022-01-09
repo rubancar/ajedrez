@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EntrenadoresService } from '../../services/entrenadores.service';
 import { DialogEntrenadorComponent } from './dialog-entrenador/dialog-entrenador.component';
+import { CalendarioEntrenamientosComponent } from '../calendario-entrenamientos/calendario-entrenamientos.component';
 
 @Component({
   selector: 'app-entrenadores',
@@ -48,10 +49,26 @@ export class EntrenadoresComponent implements OnInit {
       case 'edit':
         this.edit(eventData.element)
         break;
+      case 'calendar_today':
+        this.openCalendario(eventData.element);
       default:
         console.warn(`Action ${eventData.action_name} not implemented`);
         break;
     }
+  }
+
+  openCalendario(element:any){
+    const dialogRef = this.dialog.open(CalendarioEntrenamientosComponent, {
+      width: '60%',
+      data: element
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+        this.refresh();
+      }
+    });
   }
 
   delete(element: any) {
