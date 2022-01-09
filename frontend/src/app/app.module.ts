@@ -51,6 +51,7 @@ import { ClubesComponent } from './modules/clubes/clubes.component';
 import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.component';
 import { CalendarioEntrenamientosComponent } from './modules/calendario-entrenamientos/calendario-entrenamientos.component';
 import { DialogEntrenadorComponent } from './modules/entrenadores/dialog-entrenador/dialog-entrenador.component';
+import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { DialogEntrenadorComponent } from './modules/entrenadores/dialog-entrena
     DetallePartidaComponent,
     DialogJugadorComponent,
     CalendarioEntrenamientosComponent,
-    DialogEntrenadorComponent
+    DialogEntrenadorComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

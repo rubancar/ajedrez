@@ -18,6 +18,36 @@ export class DialogJugadorComponent implements OnInit {
   jugador: Jugador;
   clubes: Club[];
 
+  erroresForm: any = {
+    "name":"",
+    "usuario":"",
+    "password":"",
+    "elo":"",
+    "responsable":"",
+    "es_moroso":"",
+    "fecha_nacimiento":"",
+    "club_id":"",
+  };
+
+  mensajesError: any = {
+    'name': {
+      'required': 'El nombre es obligatorio.'
+    },
+    'usuario': {
+      'required': 'El usuario es obligatorio.'
+    },
+    'password': {
+      'required': 'La contraseña es obligatoria.'
+    },
+    'elo': {
+      'required': 'El número elo es obligatorio'
+    },
+    'fecha_nacimiento': {
+      'required': 'La fecha de nacimiento es obligatoria'
+    },
+  };
+
+
   constructor(private jugadorService:JugadoresService,
     private clubService:ClubService,
     public dialogRef: MatDialogRef<DialogJugadorComponent>,
@@ -29,12 +59,13 @@ export class DialogJugadorComponent implements OnInit {
         "usuario": new FormControl('', Validators.required),
         "password": new FormControl('', Validators.required),
         "elo": new FormControl('', Validators.required),
-        "responsable": new FormControl('', Validators.required),
-        "es_moroso": new FormControl('', Validators.required),
+        "responsable": new FormControl(''),
+        "es_moroso": new FormControl(''),
         "fecha_nacimiento": new FormControl('', Validators.required),
-        "club_id": new FormControl('', Validators.required)
+        "club_id": new FormControl('')
       });
 
+      this.jugadorForm.valueChanges.subscribe(datos => this.onCambioValor(datos));
       this.jugadorForm.setValue(data);
       this.jugador = new Jugador();
     }
@@ -45,6 +76,22 @@ export class DialogJugadorComponent implements OnInit {
       console.log(response);
       this.clubes = response;
     })
+  }
+
+  onCambioValor(data?: any) {
+    if (!this.jugadorForm) { return; }
+    const form = this.jugadorForm;
+    for (const field in this.erroresForm) {
+      // Se borrarán los mensajes de error previos
+      this.erroresForm[field] = '';
+      const control = form.get(field);
+      if (control && control.dirty && !control.valid) {
+        const messages = this.mensajesError[field];
+        for (const key in control.errors) {
+          this.erroresForm[field] += messages[key] + ' ';
+        }
+      }
+    }
   }
 
   onSubmit() {

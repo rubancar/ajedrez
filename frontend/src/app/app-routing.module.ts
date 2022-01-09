@@ -12,6 +12,7 @@ import { FederacionesComponent } from './modules/federaciones/federaciones.compo
 import { AuthorizatedGuard } from './guards/authorizated.guard';
 import { ClubesComponent } from './modules/clubes/clubes.component'; 
 import { DetallePartidaComponent } from './modules/detalle-partida/detalle-partida.component';
+import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [{
   path: '',
@@ -45,7 +46,10 @@ const routes: Routes = [{
 {
   path: 'login',
   component: LoginComponent
-}];
+},
+//Wild Card Route for 404 request
+{ path: '**', pathMatch: 'full', component: PagenotfoundComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
