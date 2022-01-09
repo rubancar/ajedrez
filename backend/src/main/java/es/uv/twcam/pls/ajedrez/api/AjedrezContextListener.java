@@ -62,9 +62,9 @@ public class AjedrezContextListener implements ServletContextListener {
 		ClubFactory.getInstance().create(club1);
 		
 		
-		Jugador jugador1 = new Jugador("Fernando", "12345", "fer", "player", 1346, "", false, new Date(1996,7,18));
-		Jugador jugador2 = new Jugador("Ruben", "12345", "ruben", "player", 1498, "", false, new Date(1999,7,18));
-		Jugador jugador3 = new Jugador("Alexis", "12345", "alexis", "player", 1411, "", false, new Date(1990,7,18));
+		Jugador jugador1 = new Jugador("Fernando", "12345", "fer", "player", 1346, "", false, new Date(1996,7,18), club1);
+		Jugador jugador2 = new Jugador("Ruben", "12345", "ruben", "player", 1498, "", false, new Date(1999,7,18), club1);
+		Jugador jugador3 = new Jugador("Alexis", "12345", "alexis", "player", 1411, "", false, new Date(1990,7,18), club1);
 		JugadorFactory.getInstance().create(jugador1);
 		JugadorFactory.getInstance().create(jugador2);
 		JugadorFactory.getInstance().create(jugador3);
