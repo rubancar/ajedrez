@@ -10,6 +10,7 @@ import { DataTableComponent } from './shared/components/data-table/data-table.co
 import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.component';
 import { FederacionesComponent } from './modules/federaciones/federaciones.component';
 import { AuthorizatedGuard } from './guards/authorizated.guard';
+import { ClubesComponent } from './modules/clubes/clubes.component'; 
 
 const routes: Routes = [{
   path: '',
@@ -32,7 +33,10 @@ const routes: Routes = [{
     component: FederacionesComponent,
     canActivate: [ AuthorizatedGuard ]
   },
-  ]
+  {
+    path: 'clubes',
+    component: ClubesComponent
+  }]
 },
 {
   path: 'login',

@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>Club</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="clubForm">
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nombre *</mat-label>
+                      <input matInput type="text" name="nombre" formControlName="nombre">
+                      <mat-error *ngIf="
+                      clubForm.controls['nombre']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+            </td>
+            <td>
+                <div>
+                    <mat-form-field  appearance="outline">
+                      <mat-label>Dirección *</mat-label>
+                      <input matInput type="text" name="direccion" formControlName="direccion" />
+                      <mat-error *ngIf="
+                      clubForm.controls['direccion']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Entrenador</mat-label>
+                      <input matInput type="text" name="usuario_entrenador" formControlName="usuario_entrenador">
+                      <mat-error *ngIf="
+                      clubForm.controls['usuario_entrenador']?.errors?.required">campo requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+            </td>
+            <td>
+                <div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Federación</mat-label>
+                      <input matInput type="text" name="federacion_id" formControlName="federacion_id">
+                    </mat-form-field>
+                  </div>
+            </td>
+        </tr>
+    </table>
+  </form>
+</div>
+
+<div class="mt-5" mat-dialog-actions>
+  <button mat-raised-button color="primary" 
+  [disabled]="clubForm.dirty && clubForm.errors" (click)="onSubmit()"
+    cdkFocusInitial>Guardar</button>
+  <button mat-raised-button mat-dialog-close>Cerrar</button>
+
+</div>

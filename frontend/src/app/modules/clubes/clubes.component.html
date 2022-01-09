@@ -1,0 +1,11 @@
+<section>
+    <h2>Clubes</h2>
+    <div class="example-button-row">
+        <button mat-raised-button color="primary" (click)="newClub()">Nuevo Club</button>
+    </div>
+</section>
+<app-data-table [dataSource]="dataSource" 
+    [displayedColumns]="displayedColumns"
+    [actionsFunctions]="actionsFunctions" 
+    (callAction)="callAction($event)">
+</app-data-table>

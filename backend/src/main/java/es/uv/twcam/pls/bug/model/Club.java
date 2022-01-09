@@ -7,6 +7,7 @@ public class Club {
 	private String direccion;
 	private String usuario_entrenador;
 	private Federacion federacion;
+	private String federacion_id;
 	
 	public Club() {
 		super();
@@ -17,13 +18,14 @@ public class Club {
 		this.id = id;
 	}
 	
-	public Club(String id, String nombre, String direccion, String usuario_entrenador, Federacion federacion) {
+	public Club(String id, String nombre, String direccion, String usuario_entrenador, Federacion federacion, String federacion_id) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.usuario_entrenador = usuario_entrenador;
 		this.federacion = federacion;
+		this.federacion_id = federacion_id;
 	}
 	
 	public String getId() {

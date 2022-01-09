@@ -40,10 +40,6 @@ export class DialogJugadorComponent implements OnInit {
   ngOnInit() {
   }
 
-  save(data: Jugador): void {
-    console.log("guardar y salir del cuadro de dialogo", data);
-  }
-
   onSubmit() {
     this.jugador = this.jugadorForm.value;
 

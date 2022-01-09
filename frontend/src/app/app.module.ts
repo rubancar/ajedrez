@@ -29,6 +29,8 @@ import { FederacionesComponent } from './modules/federaciones/federaciones.compo
 import { DialogFederacionComponent } from './modules/federaciones/dialog-federacion/dialog-federacion.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {AuthorizatedGuard} from "./guards/authorizated.guard";
+import { ClubesComponent } from './modules/clubes/clubes.component';
+import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import {AuthorizatedGuard} from "./guards/authorizated.guard";
     EntrenadoresComponent,
     FederacionesComponent,
     DialogFederacionComponent,
-
+    ClubesComponent,
+    DialogClubComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,6 @@ import {AuthorizatedGuard} from "./guards/authorizated.guard";
   ],
   providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, AuthorizatedGuard], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent, DialogFederacionComponent]
+  entryComponents: [ConfirmationDialogComponent, DialogJugadorComponent, DialogFederacionComponent, DialogClubComponent]
 })
 export class AppModule { }
