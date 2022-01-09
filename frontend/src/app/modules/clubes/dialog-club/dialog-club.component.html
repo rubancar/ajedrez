@@ -51,8 +51,7 @@
 
 <div class="mt-5" mat-dialog-actions>
   <button mat-raised-button color="primary" 
-  [disabled]="clubForm.dirty && clubForm.errors" (click)="onSubmit()"
-    cdkFocusInitial>Guardar</button>
+  [disabled]="clubForm.invalid" (click)="onSubmit()">Guardar</button>
   <button mat-raised-button mat-dialog-close>Cerrar</button>
 
 </div>
