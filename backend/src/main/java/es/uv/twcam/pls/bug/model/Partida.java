@@ -1,29 +1,33 @@
 package es.uv.twcam.pls.bug.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.google.gson.JsonNull;
+import com.google.gson.JsonObject;
 
 public class Partida {
 
 	private String id;
 	private String sede;
-	private Date fecha;
+//	TODO adicionar fecha de la partida
+//	private Date fecha;
 	private String torneo_id;
 	private Jugador jugador1;
 	private Jugador jugador2;
-	private JsonNull resultado;
+	// tablas = -1 || id del ganador
+	private String resultado;
 
 	public Partida(String id,
 			String sede,
-			Date fecha,
+//			Date fecha,
 			String torneo_id,
 			Jugador jugador1,
 			Jugador jugador2,
-			JsonNull resultado) {
+			String resultado) {
 		this.id = id;
 		this.sede = sede;
-		this.fecha = fecha;
+//		this.fecha = new SimpleDateFormat("dd/MM/yyyy").parse(date); ;
 		this.torneo_id = torneo_id;
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;
@@ -54,21 +58,21 @@ public class Partida {
 		this.jugador2 = jugador2;
 	}
 
-	public JsonNull getResultado() {
+	public String getResultado() {
 		return resultado;
 	}
 
-	public void setResultado(JsonNull resultado) {
+	public void setResultado(String resultado) {
 		this.resultado = resultado;
 	}
 
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
+//	public Date getFecha() {
+//		return fecha;
+//	}
+//
+//	public void setFecha(String date) {
+//		this.fecha = fecha;
+//	}
 
 	public String getId() {
 		return id;

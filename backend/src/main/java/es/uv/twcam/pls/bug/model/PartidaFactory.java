@@ -10,10 +10,14 @@ public class PartidaFactory {
 
 	private static PartidaFactory the;
 
+	ArrayList<Partida> partidas;
 	Map<String, Partida> dictionary;
+	Integer partida_id;
 
+	// El uso de ETag seria interesante tambien
 	private PartidaFactory() {
 		dictionary = new Hashtable<String, Partida>();
+		partidas = new ArrayList();
 	}
 
 	/*
@@ -30,9 +34,15 @@ public class PartidaFactory {
 
 	public Partida create(Partida partida) throws Exception {
 
+		System.out.println("Creando la partida: " + partida.getId());
+
 		if (partida != null && partida.getId() == null) {
-			partida.setId(UUID.randomUUID().toString());
-			dictionary.put(partida.getId(), partida);
+			partida_id =  partidas.size() + 1;
+			partida.setId(partida_id.toString());
+//			partida.setId(UUID.randomUUID().toString());
+			System.out.println("Creando la partida con id: " + partida.getId());
+			partidas.add(partida);
+//			dictionary.put(partida.getId(), partida);
 		} else {
 			throw new Exception("Error creando la partida");
 		}
@@ -41,20 +51,23 @@ public class PartidaFactory {
 	}
 
 	public List<Partida> listAll() {
-		List<Partida> partidas = new ArrayList<Partida>();
-
-		partidas.addAll(dictionary.values());
-
+//		List<Partida> partidas = new ArrayList<Partida>();
+//		partidas.addAll(dictionary.values());
 		return partidas;
 	}
 
 	public Partida update(Partida partida) throws Exception {
 
-		if (dictionary.containsKey(partida.getId())) {
-			dictionary.put(partida.getId(), partida);
-		} else {
-			throw new EntityNotExistException("La partida con id: " + partida.getId() + " no existe.");
+		for (int i = 0; i < partidas.size(); i++) {
+			if (partidas.get(i).getId() == partida.getId()) {
+				partidas.set(i, partida);
+			}
 		}
+//		if (dictionary.containsKey(partida.getId())) {
+//			dictionary.put(partida.getId(), partida);
+//		} else {
+//			throw new EntityNotExistException("La partida con id: " + partida.getId() + " no existe.");
+//		}
 
 		return partida;
 	}

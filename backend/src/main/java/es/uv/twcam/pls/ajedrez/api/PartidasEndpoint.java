@@ -22,7 +22,7 @@ import es.uv.twcam.pls.bug.model.ValidationException;
 /**
  * Servlet implementation class PartidasEndpoint
  */
-@WebServlet("/api/partidas/")
+@WebServlet("/api/partidas/*")
 public class PartidasEndpoint extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Gson g;
@@ -52,6 +52,7 @@ public class PartidasEndpoint extends HttpServlet {
 			List<Partida> partidas = PartidaFactory.getInstance().listAll();
 			result = g.toJson(partidas);
 		} else {
+			System.out.println("doing get, partida: " + id);
 			Partida partida = PartidaFactory.getInstance().find(id);
 			if (partida != null)
 				result = g.toJson(partida);
@@ -76,7 +77,9 @@ public class PartidasEndpoint extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-
+			
+			System.out.println("entering post");
+			
 			Partida partida = getPartidaFromInputStream(request.getInputStream());
 			partida = PartidaFactory.getInstance().create(partida);
 
@@ -174,10 +177,13 @@ public class PartidasEndpoint extends HttpServlet {
 
 		Partida partida = null;
 		partida = g.fromJson(new InputStreamReader(stream), Partida.class);
+		System.out.println("from inputstream, partida: " + partida.getId());
+		System.out.println("from inputstream, resultado: " + partida.getResultado());
 
-		if (partida.getId() == null || partida.getSede() == null) {
-			System.out.println("Error validando datos del partida!!");
-			throw new ValidationException("Error en datos del partida");
+//		if (partida.getId() == null || partida.getSede() == null) {
+		if (partida.getSede() == null) {
+			System.out.println("Error validando datos de partida!!");
+			throw new ValidationException("Error en datos de partida");
 		}
 
 		return partida;
