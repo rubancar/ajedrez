@@ -7,6 +7,7 @@ import { PartidasService } from 'src/app/services/partidas.service'
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,11 +26,15 @@ export class PartidasComponent implements OnInit {
 
 
   constructor(private partidasService: PartidasService,
+    private router : Router ,
     private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<Partida>();
     // this.actionsFunctions = ['edit', 'delete'];
-    this.displayedColumns = ['sede', 'jugador1', 'jugador2', 'fecha'];
+    // this.displayedColumns = ['sede', 'jugador1', 'jugador2', 'fecha'];
+    this.displayedColumns = ['sede', 'jugador1', 'jugador2'];
+
   }
+
 
   ngOnInit() {
     this.serviceSubscribe = this.partidasService.getPartidas().subscribe(res => {
@@ -43,7 +48,8 @@ export class PartidasComponent implements OnInit {
   }
 
   getRecord(row) {
-    console.log(row.id)
+    this.router.navigateByUrl(`/partidas/${row.id}`);
+
   }
 
   // delete(element: any) {
