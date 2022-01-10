@@ -5,11 +5,13 @@ public class Torneo {
 	private String id;
 	private String name;
 	private String sede;
-//	TODO adicionar fecha de la partida
-//	private Date fecha;
-//	TODO tabla de resultados
-//	private String resultado;
 
+	public Torneo(String id, String name, String sede) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.sede = sede;
+	}
 
 
 	public String getId() {
