@@ -5,6 +5,7 @@ public class Torneo {
 	private String id;
 	private String name;
 	private String sede;
+	
 
 	public Torneo(String id, String name, String sede) {
 		super();
