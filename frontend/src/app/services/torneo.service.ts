@@ -12,10 +12,6 @@ export class TorneoService {
 
   constructor( private http : HttpClient ) { }
 
-  // getTorneo() : Observable<any> {
-  //   const url = `http://localhost:3000/partidas`;
-  //   return this.http.get(url);
-  // }
 
   getTorneo(id: string) : Observable<any> {
     return this.http.get<any>(`/api/torneos/${id}`)

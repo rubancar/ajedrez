@@ -31,7 +31,8 @@ export class DetallePartidaComponent implements OnInit {
     dialogo.afterClosed().subscribe(data => {
       if(data) {
         console.log("AfterClose: " + data.resultado.ganador);
-        // Esto pincha ya 
+        // TODO Esto pincha ya 
+        // Solo enviar el resultado, la api se encarga de guardarlo
         //this.partida.resultado = data.resultado;
       }
     });

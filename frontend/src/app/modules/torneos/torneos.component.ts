@@ -44,7 +44,10 @@ export class TorneosComponent implements OnInit {
         });
       }
       
-      
+      getRecord(row) {
+        this.router.navigateByUrl(`/torneos/${row.id}`);
+    
+      }
       
     }
     
