@@ -5,3 +5,8 @@ table {
 .create-row {
     float: right;
 }
+
+section {
+    display: flex;
+    justify-content: space-between;
+}
