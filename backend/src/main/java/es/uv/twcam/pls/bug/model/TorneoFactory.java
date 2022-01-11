@@ -15,7 +15,6 @@ public class TorneoFactory {
 	// El uso de ETag seria interesante tambien
 	private TorneoFactory() {
 		dictionary = new Hashtable<String, Torneo>();
-//		torneos = new ArrayList();
 	}
 
 	/*
@@ -31,8 +30,6 @@ public class TorneoFactory {
 	}
 
 	public Torneo create(Torneo torneo) throws Exception {
-
-		System.out.println("Creando el torneo: " + torneo.getId());
 
 		if (torneo != null && torneo.getId() == null) {
 			torneo.setId(UUID.randomUUID().toString());

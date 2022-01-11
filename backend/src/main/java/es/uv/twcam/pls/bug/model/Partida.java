@@ -12,13 +12,7 @@ public class Partida {
 	// tablas = -1 || id del ganador
 	private String resultado;
 
-	public Partida(String id,
-			String sede,
-//			Date fecha,
-			String torneo_id,
-			Jugador jugador1,
-			Jugador jugador2,
-			String resultado) {
+	public Partida(String id, String sede, String torneo_id, Jugador jugador1, Jugador jugador2, String resultado) {
 		this.id = id;
 		this.sede = sede;
 		this.torneo_id = torneo_id;
