@@ -52,6 +52,8 @@ import { DialogClubComponent } from './modules/clubes/dialog-club/dialog-club.co
 import { CalendarioEntrenamientosComponent } from './modules/calendario-entrenamientos/calendario-entrenamientos.component';
 import { DialogEntrenadorComponent } from './modules/entrenadores/dialog-entrenador/dialog-entrenador.component';
 import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
+import { DatePipe } from '@angular/common';
+import {MAT_DATE_LOCALE} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -108,7 +110,7 @@ import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.compo
     MatCheckboxModule,
     MatSnackBarModule
   ],
-  providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, AuthorizatedGuard], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
+  providers: [AuthService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, AuthorizatedGuard, DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'es-ES' } ], // No se requiere importar el service ya que está definida la inyección en cada uno de los servicios
   bootstrap: [AppComponent],
   entryComponents: [
     ConfirmationDialogComponent, 

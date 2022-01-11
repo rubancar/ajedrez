@@ -1,9 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EntrenadoresService } from '../../services/entrenadores.service';
 import { JugadoresService } from '../../services/jugadores.service';
 import { Entrenador } from '../../shared/entidades/entrenador';
-import { DateAdapter } from '@angular/material/core';
 import { Entrenamiento } from '../../shared/entidades/entrenamiento';
 import { EntrenamientosDia } from '../../shared/entidades/entrenamientosDia';
 import { Jugador } from '../../shared/entidades/jugador';
@@ -21,10 +21,9 @@ export class CalendarioEntrenamientosComponent implements OnInit {
   jugadores: Jugador[];
 
   constructor(public dialogRef: MatDialogRef<CalendarioEntrenamientosComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Entrenador, private entrenadorService: EntrenadoresService, private dateAdapter: DateAdapter<Date>,
+    @Inject(MAT_DIALOG_DATA) public data: Entrenador, private entrenadorService: EntrenadoresService, private datePipe: DatePipe,
     private jugadoresService : JugadoresService) {
       this.entrenador = data;
-      this.dateAdapter.setLocale('en-GB');
      }
 
   ngOnInit() {
@@ -37,11 +36,12 @@ export class CalendarioEntrenamientosComponent implements OnInit {
 
   
   dateChange(value : any){
-    console.log(this.fechaEntrenamiento.toLocaleString().split(' 0:')[0]);
+    console.log(this.datePipe.transform(this.fechaEntrenamiento, 'dd/MM/yyyy'));
 
     console.log(this.entrenador.calendarioEntrenamientos);
     this.entrenador.calendarioEntrenamientos.forEach(calentamiento => {
-        if(calentamiento.fecha == this.fechaEntrenamiento.toLocaleString().split(' 0:')[0] ){
+      console.log(calentamiento.fecha);
+        if(calentamiento.fecha == this.datePipe.transform(this.fechaEntrenamiento, 'dd/MM/yyyy') ){
           console.log("ENCONTRADO");
           this.entrenamientosDia = calentamiento;
           console.log(this.entrenamientosDia);
