@@ -13,17 +13,9 @@ export class ResultadoPartidaService {
   
   constructor(private partidaService: PartidasService, private http : HttpClient ) { }
   
-  saveResult (data : any): Observable<any> {
-    const url = `http://localhost:3000/partidas/${data.id}`;
-    console.log("Resultado del ganador: ", data.resultado);
-    let info = {
-      resultado: {
-        tablas: data.resultado == -1 ,
-        ganador: data.resultado == -1 ? null : parseInt(data.resultado)
-      }
-    };
-    
-    return this.http.put(url, info);
+  saveResult (partida : Partida): Observable<any> {  
+    console.log("Enviando a partida con PUT", partida)
+    return this.partidaService.editPartida(partida)
   }
   
   getResult(id:string) {

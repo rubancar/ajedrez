@@ -1,47 +1,7 @@
 <mat-grid-list cols="2" rows="2" rowHeight="2:1">
     <mat-grid-tile>
-        <!-- Cards with media area -->
-        <mat-card class="example-card">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>{{partida?.jugador1.name}}</mat-card-title>
-                <!-- El elo se debe actualizar con el resultado -->
-                <mat-card-subtitle>Elo: 2550</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-title-group>
-            <mat-card-title></mat-card-title>
-            <mat-card-subtitle>{{partida?.sede}}</mat-card-subtitle>
-            <!-- <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" > -->
-            </mat-card-title-group>
-            <mat-card-content *ngIf="partida?.resultado?.ganador == partida?.jugador1.id" >
-                El ganador!!!
-            </mat-card-content>
-        </mat-card>
-      <!-- <app-personaldetails></app-personaldetails> -->
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <!-- Cards with media area -->
-        <mat-card class="example-card">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>{{partida?.jugador2.name}}</mat-card-title>
-                <mat-card-subtitle>Elo: 2550</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-title-group>
-            <mat-card-title></mat-card-title>
-            <mat-card-subtitle>{{partida?.sede}}</mat-card-subtitle>
-            <!-- <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" > -->
-            </mat-card-title-group>
-            <mat-card-content *ngIf="partida?.resultado?.ganador == partida?.jugador2.id">
-                 <p>El ganador!!!</p>
-            </mat-card-content>
-        </mat-card>
-      <!-- <app-contactdetails></app-contactdetails> -->
-    </mat-grid-tile>
-    <mat-grid-tile>
         <mat-card class="example-card">
             <p>Día: {{partida?.fecha}}</p>
-            <p>Sede: {{partida?.sede}}</p>
             <mat-card-actions align="end">
                 <!-- if resultado != null -> guardar else editar -->
                 <button mat-button (click)="abrirResultadoForm()">Guardar/Editar Resultado</button>
@@ -49,20 +9,5 @@
         </mat-card>
     </mat-grid-tile>
     <!-- TODO embellecer tarjeta del ganador o no usar winer card -->
-    <mat-grid-tile *ngIf="partida?.resultado?.tablas">
-        <mat-card class="example-card">
-            <div *ngIf="partida?.resultado?.tablas; else showWiner">
-                <p>La partida acabo en tablas</p>
-                <p>Duracion {{partida?.resultado?.duracion}}</p>
-            </div>
-            <ng-template #showWiner>
-            <div>
-                <p>Ganador: {{partida?.resultado?.ganador}}</p>
-                <!-- TODO convertir la duracion -->
-                <p>Duracion {{partida?.resultado?.duracion}}</p>
-            </div>
-            </ng-template>
-        </mat-card>
-    </mat-grid-tile>
 </mat-grid-list>
 

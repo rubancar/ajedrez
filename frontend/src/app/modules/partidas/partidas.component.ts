@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DetallePartidaComponent } from './detalle-partida/detalle-partida.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { ResultadoPartidaComponent } from './resultado-partida/resultado-partida.component';
 
 
 @Component({
@@ -23,8 +24,7 @@ export class PartidasComponent implements OnInit {
   public dataSource: MatTableDataSource<Partida>;
   displayedColumns: string[];
   actionsFunctions: string[];
-  
-
+  partida? : Partida ;
 
   constructor(private partidasService: PartidasService,
               public dialog: MatDialog,
@@ -40,7 +40,16 @@ export class PartidasComponent implements OnInit {
     this.serviceSubscribe = this.partidasService.getPartidas().subscribe(res => {
       console.log("the data-array", res);
       this.dataSource.data = res;
+      // this.dataSource.sortingDataAccessor = (item, property) => {
+      //   switch (property) {
+      //      case 'jugador1.name':
+      //         return item.jugador1.name;
+      //      default:
+      //         return item[property];
+      //   }
+      // };
     })
+
   }
 
   callAction(eventData: any): void{
@@ -55,18 +64,21 @@ export class PartidasComponent implements OnInit {
   }
 
   edit(element: any) {
-    console.log(element);
-    const dialogRef = this.dialog.open(DetallePartidaComponent, {
-      width: '60%',
-      data: new Partida()
-      // data: new Jugador(element.id, element.name, element.usuario, element.password, element.elo, element.responsable,
-      //   element.es_moroso, new Date(element.fecha_nacimiento), element.club.id)
-    });
-    this.actionAfterClosingDialog(dialogRef);
+    console.log("El elemento", element.resultado);
+    let dialog = this.dialog.open(ResultadoPartidaComponent,
+      {width: '500px', height: '450px',
+      data: {partida: element}});
+      
+    this.actionAfterClosingDialog(dialog);
   }
   
-  actionAfterClosingDialog(dialogRef: MatDialogRef<DetallePartidaComponent, any>) {
-    throw new Error('Method not implemented.');
+  actionAfterClosingDialog(dialog: MatDialogRef<ResultadoPartidaComponent, any>) {
+    dialog.afterClosed().subscribe(data => {
+      if(data) {
+      console.log("AfterClose: " + data.resultado.ganador);
+      }
+    });
+    // throw new Error('Method not implemented.');
   }
 
 
@@ -78,23 +90,5 @@ export class PartidasComponent implements OnInit {
     this.router.navigateByUrl(`/partidas/${row.id}`);
   }
 
-  // delete(element: any) {
-  //   const dialogRef = this.dialog.open(ConfirmationDialogComponent);
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.jugadorService.remove(element.id);
-  //     }
-  //   });
-  // }
-
-  // edit(element: any) {
-  //   const dialogEditJugador = this.dialog.open(DialogJugadorComponent, {
-  //     width: '60%',
-  //     data: new Jugador(element.id, element.name, element.usuario, element.password, element.elo, element.responsable,
-  //       element.es_moroso, new Date(element.fecha_nacimiento), element.club)
-  //   });
-  //   console.log(element);
-  // }
 
 }

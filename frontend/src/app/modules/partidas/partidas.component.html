@@ -5,7 +5,8 @@
   </div> -->
 </section>
 <app-data-table [dataSource]="dataSource" 
-  [displayedColumns]="displayedColumns" >
+  [displayedColumns]="displayedColumns" [actionsFunctions]="actionsFunctions" 
+  (callAction)="callAction($event)">
 </app-data-table>
 
 <!-- <table mat-table [dataSource]="dataSource" [actionsFunctions]="actionsFunctions" 

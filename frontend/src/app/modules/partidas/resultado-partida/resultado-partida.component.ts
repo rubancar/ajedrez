@@ -19,9 +19,9 @@ export class ResultadoPartidaComponent implements OnInit {
   
   
   constructor(private resultPartidaService: ResultadoPartidaService,
-    private fb: FormBuilder,
-    public dialogRef: MatDialogRef<ResultadoPartidaComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any ) {
+              private fb: FormBuilder,
+              public dialogRef: MatDialogRef<ResultadoPartidaComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any ) {
       
       this.crearFormulario();
       
@@ -34,9 +34,12 @@ export class ResultadoPartidaComponent implements OnInit {
     }
     
     onSubmit() {
-      console.log("resultado del submit", this.resultsForm.value.result);
-      let data = { resultado: this.resultsForm.value.result, id: this.partida.id };
-      this.resultPartidaService.saveResult(data).subscribe( (data) => {
+      console.log("resultado del submit 3", this.resultsForm.value.result);
+      this.partida.resultado = this.resultsForm.value.result
+
+      // let data = { resultado: this.resultsForm.value.result, id: this.partida.id };
+      // Aqui meto el result en la paritda y salvo la partida completa
+      this.resultPartidaService.saveResult(this.partida).subscribe( (data) => {
         console.log("K paso?: ", data);
         this.dialogRef.close(data);
       });
@@ -52,13 +55,11 @@ export class ResultadoPartidaComponent implements OnInit {
       //   let resultado = {tablas: false, ganador: 1, duracion: 213412};
       // }
 
-
-
     ngOnInit() {
       console.log("data partida", this.data.partida.resultado);
       this.partida = this.data.partida;
       console.log("partidssfasa", this.partida);
-        if (this.data.partida.resultado.ganador == null) {
+        if (this.data.partida.resultado.  ganador == null) {
           this.resultado = -1;
         } else {
           this.resultado = this.data.partida.resultado.ganador;
@@ -68,5 +69,6 @@ export class ResultadoPartidaComponent implements OnInit {
         });
     }
     
+
   }
   
