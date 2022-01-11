@@ -181,9 +181,8 @@ public class TorneoEndpoint extends HttpServlet {
 		torneo = g.fromJson(new InputStreamReader(stream), Torneo.class);
 		
 		System.out.println("from inputstream, torneo: " + torneo.getName());
-		System.out.println("from inputstream, sede: " + torneo.getSede());
 
-		if (torneo.getSede() == null || torneo.getName() == null) {
+		if (torneo.getSede() == null || torneo.getName() == null || torneo.getJugadores() == null) {
 			System.out.println("Error validando datos de torneo!!");
 			throw new ValidationException("Error en datos de torneo");
 		}

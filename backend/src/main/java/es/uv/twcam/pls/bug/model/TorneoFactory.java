@@ -2,6 +2,7 @@ package es.uv.twcam.pls.bug.model;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -33,6 +34,8 @@ public class TorneoFactory {
 
 		if (torneo != null && torneo.getId() == null) {
 			torneo.setId(UUID.randomUUID().toString());
+			ArrayList<Partida> partidas = crearPartidasTorneo(torneo.getJugadores(), torneo.getId(), torneo.getSede());
+			torneo.setPartidas(partidas);
 			System.out.println("Creando el torneo con id: " + torneo.getId());
 			dictionary.put(torneo.getId(), torneo);
 		} else {
@@ -40,6 +43,22 @@ public class TorneoFactory {
 		}
 
 		return torneo;
+	}
+	
+	public ArrayList<Partida> crearPartidasTorneo(ArrayList<Jugador> jugadores, String torneoId, String sede){
+		ArrayList<Partida> partidas = new ArrayList<Partida>();
+		try {		
+	        for (int i = 0; i < jugadores.size(); i++) {
+	        	Partida partida = new Partida(null, sede, torneoId, jugadores.get(i), jugadores.get(i++), "-1");
+	        	PartidaFactory.getInstance().create(partida);
+	        	partidas.add(partida);
+	        }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return partidas;			
+
 	}
 
 	public List<Torneo> listAll() {

@@ -6,27 +6,27 @@ public class Partida {
 	private String sede;
 //	TODO adicionar fecha de la partida
 //	private Date fecha;
-	private String torneo_id;
+	private String torneoID;
 	private Jugador jugador1;
 	private Jugador jugador2;
 	// tablas = -1 || id del ganador
 	private String resultado;
 
-	public Partida(String id, String sede, String torneo_id, Jugador jugador1, Jugador jugador2, String resultado) {
+	public Partida(String id, String sede, String torneoID, Jugador jugador1, Jugador jugador2, String resultado) {
 		this.id = id;
 		this.sede = sede;
-		this.torneo_id = torneo_id;
+		this.torneoID = torneoID;
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;
 		this.resultado = resultado;
 	}
 
-	public String getTorneo_id() {
-		return torneo_id;
+	public String getTorneoID() {
+		return torneoID;
 	}
 
-	public void setTorneo_id(String torneo_id) {
-		this.torneo_id = torneo_id;
+	public void setTorneoID(String torneo_id) {
+		this.torneoID = torneo_id;
 	}
 
 	public Jugador getJugador1() {

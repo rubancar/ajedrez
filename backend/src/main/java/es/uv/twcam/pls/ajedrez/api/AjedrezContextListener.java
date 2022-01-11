@@ -79,15 +79,19 @@ public class AjedrezContextListener implements ServletContextListener {
 		JugadorFactory.getInstance().create(jugador2);
 		JugadorFactory.getInstance().create(jugador3);
 		
-		Torneo torneo1 = new Torneo(null, "Torneo1", "Club1");
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		jugadores.add(jugador1);
+		jugadores.add(jugador2);
+		jugadores.add(jugador3);
+		Torneo torneo1 = new Torneo(null, "Torneo1", "Club1", jugadores, null);
 		TorneoFactory.getInstance().create(torneo1);
 		String torneo_id = torneo1.getId();
-		Partida partida1 = new Partida(null, "Club1", torneo_id, jugador1, jugador2, "-1");
-		Partida partida2 = new Partida(null, "Club1", torneo_id, jugador2, jugador3, "-1");
-		Partida partida3 = new Partida(null, "Club1", torneo_id, jugador3, jugador1, "-1");
-		PartidaFactory.getInstance().create(partida1);
-		PartidaFactory.getInstance().create(partida2);
-		PartidaFactory.getInstance().create(partida3);
+//		Partida partida1 = new Partida(null, "Club1", torneo_id, jugador1, jugador2, "-1");
+//		Partida partida2 = new Partida(null, "Club1", torneo_id, jugador2, jugador3, "-1");
+//		Partida partida3 = new Partida(null, "Club1", torneo_id, jugador3, jugador1, "-1");
+//		PartidaFactory.getInstance().create(partida1);
+//		PartidaFactory.getInstance().create(partida2);
+//		PartidaFactory.getInstance().create(partida3);
 		
 		ArrayList<Entrenamiento> entrenamientos = new ArrayList<Entrenamiento>();
 		entrenamientos.add(new Entrenamiento(new GregorianCalendar(2022,1,9).getTime(), 1, jugador1, club1));

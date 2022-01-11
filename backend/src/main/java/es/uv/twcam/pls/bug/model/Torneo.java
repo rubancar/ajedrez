@@ -1,19 +1,24 @@
 package es.uv.twcam.pls.bug.model;
 
+import java.util.ArrayList;
+
 public class Torneo {
 
 	private String id;
 	private String name;
 	private String sede;
+	private ArrayList<Jugador> jugadores;
+	private ArrayList<Partida> partidas;
 	
 
-	public Torneo(String id, String name, String sede) {
+	public Torneo(String id, String name, String sede, ArrayList<Jugador> jugadores, ArrayList<Partida> partidas) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.sede = sede;
+		this.jugadores = jugadores;
+		this.partidas = partidas;
 	}
-
 
 	public String getId() {
 		return id;
@@ -52,6 +57,36 @@ public class Torneo {
 	 */
 	public void setSede(String sede) {
 		this.sede = sede;
+	}
+
+	/**
+	 * @return the jugadores
+	 */
+	public ArrayList<Jugador> getJugadores() {
+		return jugadores;
+	}
+
+
+	/**
+	 * @param jugadores the jugadores to set
+	 */
+	public void setJugadores(ArrayList<Jugador> jugadores) {
+		this.jugadores = jugadores;
+	}
+
+	/**
+	 * @return the partidas
+	 */
+	public ArrayList<Partida> getPartidas() {
+		return partidas;
+	}
+
+
+	/**
+	 * @param partidas the partidas to set
+	 */
+	public void setPartidas(ArrayList<Partida> partidas) {
+		this.partidas = partidas;
 	}
 
 }
