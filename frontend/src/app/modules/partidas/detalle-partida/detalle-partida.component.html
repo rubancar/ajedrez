@@ -1,0 +1,13 @@
+<mat-grid-list cols="2" rows="2" rowHeight="2:1">
+    <mat-grid-tile>
+        <mat-card class="example-card">
+            <p>Día: {{partida?.fecha}}</p>
+            <mat-card-actions align="end">
+                <!-- if resultado != null -> guardar else editar -->
+                <button mat-button (click)="abrirResultadoForm()">Guardar/Editar Resultado</button>
+              </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+    <!-- TODO embellecer tarjeta del ganador o no usar winer card -->
+</mat-grid-list>
+

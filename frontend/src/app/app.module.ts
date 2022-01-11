@@ -39,8 +39,8 @@ import { ConfirmationDialogComponent } from './shared/components/confirmation-di
 
 import { HttpClientModule } from "@angular/common/http";
 import { CdkTableModule } from '@angular/cdk/table';
-import { DetallePartidaComponent } from './modules/detalle-partida/detalle-partida.component';
-import { ResultadoPartidaComponent } from './modules/resultado-partida/resultado-partida.component'
+import { DetallePartidaComponent } from './modules/partidas/detalle-partida/detalle-partida.component';
+import { ResultadoPartidaComponent } from './modules/partidas/resultado-partida/resultado-partida.component'
 import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialog-jugador.component';
 import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.component';
 import { FederacionesComponent } from './modules/federaciones/federaciones.component';
@@ -54,6 +54,9 @@ import { DialogEntrenadorComponent } from './modules/entrenadores/dialog-entrena
 import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
 import { DatePipe } from '@angular/common';
 import {MAT_DATE_LOCALE} from '@angular/material';
+import { TorneosComponent } from './modules/torneos/torneos.component';
+import { DetalleTorneoComponent } from './modules/torneos/detalle-torneo/detalle-torneo.component';
+import { DialogTorneoComponent } from './modules/torneos/dialog-torneo/dialog-torneo.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,10 @@ import {MAT_DATE_LOCALE} from '@angular/material';
     DialogJugadorComponent,
     CalendarioEntrenamientosComponent,
     DialogEntrenadorComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    TorneosComponent,
+    DetalleTorneoComponent,
+    DialogTorneoComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,7 +126,8 @@ import {MAT_DATE_LOCALE} from '@angular/material';
     DetallePartidaComponent, 
     ResultadoPartidaComponent, 
     DialogEntrenadorComponent,
-    CalendarioEntrenamientosComponent
+    CalendarioEntrenamientosComponent,
+    DialogTorneoComponent
   ]
 })
 export class AppModule { }

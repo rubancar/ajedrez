@@ -53,6 +53,8 @@ public class PartidaFactory {
 	public Partida update(Partida partida) throws Exception {
 
 		if (dictionary.containsKey(partida.getId())) {
+			System.out.println("Haciendo put del resultado" + partida.getResultado());
+			System.out.println("Haciendo put del resultado" + partida.getJugador1());
 			dictionary.put(partida.getId(), partida);
 		} else {
 			throw new EntityNotExistException("La partida con id: " + partida.getId() + " no existe.");

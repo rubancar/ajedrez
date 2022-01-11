@@ -31,8 +31,7 @@ export class DetallePartidaComponent implements OnInit {
     dialogo.afterClosed().subscribe(data => {
       if(data) {
         console.log("AfterClose: " + data.resultado.ganador);
-        // Esto pincha ya 
-        //this.partida.resultado = data.resultado;
+
       }
     });
   }
@@ -44,7 +43,6 @@ export class DetallePartidaComponent implements OnInit {
       this.partidasService.getPartida(this.id).subscribe((resp:any) => {
         this.partida = new Partida();
         this.partida.id = resp.id;
-        this.partida.fecha = resp.fecha;
         this.partida.sede = resp.sede;
         this.partida.resultado = resp.resultado;
         this.partida.jugador1 = resp.jugador1;

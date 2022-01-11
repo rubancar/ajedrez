@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.UUID;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -19,6 +20,10 @@ import es.uv.twcam.pls.bug.model.Federacion;
 import es.uv.twcam.pls.bug.model.FederacionFactory;
 import es.uv.twcam.pls.bug.model.Jugador;
 import es.uv.twcam.pls.bug.model.JugadorFactory;
+import es.uv.twcam.pls.bug.model.Partida;
+import es.uv.twcam.pls.bug.model.PartidaFactory;
+import es.uv.twcam.pls.bug.model.Torneo;
+import es.uv.twcam.pls.bug.model.TorneoFactory;
 import es.uv.twcam.pls.bug.model.Usuario;
 import es.uv.twcam.pls.bug.model.UsuarioFactory;
 
@@ -74,6 +79,16 @@ public class AjedrezContextListener implements ServletContextListener {
 		JugadorFactory.getInstance().create(jugador1);
 		JugadorFactory.getInstance().create(jugador2);
 		JugadorFactory.getInstance().create(jugador3);
+		
+		Torneo torneo1 = new Torneo(null, "Torneo1", "Club1");
+		TorneoFactory.getInstance().create(torneo1);
+		String torneo_id = torneo1.getId();
+		Partida partida1 = new Partida(null, "Club1", torneo_id, jugador1, jugador2, "-1");
+		Partida partida2 = new Partida(null, "Club1", torneo_id, jugador2, jugador3, "-1");
+		Partida partida3 = new Partida(null, "Club1", torneo_id, jugador3, jugador1, "-1");
+		PartidaFactory.getInstance().create(partida1);
+		PartidaFactory.getInstance().create(partida2);
+		PartidaFactory.getInstance().create(partida3);
 		
 		ArrayList<EntrenamientosDia> entrenamientos = new ArrayList<EntrenamientosDia>();
 		EntrenamientosDia entrenamientosHoy =  new EntrenamientosDia("10/01/2022");
