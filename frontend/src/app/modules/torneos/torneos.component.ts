@@ -26,10 +26,7 @@ export class TorneosComponent implements OnInit {
     }
     
     ngOnInit() {
-      this.torneoService.getTorneos().subscribe(res => {
-        console.log("the data-array", res);
-        this.dataSource.data = res;
-      })
+      this.refreshDataTable()
     }
     
     createTorneo() {
@@ -37,16 +34,20 @@ export class TorneosComponent implements OnInit {
         {width: '500px', height: '450px'});
         dialogo.afterClosed().subscribe( data => {
           if(data) {
-            console.log("AfterClose: " + data.resultado.ganador);
-            // Esto pincha ya 
-            //this.partida.resultado = data.resultado;
+            this.refreshDataTable()
           }
-        });
+        })
       }
       
       getRecord(row) {
         this.router.navigateByUrl(`/torneos/${row.id}`);
-    
+      }
+
+      refreshDataTable() {
+        this.torneoService.getTorneos().subscribe(res => {
+          console.log(res);
+          this.dataSource.data = res;
+        })
       }
       
     }

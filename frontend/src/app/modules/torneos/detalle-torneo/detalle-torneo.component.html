@@ -14,6 +14,8 @@
   <mat-row (click)="getRecord(row)" *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'pointer': true}">
   </mat-row>
   
+  <!-- TODO quitar sede de la columna y ponerla en el titulo -->
+  <!-- TODO adicionar columna con No de partida -->
   <ng-container matColumnDef="sede"> 
       <mat-header-cell *matHeaderCellDef> Sede </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.sede}}</mat-cell>

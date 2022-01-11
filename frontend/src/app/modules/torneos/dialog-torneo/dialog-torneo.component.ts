@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TorneoService } from 'src/app/services/torneo.service';
 import { Torneo } from 'src/app/shared/entidades/torneo';
-import { JugadoresComponent } from '../../jugadores/jugadores.component';
+import { Jugador } from 'src/app/shared/entidades/jugador';
 
 @Component({
   selector: 'app-dialog-torneo',
@@ -15,7 +15,7 @@ export class DialogTorneoComponent implements OnInit {
   
   torneoForm: FormGroup;
   torneo: Torneo = new Torneo();
-  jugadores = [{id:"1",nombre:"Eric"},{id:"2",nombre:"Ale"},{id:"3",nombre:"Facundo"},{id:"4",nombre:"Julian"},{id:"5",nombre:"Filiberto"},{id:"6",nombre:"Ruperto"}]
+  jugadores: Jugador[] = []
   
   constructor(private fb: FormBuilder,
     private jugadorService:JugadoresService,
@@ -23,23 +23,42 @@ export class DialogTorneoComponent implements OnInit {
     public dialogRef: MatDialogRef<DialogTorneoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Torneo) {
       this.torneoForm = this.fb.group({
-        nombre: ["", Validators.required],
+        name: ["", Validators.required],
         sede: ["", Validators.required],
         jugadores: [""]
       });
     }
     
     ngOnInit() {
-      // console.log("torneoform:", this.torneoForm)
-      // this.torneoForm.get('jugadores').setValue([1,2])
-      // this.onJugadoresChange()
+      console.log("torneoform:", this.torneoForm)
+      this.jugadores = []
+      this.jugadorService.getJugadores().subscribe((data) => {
+        for (let item of data) {
+          let jugador = new Jugador()
+          jugador.id = item.id
+          jugador.name = item.name
+          this.jugadores.push(jugador)
+        }
+        console.log("jugadores 2:", this.jugadores)
+      });
+      this.torneoForm.get('jugadores').setValue([1,2])
+      this.onJugadoresChange()
     }
     
-    // onJugadoresChange() {
-    //   this.torneoForm.get('jugadores')?.valueChanges.subscribe( ( val : any ) => {
-    //     console.log("val:", val)
-    //   })
-    // }
+    onJugadoresChange() {
+      this.torneoForm.get('jugadores').valueChanges.subscribe(value => {
+        console.log("jugadores:", value)
+      })
+    }
+
+    onSubmit() {
+      console.log("torneoform:", this.torneoForm.value)
+      let torneo = new Torneo(this.torneoForm.value.name, this.torneoForm.value.sede)
+      console.log("torneo:", torneo)
+      this.torneoService.saveTorneo(torneo).subscribe((data) => {
+        this.dialogRef.close(data)
+      });
+    }
     
   }
   

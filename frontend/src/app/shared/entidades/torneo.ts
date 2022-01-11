@@ -2,12 +2,12 @@ import { Jugador } from "./jugador";
 
 export class Torneo {
     id:string;
-    nombre:string;
+    name:string;
     sede: string;
-
-    constructor() {
-        this.id = "";
-        this.sede = "";
-        this.nombre = "";
+    
+    constructor(name:string = "", sede:string = "", id:string = null) {
+        this.id = id
+        this.sede = name
+        this.name = name
     }
 }
