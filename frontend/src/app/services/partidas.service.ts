@@ -26,12 +26,7 @@ export class PartidasService {
   getPartidas(): Observable<any> {
     console.log("getPartidas")
     return this.http.get<any>("/api/partidas/")
-    // return this.http.get<any>("/api/partidas/").pipe(
-    //   tap(response => {
-    //     this.partidas$.next(response);
-    //     console.log(this.partidas$)
-    //   })
-  }
+  } 
 
   editPartida(partida: Partida): Observable<any> {
     const partida_id = partida.id;

@@ -25,7 +25,7 @@ export class DialogTorneoComponent implements OnInit {
       this.torneoForm = this.fb.group({
         nombre: ["", Validators.required],
         sede: ["", Validators.required],
-        jugadores: [[]]
+        jugadores: [""]
       });
     }
     
