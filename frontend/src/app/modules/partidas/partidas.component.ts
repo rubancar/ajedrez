@@ -38,7 +38,7 @@ export class PartidasComponent implements OnInit {
   ngOnInit() {
     this.serviceSubscribe = this.partidasService.getPartidas().subscribe(res => {
       console.log("the data-array", res);
-      // TODO pasarl el form de los resultados (no salen los nombres de los jugadores)
+      // TODO pasarle el form de los resultados (no salen los nombres de los jugadores)
       this.dataSource.data = res.map((partida) => {
         let resultado = "Tablas"
         if(partida.resultado == partida.jugador1.id) {
@@ -47,8 +47,12 @@ export class PartidasComponent implements OnInit {
           resultado = `Ganó ${partida.jugador2.name}`;
         }
         partida.resultado = resultado
+        let jugador1Item = partida.jugador1
+        let jugador2Item = partida.jugador2
         partida.jugador1 =  partida.jugador1.name
         partida.jugador2 =  partida.jugador2.name
+        partida.jugador1Item = jugador1Item
+        partida.jugador2Item = jugador2Item
         return partida
       });
     })

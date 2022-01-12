@@ -49,7 +49,7 @@ export class ResultadoPartidaComponent implements OnInit {
       console.log("data partida", this.data.partida.resultado);
       this.partida = this.data.partida;
       console.log("partidssfasa", this.partida);
-        if (this.data.partida.resultado.  ganador == null) {
+        if (this.data.partida.resultado.ganador == null) {
           this.resultado = -1;
         } else {
           this.resultado = this.data.partida.resultado.ganador;
