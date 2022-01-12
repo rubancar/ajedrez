@@ -78,7 +78,7 @@ public class TorneoEndpoint extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			
-			System.out.println("entering torneo post");
+//			System.out.println("entering torneo post");
 			
 			Torneo torneo = getTorneoFromInputStream(request.getInputStream());
 			torneo = TorneoFactory.getInstance().create(torneo);
@@ -180,7 +180,7 @@ public class TorneoEndpoint extends HttpServlet {
 			
 		torneo = g.fromJson(new InputStreamReader(stream), Torneo.class);
 		
-		System.out.println("from inputstream, torneo: " + torneo.getName());
+//		System.out.println("from inputstream, torneo: " + torneo.getName());
 
 		if (torneo.getSede() == null || torneo.getName() == null || torneo.getJugadores() == null) {
 			System.out.println("Error validando datos de torneo!!");

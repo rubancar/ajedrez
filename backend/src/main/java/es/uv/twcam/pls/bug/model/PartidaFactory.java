@@ -30,8 +30,6 @@ public class PartidaFactory {
 
 	public Partida create(Partida partida) throws Exception {
 
-		System.out.println("Creando la partida: " + partida.getId());
-
 		if (partida != null && partida.getId() == null) {
 
 			partida.setId(UUID.randomUUID().toString());

@@ -48,10 +48,13 @@ public class TorneoFactory {
 	public ArrayList<Partida> crearPartidasTorneo(ArrayList<Jugador> jugadores, String torneoId, String sede){
 		ArrayList<Partida> partidas = new ArrayList<Partida>();
 		try {		
-	        for (int i = 0; i < jugadores.size(); i++) {
-	        	Partida partida = new Partida(null, sede, torneoId, jugadores.get(i), jugadores.get(i++), "-1");
-	        	PartidaFactory.getInstance().create(partida);
-	        	partidas.add(partida);
+	        for (int i = 0; i < jugadores.size()-1; i++) {
+	        	for (int j = i + 1; j < jugadores.size(); j++) {
+		        	Partida partida = new Partida(null, sede, torneoId, jugadores.get(i), jugadores.get(j), "-1");
+		        	PartidaFactory.getInstance().create(partida);
+		        	partidas.add(partida);
+	        	}
+	        	
 	        }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
