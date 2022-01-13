@@ -1,7 +1,5 @@
 package es.uv.twcam.pls.bug.model;
 
-import java.util.Date;
-
 public class Entrenamiento {
 	private Jugador jugador1;
 	private Jugador jugador2;
@@ -20,7 +18,7 @@ public class Entrenamiento {
 	
 	public boolean IsEntrenamientoOk() {
 		
-		boolean valuesOk =  this.jugador1 != null && this.club != null;
+		boolean valuesOk = this.jugador1 == null || this.jugador2 == null || this.jugador1.getId() != this.jugador2.getId();
 		// TODO CON OTRO BOOLEANO COMPROBAR QUE SI EXISTE JUGADOR 2 SEAN DEL MISMO CLUB
 		
 		return valuesOk ;

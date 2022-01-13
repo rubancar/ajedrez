@@ -2,50 +2,44 @@
 
 <div mat-dialog-content>
 
-
+  <form [formGroup]="calendarioForm">
   <div class="container">
     <div class="row">
       <div class="col d-flex justify-content-end align-items-center">
-        <button mat-mini-fab color="primary">
-          <mat-icon>arrow_back</mat-icon>
-        </button>
       </div>
       <div class="col d-flex align-items-center">
         <mat-form-field appearance="outline">
           <mat-label>Fecha entrenamiento</mat-label>
-          <input matInput #fecha [matDatepicker]="fecha" (dateChange)="dateChange()" [(ngModel)]="fechaEntrenamiento"
-            readonly>
-
-          <mat-datepicker-toggle matSuffix [for]="fecha"></mat-datepicker-toggle>
-          <mat-datepicker #fecha></mat-datepicker>
+          <input matInput #fechaPick [matDatepicker]="fechaPick" (dateChange)="dateChange()" formControlName="fecha">
+          <mat-datepicker-toggle matSuffix [for]="fechaPick"></mat-datepicker-toggle>
+          <mat-datepicker #fechaPick></mat-datepicker>
         </mat-form-field>
       </div>
       <div class="col d-flex justify-content-start align-items-center">
-        <button mat-mini-fab color="primary">
-          <mat-icon>arrow_forward</mat-icon>
-        </button>
       </div>
     </div>
-    <div class="row">
+    <div class="row" formGroupName="entrenamiento1">
       <div class="col-2 d-flex align-items-center">
         <mat-label>10:00 - 12:00</mat-label>
       </div>
       <div class="col-5">
-        <mat-form-field class="fullWidth" appearance="outline">
+        <mat-form-field class="fullWidth" appearance="outline" formGroupName="jugador1">
           <mat-label>Jugador1</mat-label>
-          <mat-select name="jugador_id">
+          <mat-select name="jugador_id" formControlName="id">
 
             <ng-template ngFor let-jugador [ngForOf]="jugadores" let-i="index" [ngForTrackBy]="trackByFn">
-              <mat-option value="{{jugador.id}}">{{jugador.usuario}}</mat-option>
+              <mat-option [value]="jugador.id">{{jugador.usuario}}</mat-option>
             </ng-template>
 
           </mat-select>
+          <mat-error *ngIf="calendarioForm.controls['entrenamiento1'].errors?.invalid">Los jugadores no pueden ser el mismo.
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col-5">
-        <mat-form-field class="fullWidth" appearance="outline">
+        <mat-form-field class="fullWidth" appearance="outline" formGroupName="jugador2">
           <mat-label>Jugador2</mat-label>
-          <mat-select name="jugador_id">
+          <mat-select name="jugador_id" formControlName="id">
 
             <ng-template ngFor let-jugador [ngForOf]="jugadores" let-i="index" [ngForTrackBy]="trackByFn">
               <mat-option value="{{jugador.id}}">{{jugador.usuario}}</mat-option>
@@ -54,15 +48,17 @@
           </mat-select>
         </mat-form-field>
       </div>
+      <mat-error class="d-flex justify-content-center" *ngIf="calendarioForm.controls['entrenamiento1']?.errors?.invalid">Los jugadores no pueden ser el mismo.
+      </mat-error>
     </div>
-    <div class="row">
+    <div class="row"  formGroupName="entrenamiento2">
       <div class="col-2 d-flex align-items-center">
         <mat-label>12:00 - 14:00</mat-label>
       </div>
       <div class="col-5">
-        <mat-form-field class="fullWidth" appearance="outline">
+        <mat-form-field class="fullWidth" appearance="outline" formGroupName="jugador1">
           <mat-label>Jugador1</mat-label>
-          <mat-select name="jugador_id">
+          <mat-select name="jugador_id" formControlName="id">
 
             <ng-template ngFor let-jugador [ngForOf]="jugadores" let-i="index" [ngForTrackBy]="trackByFn">
               <mat-option value="{{jugador.id}}">{{jugador.usuario}}</mat-option>
@@ -72,9 +68,9 @@
         </mat-form-field>
       </div>
       <div class="col-5">
-        <mat-form-field class="fullWidth" appearance="outline">
+        <mat-form-field class="fullWidth" appearance="outline" formGroupName="jugador2">
           <mat-label>Jugador2</mat-label>
-          <mat-select name="jugador_id">
+          <mat-select name="jugador_id" formControlName="id">
 
             <ng-template ngFor let-jugador [ngForOf]="jugadores" let-i="index" [ngForTrackBy]="trackByFn">
               <mat-option value="{{jugador.id}}">{{jugador.usuario}}</mat-option>
@@ -84,14 +80,14 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="row">
+    <div class="row"  formGroupName="entrenamiento3">
       <div class="col-2 d-flex align-items-center">
         <mat-label>16:00 - 18:00</mat-label>
       </div>
       <div class="col-5">
-        <mat-form-field class="fullWidth" appearance="outline">
+        <mat-form-field class="fullWidth" appearance="outline" formGroupName="jugador1">
           <mat-label>Jugador1</mat-label>
-          <mat-select name="jugador_id">
+          <mat-select name="jugador_id" formControlName="id">
 
             <ng-template ngFor let-jugador [ngForOf]="jugadores" let-i="index" [ngForTrackBy]="trackByFn">
               <mat-option value="{{jugador.id}}">{{jugador.usuario}}</mat-option>
@@ -101,9 +97,9 @@
         </mat-form-field>
       </div>
       <div class="col-5">
-        <mat-form-field class="fullWidth" appearance="outline">
+        <mat-form-field class="fullWidth" appearance="outline" formGroupName="jugador2">
           <mat-label>Jugador2</mat-label>
-          <mat-select name="jugador_id">
+          <mat-select name="jugador_id" formControlName="id">
 
             <ng-template ngFor let-jugador [ngForOf]="jugadores" let-i="index" [ngForTrackBy]="trackByFn">
               <mat-option value="{{jugador.id}}">{{jugador.usuario}}</mat-option>
@@ -113,14 +109,14 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="row d-flex align-items-center">
-      <div class="col-2">
+    <div class="row" formGroupName="entrenamiento4">
+      <div class="col-2 d-flex align-items-center">
         <mat-label>18:00 - 20:00</mat-label>
       </div>
       <div class="col-5">
-        <mat-form-field class="fullWidth" appearance="outline">
+        <mat-form-field class="fullWidth" appearance="outline" formGroupName="jugador1">
           <mat-label>Jugador1</mat-label>
-          <mat-select name="jugador_id">
+          <mat-select name="jugador_id" formControlName="id">
 
             <ng-template ngFor let-jugador [ngForOf]="jugadores" let-i="index" [ngForTrackBy]="trackByFn">
               <mat-option value="{{jugador.id}}">{{jugador.usuario}}</mat-option>
@@ -130,9 +126,9 @@
         </mat-form-field>
       </div>
       <div class="col-5">
-        <mat-form-field class="fullWidth" appearance="outline">
+        <mat-form-field class="fullWidth" appearance="outline" formGroupName="jugador2">
           <mat-label>Jugador2</mat-label>
-          <mat-select name="jugador_id">
+          <mat-select name="jugador_id" formControlName="id">
 
             <ng-template ngFor let-jugador [ngForOf]="jugadores" let-i="index" [ngForTrackBy]="trackByFn">
               <mat-option value="{{jugador.id}}">{{jugador.usuario}}</mat-option>
@@ -143,6 +139,7 @@
       </div>
     </div>
   </div>
+  </form>
 
 </div>
 <mat-dialog-actions>

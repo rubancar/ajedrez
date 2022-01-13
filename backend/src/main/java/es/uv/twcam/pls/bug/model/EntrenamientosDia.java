@@ -1,8 +1,10 @@
 package es.uv.twcam.pls.bug.model;
 
+import java.util.Date;
+
 public class EntrenamientosDia {
 	
-	private String fecha;
+	private Date fecha;
 	private Entrenamiento entrenamiento1;
 	private Entrenamiento entrenamiento2;
 	private Entrenamiento entrenamiento3;
@@ -10,14 +12,14 @@ public class EntrenamientosDia {
 	
 	
 	
-	public EntrenamientosDia(String fecha) {
+	public EntrenamientosDia(Date fecha) {
 		super();
 		this.fecha = fecha;
 	}
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	public Entrenamiento getEntrenamiento1() {

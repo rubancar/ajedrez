@@ -29,6 +29,7 @@
     "highcharts": "^7.2.2",
     "highcharts-angular": "^2.10.0",
     "jquery": "^3.6.0",
+    "moment": "^2.29.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.14.1",
     "zone.js": "~0.9.1"

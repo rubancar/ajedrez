@@ -91,7 +91,9 @@ public class AjedrezContextListener implements ServletContextListener {
 		PartidaFactory.getInstance().create(partida3);
 		
 		ArrayList<EntrenamientosDia> entrenamientos = new ArrayList<EntrenamientosDia>();
-		EntrenamientosDia entrenamientosHoy =  new EntrenamientosDia("10/01/2022");
+		Calendar myCalendar2 = new GregorianCalendar(2022,GregorianCalendar.JANUARY,10);
+		Date entrenamientoDate = myCalendar2.getTime();
+		EntrenamientosDia entrenamientosHoy =  new EntrenamientosDia(entrenamientoDate);
 		entrenamientosHoy.setEntrenamiento1(new Entrenamiento(jugador1, club1));
 		entrenamientosHoy.setEntrenamiento3(new Entrenamiento(jugador2, club1));
 		entrenamientos.add(entrenamientosHoy);

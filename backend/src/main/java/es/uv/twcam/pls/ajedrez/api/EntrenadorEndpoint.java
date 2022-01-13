@@ -175,7 +175,7 @@ public class EntrenadorEndpoint extends HttpServlet {
 		Entrenador entrenador = null;
 		entrenador = g.fromJson(new InputStreamReader(stream), Entrenador.class);
 
-		if (entrenador.getNombre() == null || !entrenador.isEntrenamientosOk()) {
+		if (entrenador.getNombre() == null) {
 			System.out.println("Error validando datos del entrenador!!");
 			throw new ValidationException("Error en datos del entrenador");
 		}
