@@ -30,7 +30,7 @@ export class DetalleTorneoComponent implements OnInit {
     ) {
       this.dataSource = new MatTableDataSource<Torneo>();
       this.actionsFunctions = ['edit'];
-      this.displayedColumns = ['sede', 'jugador1', 'jugador2'];
+      this.displayedColumns = ['sede', 'jugador1', 'jugador2', 'resultado'];
     }
 
   ngOnInit() {
@@ -42,28 +42,7 @@ export class DetalleTorneoComponent implements OnInit {
         this.torneo.name = resp.name;
         this.torneo.sede = resp.sede;
         this.torneo.partidas = resp.partidas;
-        console.log("el torneo: " +  this.torneo.name);
         this.dataSource.data = resp.partidas;
-        console.log("el torneo: " +  resp.partidas);
-
-
-        this.dataSource.data = resp.partidas.map((partida) => {
-          let resultado = "Tablas"
-          if(partida.resultado == partida.jugador1.id) {
-            resultado = `Ganó ${partida.jugador1.name}`;
-          } else if (partida.resultado == partida.jugador2.id) {
-            resultado = `Ganó ${partida.jugador2.name}`;
-          }
-          partida.resultado = resultado
-          let jugador1Item = partida.jugador1
-          let jugador2Item = partida.jugador2
-          partida.jugador1 =  partida.jugador1.name
-          partida.jugador2 =  partida.jugador2.name
-          partida.jugador1Item = jugador1Item
-          partida.jugador2Item = jugador2Item
-          return partida
-        });
-
 
 
       });
@@ -82,7 +61,6 @@ export class DetalleTorneoComponent implements OnInit {
   }
 
   edit(element: any) {
-    console.log("El elemento", element.resultado);
     let dialog = this.dialog.open(ResultadoPartidaComponent,
       {width: '500px', height: '450px',
       data: {partida: element}});
@@ -93,7 +71,7 @@ export class DetalleTorneoComponent implements OnInit {
   actionAfterClosingDialog(dialog: MatDialogRef<ResultadoPartidaComponent, any>) {
     dialog.afterClosed().subscribe(data => {
       if(data) {
-      console.log("AfterClose: " + data.resultado.ganador);
+      // console.log("AfterClose: " + data.resultado.ganador);
       }
     });
   }
