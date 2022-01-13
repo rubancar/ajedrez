@@ -54,7 +54,6 @@ export class DialogTorneoComponent implements OnInit {
     onSubmit() {
       console.log("torneoform:", this.torneoForm.value)
       let torneo = new Torneo(this.torneoForm.value.name, this.torneoForm.value.sede)
-      console.log("torneo:", torneo)
       this.torneoService.saveTorneo(torneo).subscribe((data) => {
         this.dialogRef.close(data)
       });

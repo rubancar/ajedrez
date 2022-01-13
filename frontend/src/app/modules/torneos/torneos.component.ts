@@ -20,8 +20,6 @@ export class TorneosComponent implements OnInit {
     private router : Router,
     public dialogo: MatDialog) {
       this.dataSource = new MatTableDataSource<Torneo>();
-      // this.actionsFunctions = ['edit', 'delete'];
-      // this.displayedColumns = ['sede', 'jugador1', 'jugador2', 'fecha'];
       this.displayedColumns = ['nombre', 'sede'];
     }
     
@@ -45,7 +43,6 @@ export class TorneosComponent implements OnInit {
 
       refreshDataTable() {
         this.torneoService.getTorneos().subscribe(res => {
-          console.log(res);
           this.dataSource.data = res;
         })
       }

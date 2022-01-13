@@ -12,15 +12,8 @@ export class PartidasService {
 
   constructor( private http : HttpClient ) { }
 
-  // getPartidas() : Observable<any> {
-  //   const url = `http://localhost:3000/partidas`;
-  //   return this.http.get(url);
-  // }
-
   getPartida(id: string) : Observable<any> {
-    // const url = `http://localhost:3000/partidas/${id}`;
     return this.http.get<any>(`/api/partidas/${id}`)
-    // return this.http.get(url);
   }
 
   getPartidas(): Observable<any> {
