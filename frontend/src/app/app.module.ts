@@ -39,7 +39,6 @@ import { ConfirmationDialogComponent } from './shared/components/confirmation-di
 
 import { HttpClientModule } from "@angular/common/http";
 import { CdkTableModule } from '@angular/cdk/table';
-import { DetallePartidaComponent } from './modules/partidas/detalle-partida/detalle-partida.component';
 import { ResultadoPartidaComponent } from './modules/partidas/resultado-partida/resultado-partida.component'
 import { DialogJugadorComponent } from './modules/jugadores/dialog-jugador/dialog-jugador.component';
 import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.component';
@@ -73,7 +72,6 @@ import { DialogTorneoComponent } from './modules/torneos/dialog-torneo/dialog-to
     ClubesComponent,
     DialogClubComponent,
     ResultadoPartidaComponent,
-    DetallePartidaComponent,
     DialogJugadorComponent,
     CalendarioEntrenamientosComponent,
     DialogEntrenadorComponent,
@@ -123,7 +121,6 @@ import { DialogTorneoComponent } from './modules/torneos/dialog-torneo/dialog-to
     DialogJugadorComponent, 
     DialogFederacionComponent, 
     DialogClubComponent, 
-    DetallePartidaComponent, 
     ResultadoPartidaComponent, 
     DialogEntrenadorComponent,
     CalendarioEntrenamientosComponent,

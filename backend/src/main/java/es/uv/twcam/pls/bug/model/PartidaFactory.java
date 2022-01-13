@@ -30,12 +30,10 @@ public class PartidaFactory {
 
 	public Partida create(Partida partida) throws Exception {
 
-		System.out.println("Creando la partida: " + partida.getId());
-
 		if (partida != null && partida.getId() == null) {
 
 			partida.setId(UUID.randomUUID().toString());
-			System.out.println("Creando la partida con id: " + partida.getId());
+//			System.out.println("Creando la partida con id: " + partida.getId());
 			dictionary.put(partida.getId(), partida);
 		} else {
 			throw new Exception("Error creando la partida");
@@ -47,6 +45,16 @@ public class PartidaFactory {
 	public List<Partida> listAll() {
 		List<Partida> partidas = new ArrayList<Partida>();
 		partidas.addAll(dictionary.values());
+		return partidas;
+	}
+	
+	public List<Partida> listByTournament(String tournamentId) {
+		List<Partida> partidas = new ArrayList<Partida>();
+		for (Partida partida : dictionary.values()) {
+			if (partida.getTorneoID().equals(tournamentId)) {
+				partidas.add(partida);
+			}
+		}
 		return partidas;
 	}
 

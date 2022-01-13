@@ -1,33 +1,10 @@
 <section>
-  <h2>Partidas del Torneo</h2>
-  <!-- <div class="example-button-row">
-      <button mat-raised-button color="primary" (click)="newPartida()">Nuev Jugador</button>
-  </div> -->
+  <h1>Torneo {{torneo?.name}} </h1>
+  <h2>Partidas en: {{torneo?.sede}} </h2>
 </section>
-<!-- <app-data-table [dataSource]="dataSource" 
-  [displayedColumns]="displayedColumns" >
-</app-data-table> -->
 
-<table mat-table [dataSource]="dataSource">
-  <mat-header-row *matHeaderRowDef="displayedColumns">
-  </mat-header-row>
-  <mat-row (click)="getRecord(row)" *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'pointer': true}">
-  </mat-row>
-  
-  <ng-container matColumnDef="sede"> 
-      <mat-header-cell *matHeaderCellDef> Sede </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.sede}}</mat-cell>
-  </ng-container> 
-  <ng-container matColumnDef="jugador1"> 
-      <mat-header-cell *matHeaderCellDef> Jugando Blancas </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.jugador1.name}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="jugador2"> 
-      <mat-header-cell *matHeaderCellDef> Jugando Negras </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.jugador2.name}}</mat-cell>
-  </ng-container>
-  <!-- <ng-container matColumnDef="resultado"> 
-      <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-      <mat-cell *matCellDef="let row" (click)="getRecord(row)">{{row.fecha}}</mat-cell>
-  </ng-container> -->
-</table>
+<app-data-table [dataSource]="dataSource" 
+  [displayedColumns]="displayedColumns" [actionsFunctions]="actionsFunctions"
+  (callAction)="callAction($event)">
+</app-data-table>
+

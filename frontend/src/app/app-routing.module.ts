@@ -10,7 +10,6 @@ import { EntrenadoresComponent } from './modules/entrenadores/entrenadores.compo
 import { FederacionesComponent } from './modules/federaciones/federaciones.component';
 import { AuthorizatedGuard } from './guards/authorizated.guard';
 import { ClubesComponent } from './modules/clubes/clubes.component'; 
-import { DetallePartidaComponent } from './modules/partidas/detalle-partida/detalle-partida.component';
 import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
 import { TorneosComponent } from './modules/torneos/torneos.component';
 import { DetalleTorneoComponent } from './modules/torneos/detalle-torneo/detalle-torneo.component';
@@ -25,9 +24,6 @@ const routes: Routes = [{
   }, {
     path: 'partidas',
     component: PartidasComponent
-  }, {
-    path: 'partidas/:id',
-    component: DetallePartidaComponent
   }, {
     path: 'jugadores',
     component: JugadoresComponent

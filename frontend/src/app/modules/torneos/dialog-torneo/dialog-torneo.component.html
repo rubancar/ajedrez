@@ -1,26 +1,26 @@
 <h1 mat-dialog-title>Nuevo torneo</h1>
 
 <div mat-dialog-content>
-    <!-- <form [formGroup]="torneoForm">
+    <form [formGroup]="torneoForm" (ngSubmit)="onSubmit()">
         <div class="container">
             <mat-form-field appearance="outline">
                 <mat-label>Nombre *</mat-label>
-                <input matInput type="text" name="nombre" formControlName="nombre">
-                <mat-error *ngIf="torneoForm.controls['nombre']?.errors?.required">campo requerido</mat-error>
+                <input matInput type="text" name="name" formControlName="name">
+                <mat-error *ngIf="torneoForm.controls['name']?.errors?.required">campo requerido</mat-error>
             </mat-form-field>
             <mat-form-field  appearance="outline">
                 <mat-label>Sede *</mat-label>
                 <input matInput type="text" name="sede" formControlName="sede" />
                 <mat-error *ngIf="torneoForm.controls['sede']?.errors?.required">campo requerido</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Jugadores</mat-label>
-                <mat-select formControlName="jugadores" multiple>
-                  <mat-option *ngFor="let jugador of jugadores" [value]="jugador.id">{{jugador.nombre}}</mat-option>
-                </mat-select>
-              </mat-form-field>
         </div>
-    </form> -->
+        <mat-form-field appearance="outline">
+            <mat-label>Jugadores</mat-label>
+            <mat-select formControlName="jugadores" multiple>
+              <mat-option *ngFor="let jugador of jugadores" [value]="jugador.id">{{jugador.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </form>
 </div>
 
 <div class="mt-5" mat-dialog-actions style="float: right">

@@ -7,7 +7,6 @@ import { PartidasService } from 'src/app/services/partidas.service'
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { DetallePartidaComponent } from './detalle-partida/detalle-partida.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { ResultadoPartidaComponent } from './resultado-partida/resultado-partida.component';
 
@@ -39,15 +38,23 @@ export class PartidasComponent implements OnInit {
   ngOnInit() {
     this.serviceSubscribe = this.partidasService.getPartidas().subscribe(res => {
       console.log("the data-array", res);
-      this.dataSource.data = res;
-      // this.dataSource.sortingDataAccessor = (item, property) => {
-      //   switch (property) {
-      //      case 'jugador1.name':
-      //         return item.jugador1.name;
-      //      default:
-      //         return item[property];
-      //   }
-      // };
+      // TODO pasarle el form de los resultados (no salen los nombres de los jugadores)
+      this.dataSource.data = res.map((partida) => {
+        let resultado = "Tablas"
+        if(partida.resultado == partida.jugador1.id) {
+          resultado = `Ganó ${partida.jugador1.name}`;
+        } else if (partida.resultado == partida.jugador2.id) {
+          resultado = `Ganó ${partida.jugador2.name}`;
+        }
+        partida.resultado = resultado
+        let jugador1Item = partida.jugador1
+        let jugador2Item = partida.jugador2
+        partida.jugador1 =  partida.jugador1.name
+        partida.jugador2 =  partida.jugador2.name
+        partida.jugador1Item = jugador1Item
+        partida.jugador2Item = jugador2Item
+        return partida
+      });
     })
 
   }
@@ -78,7 +85,6 @@ export class PartidasComponent implements OnInit {
       console.log("AfterClose: " + data.resultado.ganador);
       }
     });
-    // throw new Error('Method not implemented.');
   }
 
 

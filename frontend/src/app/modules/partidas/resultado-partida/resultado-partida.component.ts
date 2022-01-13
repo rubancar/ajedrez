@@ -45,21 +45,11 @@ export class ResultadoPartidaComponent implements OnInit {
       });
     }
 
-    
-      // if (this.resultado != null) {
-      //   console.log("pasando el resultado")
-      //   this.dialogRef.close(this.resultado);
-      // }
-      // else {
-      //   this.dialogRef.close(resultado);
-      //   let resultado = {tablas: false, ganador: 1, duracion: 213412};
-      // }
-
     ngOnInit() {
       console.log("data partida", this.data.partida.resultado);
       this.partida = this.data.partida;
       console.log("partidssfasa", this.partida);
-        if (this.data.partida.resultado.  ganador == null) {
+        if (this.data.partida.resultado.ganador == null) {
           this.resultado = -1;
         } else {
           this.resultado = this.data.partida.resultado.ganador;
