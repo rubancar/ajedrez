@@ -4,23 +4,23 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <span> CHESS MANAGER </span>
+        <button mat-button routerLink="/"><h3> CHESS MANAGER </h3></button>
 
         <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
             <ul fxLayout="row" fxLayoutGap="20px">
                 <li>
-                    <button mat-icon-button>
-                        <mat-icon>settings</mat-icon>
-                    </button>
+                    <a mat-button href="https://github.com/rubancar/ajedrez/tree/main" target="_blank">
+                        
+                        <mat-icon>code</mat-icon><span> Github</span>
+                    </a>
                 </li>
-                <li>
-                    <button mat-icon-button>
-                        <mat-icon>help_outline</mat-icon>
-                    </button>
-                </li>
+                <mat-divider vertical style="background:white"></mat-divider>
                 <li>
                     <button mat-button [matMenuTriggerFor]="menu">
                         <mat-icon>person_outline</mat-icon>
+                        <span *ngIf="user">
+                            {{user.usuario}}
+                        </span>
                     </button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item (click) = "logout()">
@@ -28,7 +28,6 @@
                             Cerrar sesión
                         </button>
                     </mat-menu>
-
                 </li>
             </ul>
         </div>

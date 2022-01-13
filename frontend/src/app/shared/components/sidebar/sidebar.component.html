@@ -1,17 +1,10 @@
 <mat-nav-list>
     <div class="profile-card">
-        <div *ngIf="user" class="header">
-            <h2>{{user.usuario}}</h2>
-            <h4>{{user.usuario}}@ajedrez.com</h4>
-        </div>
-        <img src="/assets/images/Logo2.png" alt="Chess manager">
+        <a  routerLink="/"><img src="/assets/images/Logo2.png" alt="Chess manager"></a>
     </div>
 
     <mat-divider></mat-divider>
 
-    <h2 matSubheader>Secciones</h2>
-
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Principal</a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/partidas">Partidas</a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/jugadores">Jugadores</a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/clubes">Clubes</a>
