@@ -10,7 +10,7 @@ export class AuthorizatedGuard implements CanActivate {
 
   canActivate() {
     console.log(localStorage.getItem("currentUser"));
-    if (localStorage.getItem("currentUser") != null) {
+    if (localStorage.getItem("currentUser") != null && localStorage.getItem("currentUser") != '') {
       // logged in so return true
       return true;
     }

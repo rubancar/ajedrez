@@ -44,8 +44,9 @@
             <ng-template ngFor let-jugador [ngForOf]="jugadores" let-i="index" [ngForTrackBy]="trackByFn">
               <mat-option value="{{jugador.id}}">{{jugador.usuario}}</mat-option>
             </ng-template>
-
           </mat-select>
+          <mat-error *ngIf="calendarioForm.controls['entrenamiento1'].errors?.invalid">Los jugadores no pueden ser el mismo.
+          </mat-error>
         </mat-form-field>
       </div>
       <mat-error class="d-flex justify-content-center" *ngIf="calendarioForm.controls['entrenamiento1']?.errors?.invalid">Los jugadores no pueden ser el mismo.
@@ -79,6 +80,8 @@
           </mat-select>
         </mat-form-field>
       </div>
+      <mat-error class="d-flex justify-content-center" *ngIf="calendarioForm.controls['entrenamiento2'].errors?.invalid">Los jugadores no pueden ser el mismo.
+      </mat-error>
     </div>
     <div class="row"  formGroupName="entrenamiento3">
       <div class="col-2 d-flex align-items-center">
@@ -108,6 +111,8 @@
           </mat-select>
         </mat-form-field>
       </div>
+      <mat-error class="d-flex justify-content-center" *ngIf="calendarioForm.controls['entrenamiento3'].errors?.invalid">Los jugadores no pueden ser el mismo.
+      </mat-error>
     </div>
     <div class="row" formGroupName="entrenamiento4">
       <div class="col-2 d-flex align-items-center">
@@ -137,6 +142,8 @@
           </mat-select>
         </mat-form-field>
       </div>
+      <mat-error class="d-flex justify-content-center" *ngIf="calendarioForm.controls['entrenamiento4'].errors?.invalid">Los jugadores no pueden ser el mismo.
+      </mat-error>
     </div>
   </div>
   </form>
