@@ -8,9 +8,9 @@ export class ResultadoPartidaPipe implements PipeTransform {
   transform(value: any, ...args: any[]): any {
 
     if (value == undefined) {
-      return "Pendiente" as string;
+      return "Pendiente";
     } else if (value == "Tablas") {
-      return "Tablas" as string;
+      return "Tablas";
     } else {
       if (value == args[0].id) {
         return `Ganó ${args[0].name}`

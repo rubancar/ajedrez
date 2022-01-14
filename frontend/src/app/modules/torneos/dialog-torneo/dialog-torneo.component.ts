@@ -28,7 +28,7 @@ export class DialogTorneoComponent implements OnInit {
       'required': 'El nombre es obligatorio.'
     },
     'sede': {
-      'required': 'La sede es obligatorio.'
+      'required': 'Debes elegir la sede.'
     },
     'jugadores': {
       'required': 'Debes elegir al menos dos jugadores.'
@@ -43,7 +43,7 @@ export class DialogTorneoComponent implements OnInit {
       this.torneoForm = this.fb.group({
         name: ["", Validators.required],
         sede: ["", Validators.required],
-        jugadores: [""]
+        jugadores: ["", Validators.required]
       });
     }
     
