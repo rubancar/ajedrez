@@ -81,6 +81,9 @@ public class TorneoEndpoint extends HttpServlet {
 //			System.out.println("entering torneo post");
 			
 			Torneo torneo = getTorneoFromInputStream(request.getInputStream());
+			
+			System.out.println("los jugadores del torneo" + torneo.getJugadores());
+			
 			torneo = TorneoFactory.getInstance().create(torneo);
 
 			StringBuffer msg = new StringBuffer();
@@ -180,7 +183,7 @@ public class TorneoEndpoint extends HttpServlet {
 			
 		torneo = g.fromJson(new InputStreamReader(stream), Torneo.class);
 		
-//		System.out.println("from inputstream, torneo: " + torneo.getName());
+		System.out.println("from inputstream, torneo: " + torneo.getJugadores());
 
 		if (torneo.getSede() == null || torneo.getName() == null || torneo.getJugadores() == null) {
 			System.out.println("Error validando datos de torneo!!");

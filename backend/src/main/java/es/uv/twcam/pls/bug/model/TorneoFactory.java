@@ -45,13 +45,18 @@ public class TorneoFactory {
 		return torneo;
 	}
 	
-	public ArrayList<Partida> crearPartidasTorneo(ArrayList<Jugador> jugadores, String torneoId, String sede){
+	public ArrayList<Partida> crearPartidasTorneo(ArrayList<String> jugadores, String torneoId, String sede){
 		ArrayList<Partida> partidas = new ArrayList<Partida>();
 		try {		
 	        for (int i = 0; i < jugadores.size()-1; i++) {
 	        	for (int j = i + 1; j < jugadores.size(); j++) {
-		        	Partida partida = new Partida(null, sede, torneoId, jugadores.get(i), jugadores.get(j), "-1");
+	        		String jugador1ID = jugadores.get(i);
+	        		String jugador2ID = jugadores.get(j);
+	        		Jugador jugador1 = JugadorFactory.getInstance().find(jugador1ID);
+	        		Jugador jugador2 = JugadorFactory.getInstance().find(jugador2ID);
+		        	Partida partida = new Partida(null, sede, torneoId, jugador1, jugador2, "-1");
 		        	PartidaFactory.getInstance().create(partida);
+//		        	TODO cambiar a partida.getId() y crear una lista de IDs de partida
 		        	partidas.add(partida);
 	        	}
 	        	

@@ -7,11 +7,12 @@ public class Torneo {
 	private String id;
 	private String name;
 	private String sede;
-	private ArrayList<Jugador> jugadores;
+//	private ArrayList<Jugador> jugadores;
+	private ArrayList<String> jugadores;
 	private ArrayList<Partida> partidas;
 	
 
-	public Torneo(String id, String name, String sede, ArrayList<Jugador> jugadores, ArrayList<Partida> partidas) {
+	public Torneo(String id, String name, String sede, ArrayList<String> jugadores, ArrayList<Partida> partidas) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -62,7 +63,7 @@ public class Torneo {
 	/**
 	 * @return the jugadores
 	 */
-	public ArrayList<Jugador> getJugadores() {
+	public ArrayList<String> getJugadores() {
 		return jugadores;
 	}
 
@@ -70,7 +71,7 @@ public class Torneo {
 	/**
 	 * @param jugadores the jugadores to set
 	 */
-	public void setJugadores(ArrayList<Jugador> jugadores) {
+	public void setJugadores(ArrayList<String> jugadores) {
 		this.jugadores = jugadores;
 	}
 
