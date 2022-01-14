@@ -14,7 +14,7 @@ import { DialogTorneoComponent } from './dialog-torneo/dialog-torneo.component';
 export class TorneosComponent implements OnInit {
   
   public dataSource: MatTableDataSource<Torneo>;
-  displayedColumns: string[];
+  displayedColumns: Array<any>;
   
   constructor(private torneoService: TorneoService,
     private router : Router,
@@ -22,7 +22,7 @@ export class TorneosComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Torneo>();
       // this.actionsFunctions = ['edit', 'delete'];
       // this.displayedColumns = ['sede', 'jugador1', 'jugador2', 'fecha'];
-      this.displayedColumns = ['nombre', 'sede'];
+      this.displayedColumns = [{valueName:'nombre', displayName:'Nombre'}, {valueName:'sede', displayName:'Sede'}];
     }
     
     ngOnInit() {

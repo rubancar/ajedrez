@@ -20,7 +20,7 @@ export class DataTableComponent implements OnInit, AfterViewInit {
 
   @Input() dataSource;
   @Input() actionsFunctions: any[];
-  @Input() displayedColumns: string[];
+  @Input() displayedColumns: Array<any>;
   @Output('callAction') callAction: EventEmitter<any> = new EventEmitter();
 
   constructor(public dialog: MatDialog) { 
@@ -33,7 +33,7 @@ export class DataTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.columnsToDisplay = [...this.displayedColumns, 'actions'];
+    this.columnsToDisplay = [...this.displayedColumns.map(col => col.valueName), 'actions'];
   }
 
 }

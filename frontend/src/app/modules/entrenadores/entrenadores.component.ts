@@ -18,12 +18,12 @@ export class EntrenadoresComponent implements OnInit {
   public dataSource: MatTableDataSource<Entrenador>;
   private serviceSubscribe: Subscription;
   private actionsFunctions: any;
-  private displayedColumns: string[];
+  private displayedColumns: Array<any>;
 
   constructor(private entrenadorService:EntrenadoresService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Entrenador>();
     this.actionsFunctions = ['edit', 'delete', 'calendar_today'];
-    this.displayedColumns = ['nombre'];
+    this.displayedColumns = [{valueName:'nombre', displayName:'Nombre'}];
   }
 
   refresh() {

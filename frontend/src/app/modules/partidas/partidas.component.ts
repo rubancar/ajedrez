@@ -21,7 +21,7 @@ export class PartidasComponent implements OnInit {
   partidas: Array<Partida> = [];
   private serviceSubscribe: Subscription;
   public dataSource: MatTableDataSource<Partida>;
-  displayedColumns: string[];
+  displayedColumns: Array<any>;
   actionsFunctions: string[];
   partida? : Partida ;
 
@@ -31,7 +31,8 @@ export class PartidasComponent implements OnInit {
               private _snackBar: MatSnackBar) {
               this.dataSource = new MatTableDataSource<Partida>();
               this.actionsFunctions = ['edit'];
-              this.displayedColumns = ['sede', 'jugador1', 'jugador2', 'resultado'];
+              this.displayedColumns = [{valueName:'sede', displayName:'Sede'}, {valueName:'jugador1', displayName:'Jugador 1'},
+              {valueName:'jugador2', displayName:'Jugador 2'}, {valueName:'resultado', displayName:'Resultado'}];
   }
 
 

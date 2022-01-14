@@ -17,12 +17,12 @@ export class FederacionesComponent implements OnInit {
   public dataSource: MatTableDataSource<Federacion>;
   private serviceSubscribe: Subscription;
   private actionsFunctions: any;
-  private displayedColumns: string[];
+  private displayedColumns: Array<any>;
 
   constructor(private federacionService:FederacionesService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Federacion>();
     this.actionsFunctions = ['edit', 'delete'];
-    this.displayedColumns = ['nombre', 'direccion'];
+    this.displayedColumns = [{valueName:'nombre', displayName:'Nombre'}, {valueName:'direccion', displayName:'Dirección'}];
   }
 
   refresh() {

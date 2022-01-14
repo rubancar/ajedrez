@@ -16,13 +16,14 @@ export class ClubesComponent implements OnInit {
 
   public dataSource: MatTableDataSource<Club>;
   private actionsFunctions: any;
-  private displayedColumns: string[];
+  private displayedColumns: Array[any];
 
   constructor(private clubService:ClubService, public dialog: MatDialog,
     private _snackBar: MatSnackBar) { 
     this.dataSource = new MatTableDataSource<Club>();
     this.actionsFunctions = ['edit', 'delete'];
-    this.displayedColumns = ['nombre', 'direccion', 'usuario_entrenador', 'federacion'];
+    this.displayedColumns = [{valueName:'nombre', displayName:'Nombre'}, {valueName:'direccion', displayName:'Dirección'},
+    {valueName:'usuario_entrenador', displayName:'Entrenador'}, {valueName:'federacion', displayName:'Federación'}];
   }
 
   ngOnInit() {

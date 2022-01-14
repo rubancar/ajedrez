@@ -1,15 +1,15 @@
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column.valueName">
         <th mat-header-cell *matHeaderCellDef>
           <div style="display: flex; align-items: center;">
-            <span mat-sort-header>{{column}}</span>
+            <span mat-sort-header>{{column.displayName}}</span>
           </div>
         </th>
-        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        <td mat-cell *matCellDef="let element"> {{element[column.valueName]}} </td>
       </ng-container>
       <ng-container [matColumnDef]="'actions'">
-        <th mat-header-cell *matHeaderCellDef> actions </th>
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
         <td mat-cell *matCellDef="let element">
           <ng-container *ngFor="let action_name of actionsFunctions">
             <button mat-icon-button (click)="callAction.emit({element:element, action_name:action_name})">

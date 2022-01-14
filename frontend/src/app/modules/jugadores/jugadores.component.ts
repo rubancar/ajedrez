@@ -17,13 +17,15 @@ export class JugadoresComponent implements OnInit {
 
   public dataSource: MatTableDataSource<Jugador>;
   private actionsFunctions: any;
-  private displayedColumns: string[];
+  private displayedColumns: Array<any>;
 
   constructor(private jugadorService:JugadoresService, public dialog: MatDialog,
     private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<Jugador>();
     this.actionsFunctions = ['edit', 'delete'];
-    this.displayedColumns = ['name', 'usuario', 'elo', 'responsable', 'es_moroso',  'fecha_nacimiento'];
+    this.displayedColumns = [{valueName:'name', displayName:'Nombre'}, {valueName:'usuario', displayName:'Usuario'},
+    {valueName:'elo', displayName:'Elo'}, {valueName:'responsable', displayName:'Responsable'}, {valueName:'es_moroso', displayName:'¿Es moroso?'},
+    {valueName:'fecha_nacimiento', displayName:'Fecha de nacimiento'}];
   }
 
   ngOnInit() {
