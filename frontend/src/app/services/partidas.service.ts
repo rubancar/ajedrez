@@ -12,20 +12,18 @@ export class PartidasService {
 
   constructor( private http : HttpClient ) { }
 
-  // getPartidas() : Observable<any> {
-  //   const url = `http://localhost:3000/partidas`;
-  //   return this.http.get(url);
-  // }
-
   getPartida(id: string) : Observable<any> {
-    // const url = `http://localhost:3000/partidas/${id}`;
     return this.http.get<any>(`/api/partidas/${id}`)
-    // return this.http.get(url);
   }
 
   getPartidas(): Observable<any> {
     console.log("getPartidas")
     return this.http.get<any>("/api/partidas/")
+  } 
+
+  getPartidasTorneo(id: string): Observable<any> {
+    console.log("obteniendo Partidas del torneo")
+    return this.http.get<any>("/api/partidas/", {params: {"torneoId": id}})
   } 
 
   editPartida(partida: Partida): Observable<any> {

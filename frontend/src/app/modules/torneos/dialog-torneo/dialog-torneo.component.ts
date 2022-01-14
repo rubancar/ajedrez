@@ -14,8 +14,26 @@ import { Jugador } from 'src/app/shared/entidades/jugador';
 export class DialogTorneoComponent implements OnInit {
   
   torneoForm: FormGroup;
-  torneo: Torneo = new Torneo();
+  // torneo: Torneo = new Torneo();
   jugadores: Jugador[] = []
+
+  erroresForm: any = {
+    "name":"",
+    "sede":"",
+    "jugadores":"",
+  };
+
+  mensajesError: any = {
+    'name': {
+      'required': 'El nombre es obligatorio.'
+    },
+    'sede': {
+      'required': 'La sede es obligatorio.'
+    },
+    'jugadores': {
+      'required': 'Debes elegir al menos dos jugadores.'
+    },
+  };
   
   constructor(private fb: FormBuilder,
     private jugadorService:JugadoresService,
@@ -53,8 +71,7 @@ export class DialogTorneoComponent implements OnInit {
 
     onSubmit() {
       console.log("torneoform:", this.torneoForm.value)
-      let torneo = new Torneo(this.torneoForm.value.name, this.torneoForm.value.sede)
-      console.log("torneo:", torneo)
+      let torneo = new Torneo(this.torneoForm.value.name, this.torneoForm.value.sede, null,this.torneoForm.get('jugadores').value)
       this.torneoService.saveTorneo(torneo).subscribe((data) => {
         this.dialogRef.close(data)
       });

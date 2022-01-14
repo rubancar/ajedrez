@@ -76,17 +76,31 @@ public class AjedrezContextListener implements ServletContextListener {
 		Jugador jugador1 = new Jugador("Fernando", "12345", "fer", "player", 1346, "", false, jugadorDate, club1);
 		Jugador jugador2 = new Jugador("Ruben", "12345", "ruben", "player", 1498, "", false, jugadorDate, club1);
 		Jugador jugador3 = new Jugador("Alexis", "12345", "alexis", "player", 1411, "", false, jugadorDate, club1);
+		Jugador jugador4 = new Jugador("Pepe", "12345", "pepe", "player", 1411, "", false, jugadorDate, club1);
+		Jugador jugador5 = new Jugador("Pablo", "12345", "pablo", "player", 1411, "", false, jugadorDate, club1);
+		Jugador jugador6 = new Jugador("Alberto", "12345", "alberto", "player", 1411, "", false, jugadorDate, club1);
 		JugadorFactory.getInstance().create(jugador1);
 		JugadorFactory.getInstance().create(jugador2);
 		JugadorFactory.getInstance().create(jugador3);
+		JugadorFactory.getInstance().create(jugador4);
+		JugadorFactory.getInstance().create(jugador5);
+		JugadorFactory.getInstance().create(jugador6);
 		
-		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-		jugadores.add(jugador1);
-		jugadores.add(jugador2);
-		jugadores.add(jugador3);
-		Torneo torneo1 = new Torneo(null, "Torneo1", "Club1", jugadores, null);
+		ArrayList<String> jugadores1 = new ArrayList<String>();
+		jugadores1.add(jugador1.getId());
+		jugadores1.add(jugador2.getId());
+		jugadores1.add(jugador3.getId());
+		Torneo torneo1 = new Torneo(null, "Torneo1", "Club1", jugadores1, null);
 		TorneoFactory.getInstance().create(torneo1);
-		String torneo_id = torneo1.getId();
+
+		ArrayList<String> jugadores2 = new ArrayList<String>();
+		jugadores2.add(jugador3.getId());
+		jugadores2.add(jugador4.getId());
+		jugadores2.add(jugador5.getId());
+		jugadores2.add(jugador6.getId());
+		Torneo torneo2 = new Torneo(null, "Memorial Capablanca", "Club2", jugadores2, null);
+		TorneoFactory.getInstance().create(torneo2);
+
 		
 		ArrayList<EntrenamientosDia> entrenamientos = new ArrayList<EntrenamientosDia>();
 		Calendar myCalendar2 = new GregorianCalendar(2022,GregorianCalendar.JANUARY,10);

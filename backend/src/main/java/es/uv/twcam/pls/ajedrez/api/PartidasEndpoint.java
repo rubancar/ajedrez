@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -35,7 +37,7 @@ public class PartidasEndpoint extends HttpServlet {
 		g = new GsonBuilder().setDateFormat("MM/dd/yyyy HH:mm:ss").create();
 		System.out.println("Partidas EndPoint creado");
     }
-
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -43,19 +45,26 @@ public class PartidasEndpoint extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String result = null;
-
+		
 		String id = EndpointUtils.getRequestId(request, "IdPartida");
 
 		System.out.println("GET at:" + request.getContextPath() + " with ID: " + id); // <7>
+		
+        String torneoId = request.getParameter("torneoId");
 
-		if (id == null) {
+		if (id == null && torneoId == null) {
 			List<Partida> partidas = PartidaFactory.getInstance().listAll();
 			result = g.toJson(partidas);
+		} else if (id == null && torneoId != null) {
+			System.out.println("Seleccion de partidas por torneo");
+			List<Partida> partidas = PartidaFactory.getInstance().listByTournament(torneoId);
+			if (partidas != null)
+				result = g.toJson(partidas);
 		} else {
-			System.out.println("doing get, partida: " + id);
+			System.out.println("Doing get, partida: " + id);
 			Partida partida = PartidaFactory.getInstance().find(id);
 			if (partida != null)
-				result = g.toJson(partida);
+				result = g.toJson(partida);			
 		}
 
 		if (result != null) {
