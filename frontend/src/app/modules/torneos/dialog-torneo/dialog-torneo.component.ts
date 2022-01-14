@@ -14,8 +14,26 @@ import { Jugador } from 'src/app/shared/entidades/jugador';
 export class DialogTorneoComponent implements OnInit {
   
   torneoForm: FormGroup;
-  torneo: Torneo = new Torneo();
+  // torneo: Torneo = new Torneo();
   jugadores: Jugador[] = []
+
+  erroresForm: any = {
+    "name":"",
+    "sede":"",
+    "jugadores":"",
+  };
+
+  mensajesError: any = {
+    'name': {
+      'required': 'El nombre es obligatorio.'
+    },
+    'sede': {
+      'required': 'La sede es obligatorio.'
+    },
+    'jugadores': {
+      'required': 'Debes elegir al menos dos jugadores.'
+    },
+  };
   
   constructor(private fb: FormBuilder,
     private jugadorService:JugadoresService,
@@ -27,6 +45,10 @@ export class DialogTorneoComponent implements OnInit {
         sede: ["", Validators.required],
         jugadores: [""]
       });
+
+      // this.torneoForm.valueChanges.subscribe(datos => this.onCambioValor(datos));
+      // this.torneoForm.setValue(data);
+      // this.torneo = new Torneo();
     }
     
     ngOnInit() {
@@ -51,9 +73,25 @@ export class DialogTorneoComponent implements OnInit {
       })
     }
 
+    // onCambioValor(data?: any) {
+    //   if (!this.torneoForm) { return; }
+    //   const form = this.torneoForm;
+    //   for (const field in this.erroresForm) {
+    //     // Se borrarán los mensajes de error previos
+    //     this.erroresForm[field] = '';
+    //     const control = form.get(field);
+    //     if (control && control.dirty && !control.valid) {
+    //       const messages = this.mensajesError[field];
+    //       for (const key in control.errors) {
+    //         this.erroresForm[field] += messages[key] + ' ';
+    //       }
+    //     }
+    //   }
+    // }
+
     onSubmit() {
       console.log("torneoform:", this.torneoForm.value)
-      let torneo = new Torneo(this.torneoForm.value.name, this.torneoForm.value.sede)
+      let torneo = new Torneo(this.torneoForm.value.name, this.torneoForm.value.sede, null,this.torneoForm.get('jugadores').value)
       this.torneoService.saveTorneo(torneo).subscribe((data) => {
         this.dialogRef.close(data)
       });

@@ -21,6 +21,11 @@ export class PartidasService {
     return this.http.get<any>("/api/partidas/")
   } 
 
+  getPartidasTorneo(id: string): Observable<any> {
+    console.log("obteniendo Partidas del torneo")
+    return this.http.get<any>("/api/partidas/", {params: {"torneoId": id}})
+  } 
+
   editPartida(partida: Partida): Observable<any> {
     const partida_id = partida.id;
     console.log(partida_id);

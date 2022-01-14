@@ -33,18 +33,23 @@ export class DetalleTorneoComponent implements OnInit {
       this.displayedColumns = ['sede', 'jugador1', 'jugador2', 'resultado'];
     }
 
+  // Esta bien hacer dos llamadas?? Esto solo seria para no guardar en el torneo 
+  // la lista de partidas completa
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
+      this.torneo = new Torneo();
       this.torneoService.getTorneo(this.id).subscribe((resp:any) => {
-        this.torneo = new Torneo();
         this.torneo.id = resp.id;
         this.torneo.name = resp.name;
         this.torneo.sede = resp.sede;
         this.torneo.partidas = resp.partidas;
         this.dataSource.data = resp.partidas;
-
-
+      });
+      this.partidasService.getPartidasTorneo(this.torneo.id).subscribe((resp:any) => {
+        console.log("las partidas del torneo", resp)
+        // this.torneo.partidas = resp;
+        // this.dataSource.data = resp;
       });
     }
   }
@@ -76,13 +81,5 @@ export class DetalleTorneoComponent implements OnInit {
     });
   }
 
-
-  // ngOnDestroy(): void {
-  //   this.serviceSubscribe.unsubscribe();
-  // }
-
-  // getRecord(row) {
-  //   this.router.navigateByUrl(`/partidas/${row.id}`);
-  // }
 
 }

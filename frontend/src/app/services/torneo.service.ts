@@ -29,6 +29,7 @@ export class TorneoService {
   }
 
   saveTorneo(torneo: Torneo): Observable<any> {
+    console.log("Antes del post: ", torneo)
     return this.http.post<any>("/api/torneos/", torneo)
   }
 
