@@ -54,7 +54,7 @@ export class TorneosComponent implements OnInit {
             break;
           case 'dehaze':
             this.getRecord(eventData.element)
-            console.log("elemnto del boton", eventData.element)
+            // console.log("elemnto del boton", eventData.element)
             break;
           // case 'edit':
           //   this.edit(eventData.element)

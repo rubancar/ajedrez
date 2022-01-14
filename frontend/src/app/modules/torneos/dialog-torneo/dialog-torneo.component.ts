@@ -45,10 +45,6 @@ export class DialogTorneoComponent implements OnInit {
         sede: ["", Validators.required],
         jugadores: [""]
       });
-
-      // this.torneoForm.valueChanges.subscribe(datos => this.onCambioValor(datos));
-      // this.torneoForm.setValue(data);
-      // this.torneo = new Torneo();
     }
     
     ngOnInit() {
@@ -72,22 +68,6 @@ export class DialogTorneoComponent implements OnInit {
         console.log("jugadores:", value)
       })
     }
-
-    // onCambioValor(data?: any) {
-    //   if (!this.torneoForm) { return; }
-    //   const form = this.torneoForm;
-    //   for (const field in this.erroresForm) {
-    //     // Se borrarán los mensajes de error previos
-    //     this.erroresForm[field] = '';
-    //     const control = form.get(field);
-    //     if (control && control.dirty && !control.valid) {
-    //       const messages = this.mensajesError[field];
-    //       for (const key in control.errors) {
-    //         this.erroresForm[field] += messages[key] + ' ';
-    //       }
-    //     }
-    //   }
-    // }
 
     onSubmit() {
       console.log("torneoform:", this.torneoForm.value)

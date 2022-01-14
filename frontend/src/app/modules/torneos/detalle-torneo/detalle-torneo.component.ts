@@ -7,6 +7,7 @@ import { TorneoService } from 'src/app/services/torneo.service';
 import { Torneo } from 'src/app/shared/entidades/torneo';
 import { MatTableDataSource } from '@angular/material/table';
 import { ResultadoPartidaComponent } from '../../partidas/resultado-partida/resultado-partida.component';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detalle-torneo',
@@ -17,7 +18,6 @@ export class DetalleTorneoComponent implements OnInit {
 
   id : string | null = '';
   torneo: Torneo;
-  partidasService: any;
   serviceSubscribe: Subscription;
   dataSource: any;
   displayedColumns: string[];
@@ -25,7 +25,7 @@ export class DetalleTorneoComponent implements OnInit {
 
   constructor(private route : ActivatedRoute,
               private torneoService : TorneoService,
-              partidasService: PartidasService,
+              private partidasService: PartidasService,
               public dialog: MatDialog,
     ) {
       this.dataSource = new MatTableDataSource<Torneo>();
@@ -37,20 +37,23 @@ export class DetalleTorneoComponent implements OnInit {
   // la lista de partidas completa
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
+    
     if (this.id) {
       this.torneo = new Torneo();
-      this.torneoService.getTorneo(this.id).subscribe((resp:any) => {
-        this.torneo.id = resp.id;
-        this.torneo.name = resp.name;
-        this.torneo.sede = resp.sede;
-        this.torneo.partidas = resp.partidas;
-        this.dataSource.data = resp.partidas;
-      });
-      // this.partidasService.getPartidasTorneo(this.torneo.id).subscribe((resp:any) => {
-      //   console.log("las partidas del torneo", resp)
-      //   // this.torneo.partidas = resp;
-      //   // this.dataSource.data = resp;
-      // });
+      this.torneoService.getTorneo(this.id).pipe(
+        map(respT => {
+          this.torneo.id = respT.id;
+          this.torneo.name = respT.name;
+          this.torneo.sede = respT.sede;
+        }),
+        switchMap(() => this.partidasService.getPartidasTorneo(this.id))
+      ).subscribe((respP:any) => {
+          this.torneo.partidas = respP;
+          // console.log("response del obsv:final ", this.torneo)
+          this.dataSource.data = respP;
+      })
+    } else {
+      console.log("error obteniendo el id del torneo")
     }
   }
 
@@ -76,7 +79,7 @@ export class DetalleTorneoComponent implements OnInit {
   actionAfterClosingDialog(dialog: MatDialogRef<ResultadoPartidaComponent, any>) {
     dialog.afterClosed().subscribe(data => {
       if(data) {
-      // console.log("AfterClose: " + data.resultado.ganador);
+        console.log("Nuevo resulado: " + data.resultado.ganador);
       }
     });
   }
