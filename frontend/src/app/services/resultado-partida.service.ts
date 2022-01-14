@@ -9,11 +9,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ResultadoPartidaService {
   
-  resultado: number = -1;
+  resultado: string;
   
   constructor(private partidaService: PartidasService, private http : HttpClient ) { }
   
-  saveResult (partida : Partida): Observable<any> {  
+  saveResult (partida : Partida): Observable<any> {
     console.log("Enviando a partida con PUT", partida)
     return this.partidaService.editPartida(partida)
   }

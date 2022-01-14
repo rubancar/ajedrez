@@ -83,7 +83,7 @@ export class PartidasComponent implements OnInit {
   actionAfterClosingDialog(dialog: MatDialogRef<ResultadoPartidaComponent, any>) {
     dialog.afterClosed().subscribe(data => {
       if(data) {
-      console.log("AfterClose: " + data.resultado.ganador);
+      console.log("AfterClose: " + data.resultado);
       }
     });
   }

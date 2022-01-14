@@ -4,7 +4,7 @@
 <form novalidate [formGroup]="resultsForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-radio-group class="radio-group" formControlName ="result">
-      <mat-radio-button [value]="-1">Tablas</mat-radio-button>
+      <mat-radio-button [value]="'Tablas'">Tablas</mat-radio-button>
       <mat-radio-button [value]="partida?.jugador1.id">Ganó {{partida?.jugador1.name}}</mat-radio-button>
       <mat-radio-button [value]="partida?.jugador2.id">Ganó {{partida?.jugador2.name}}</mat-radio-button>
     </mat-radio-group>

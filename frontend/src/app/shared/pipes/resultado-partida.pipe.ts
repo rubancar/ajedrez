@@ -6,10 +6,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ResultadoPartidaPipe implements PipeTransform {
 
   transform(value: any, ...args: any[]): any {
-    if (value.resultado != undefined) {
-      return value.name as string;
+
+    if (value == undefined) {
+      return "Pendiente" as string;
+    } else if (value == "Tablas") {
+      return "Tablas" as string;
     } else {
-      return value as string;
+      if (value == args[0].id) {
+        return `Ganó ${args[0].name}`
+      } else {
+        return `Ganó ${args[1].name}`
+      }
     }
   }
 

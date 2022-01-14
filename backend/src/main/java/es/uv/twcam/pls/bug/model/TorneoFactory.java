@@ -54,7 +54,7 @@ public class TorneoFactory {
 	        		String jugador2ID = jugadores.get(j);
 	        		Jugador jugador1 = JugadorFactory.getInstance().find(jugador1ID);
 	        		Jugador jugador2 = JugadorFactory.getInstance().find(jugador2ID);
-		        	Partida partida = new Partida(null, sede, torneoId, jugador1, jugador2, "-1");
+		        	Partida partida = new Partida(null, sede, torneoId, jugador1, jugador2, "Pendiente");
 		        	PartidaFactory.getInstance().create(partida);
 //		        	TODO cambiar a partida.getId() y crear una lista de IDs de partida
 		        	partidas.add(partida);

@@ -2,17 +2,17 @@ import { Jugador } from "./jugador";
 
 export class Partida {
     id:string;
-    torneo_id: number;
+    torneo_id: string;
     jugador1: Jugador;
     jugador2: Jugador;
-    resultado: number;
+    resultado: string;
     sede: string;
 
     constructor() {
         this.id = "";
-        this.torneo_id = -1;
+        this.torneo_id = null;
         this.jugador1 = new Jugador();
         this.jugador2 = new Jugador();
-        this.resultado = -1;
+        this.resultado = "Pendiente";
     }
 }

@@ -30,8 +30,8 @@ export class DetalleTorneoComponent implements OnInit {
     ) {
       this.dataSource = new MatTableDataSource<Torneo>();
       this.actionsFunctions = ['edit'];
-      this.displayedColumns = [{valueName:'sede', displayName:'Sede'}, {valueName:'jugador1', displayName:'Jugador 1'},
-      {valueName:'jugador2', displayName:'Jugador 2'}, {valueName:'resultado', displayName:'Resultado'} ];
+      this.displayedColumns = [{valueName:'sede', displayName:'Sede'}, {valueName:'jugador1', displayName:'Jugando Blancas'},
+      {valueName:'jugador2', displayName:'Jugando Negras'}, {valueName:'resultado', displayName:'Resultado'} ];
     }
 
   // Esta bien hacer dos llamadas?? Esto solo seria para no guardar en el torneo 
@@ -80,7 +80,7 @@ export class DetalleTorneoComponent implements OnInit {
   actionAfterClosingDialog(dialog: MatDialogRef<ResultadoPartidaComponent, any>) {
     dialog.afterClosed().subscribe(data => {
       if(data) {
-        console.log("Nuevo resulado: " + data.resultado.ganador);
+        console.log("Nuevo resulado: " + data.resultado);
       }
     });
   }

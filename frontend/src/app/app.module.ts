@@ -57,6 +57,7 @@ import { TorneosComponent } from './modules/torneos/torneos.component';
 import { DetalleTorneoComponent } from './modules/torneos/detalle-torneo/detalle-torneo.component';
 import { DialogTorneoComponent } from './modules/torneos/dialog-torneo/dialog-torneo.component';
 import { JugadoresPipe } from './shared/pipes/jugadores.pipe';
+import { ResultadoPartidaPipe } from './shared/pipes/resultado-partida.pipe';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { JugadoresPipe } from './shared/pipes/jugadores.pipe';
     TorneosComponent,
     DetalleTorneoComponent,
     DialogTorneoComponent,
-    JugadoresPipe
+    JugadoresPipe,
+    ResultadoPartidaPipe
   ],
   imports: [
     BrowserModule,

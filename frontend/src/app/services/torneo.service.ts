@@ -21,7 +21,6 @@ export class TorneoService {
   }
 
   getTorneos(): Observable<any> {
-    console.log("getTorneos")
     return this.http.get<any>("/api/torneos/")
   }
 

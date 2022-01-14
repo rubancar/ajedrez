@@ -13,7 +13,7 @@ import { Partida } from 'src/app/shared/entidades/partida';
 })
 export class ResultadoPartidaComponent implements OnInit {
   
-  resultado = -1;
+  resultado: string;
   partida: Partida = new Partida();
   resultsForm!: FormGroup;
   
@@ -29,30 +29,32 @@ export class ResultadoPartidaComponent implements OnInit {
     
     crearFormulario() {
       this.resultsForm = this.fb.group({
-        result: ["-1", [Validators.required, Validators.min(-1)]],
+        result: ["", [Validators.required, Validators.requiredTrue]],
       }); 
+      console.log("al crear el form", this.resultsForm.value)
     }
     
     onSubmit() {
-      // console.log("resultado del submit 3", this.resultsForm.value.result);
-      this.partida.resultado = this.resultsForm.value.result
+      console.log("resultado: ", this.resultsForm.get('result').value)
+      this.partida.resultado = this.resultsForm.get('result').value;
+      
+      // console.log("Check resultado: ", this.partida.resultado)
 
-      // let data = { resultado: this.resultsForm.value.result, id: this.partida.id };
-      // Aqui meto el result en la paritda y salvo la partida completa
       this.resultPartidaService.saveResult(this.partida).subscribe( (data) => {
-        // console.log("K paso?: ", data);
         this.dialogRef.close(data);
       });
     }
 
     ngOnInit() {
-      // console.log("data partida", this.data.partida.resultado);
       this.partida = this.data.partida;
-      // console.log("partidssfasa", this.partida);
-        if (this.data.partida.resultado.ganador == null) {
-          this.resultado = -1;
+      console.log("Partida: ", this.partida)
+        if (this.data.partida.resultado == null) {
+
+          console.log("resultad de dialog on init", this.resultado)
+
+          this.resultado = "tablas";
         } else {
-          this.resultado = this.data.partida.resultado.ganador;
+          this.resultado = this.data.partida.resultado;
         }
         this.resultsForm.reset({
           result :  this.resultado,

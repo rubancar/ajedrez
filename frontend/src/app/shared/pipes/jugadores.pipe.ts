@@ -7,7 +7,8 @@ export class JugadoresPipe implements PipeTransform {
 
   transform(value: any, ...args: any[]): string {
 
-    if (value.name != undefined) {
+    // console.log(value)
+    if (value != undefined && value.name != undefined) {
       return value.name as string;
     } else {
       return value as string;

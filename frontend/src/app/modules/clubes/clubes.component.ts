@@ -16,7 +16,7 @@ export class ClubesComponent implements OnInit {
 
   public dataSource: MatTableDataSource<Club>;
   private actionsFunctions: any;
-  private displayedColumns: Array[any];
+  private displayedColumns: Array<any>;
 
   constructor(private clubService:ClubService, public dialog: MatDialog,
     private _snackBar: MatSnackBar) { 

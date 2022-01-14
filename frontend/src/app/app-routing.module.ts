@@ -14,6 +14,8 @@ import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.compo
 import { TorneosComponent } from './modules/torneos/torneos.component';
 import { DetalleTorneoComponent } from './modules/torneos/detalle-torneo/detalle-torneo.component';
 
+
+
 const routes: Routes = [{
   path: '',
   component: DefaultComponent,
