@@ -24,7 +24,7 @@ export class TorneosComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Torneo>();
       // TODO add column ganador del torneo
       this.displayedColumns = [{valueName:'name', displayName:'Nombre'}, {valueName:'sede', displayName:'Sede'}];
-      this.actionsFunctions = ['dehaze', 'delete'];
+      this.actionsFunctions = ['visibility', 'delete'];
     }
     
     ngOnInit() {
@@ -33,7 +33,7 @@ export class TorneosComponent implements OnInit {
     
     createTorneo() {
       let dialogRef = this.dialog.open(DialogTorneoComponent,
-        {width: '500px', height: '450px'});
+        {width: '500px', height: 'auto'});
         dialogRef.afterClosed().subscribe( data => {
           if(data) {
             this.refreshDataTable()
@@ -52,13 +52,9 @@ export class TorneosComponent implements OnInit {
           case 'delete':
             this.delete(eventData.element)
             break;
-          case 'dehaze':
+          case 'visibility':
             this.getRecord(eventData.element)
-            // console.log("elemnto del boton", eventData.element)
             break;
-          // case 'edit':
-          //   this.edit(eventData.element)
-          //   break;
           default:
             console.warn(`Action ${eventData.action_name} not implemented`);
             break;

@@ -71,7 +71,7 @@ export class DetalleTorneoComponent implements OnInit {
 
   edit(element: any) {
     let dialog = this.dialog.open(ResultadoPartidaComponent,
-      {width: '500px', height: '450px',
+      {width: 'auto', height: 'auto',
       data: {partida: element}});
       
     this.actionAfterClosingDialog(dialog);
