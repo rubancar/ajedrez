@@ -46,11 +46,11 @@ export class DetalleTorneoComponent implements OnInit {
         this.torneo.partidas = resp.partidas;
         this.dataSource.data = resp.partidas;
       });
-      this.partidasService.getPartidasTorneo(this.torneo.id).subscribe((resp:any) => {
-        console.log("las partidas del torneo", resp)
-        // this.torneo.partidas = resp;
-        // this.dataSource.data = resp;
-      });
+      // this.partidasService.getPartidasTorneo(this.torneo.id).subscribe((resp:any) => {
+      //   console.log("las partidas del torneo", resp)
+      //   // this.torneo.partidas = resp;
+      //   // this.dataSource.data = resp;
+      // });
     }
   }
 

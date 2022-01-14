@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Torneo } from '../shared/entidades/torneo';
+import { ProcesaHTTPMsjService } from './procesa-httpmsj.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TorneoService {
   partidas$: any;
+  
 
-  constructor( private http : HttpClient ) { }
+  constructor( private http : HttpClient, private procesaHttpmsjService: ProcesaHTTPMsjService ) { }
 
 
   getTorneo(id: string) : Observable<any> {
@@ -33,7 +36,10 @@ export class TorneoService {
     return this.http.post<any>("/api/torneos/", torneo)
   }
 
-  remove(id): void {
-    console.log(id);
+  remove(torneo_id): Observable<any> {
+    console.log(torneo_id);
+    return this.http.delete<any>(`/api/torneos/${torneo_id}`)
+    .pipe(catchError(this.procesaHttpmsjService.gestionError));
+
   }
 }
