@@ -55,13 +55,11 @@ public class TorneoFactory {
 	        		Jugador jugador2 = JugadorFactory.getInstance().find(jugador2ID);
 		        	Partida partida = new Partida(null, sede, torneoId, jugador1, jugador2, "Pendiente");
 		        	PartidaFactory.getInstance().create(partida);
-//		        	TODO cambiar a partida.getId() y crear una lista de IDs de partida
 		        	partidas.add(partida);
 	        	}
 	        	
 	        }
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return partidas;			

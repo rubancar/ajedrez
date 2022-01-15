@@ -20,8 +20,6 @@ import es.uv.twcam.pls.bug.model.Federacion;
 import es.uv.twcam.pls.bug.model.FederacionFactory;
 import es.uv.twcam.pls.bug.model.Jugador;
 import es.uv.twcam.pls.bug.model.JugadorFactory;
-import es.uv.twcam.pls.bug.model.Partida;
-import es.uv.twcam.pls.bug.model.PartidaFactory;
 import es.uv.twcam.pls.bug.model.Torneo;
 import es.uv.twcam.pls.bug.model.TorneoFactory;
 import es.uv.twcam.pls.bug.model.Usuario;
