@@ -7,7 +7,6 @@ public class Torneo {
 	private String id;
 	private String name;
 	private String sede;
-//	private ArrayList<Jugador> jugadores;
 	private ArrayList<String> jugadores;
 	private ArrayList<Partida> partidas;
 	
