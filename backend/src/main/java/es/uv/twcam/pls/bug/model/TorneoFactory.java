@@ -12,7 +12,6 @@ public class TorneoFactory {
 
 	Map<String, Torneo> dictionary;
 
-	// El uso de ETag seria interesante tambien
 	private TorneoFactory() {
 		dictionary = new Hashtable<String, Torneo>();
 	}

@@ -13,38 +13,43 @@ public class TorneoFactoryTest {
 
   static String id = null;
   static String name;
-	static String sede;
-	static ArrayList<Jugadores> jugadores;
-	static ArrayList<Partida> partidas;
+  static String sede;
+  static ArrayList<String> jugadores;
+  static ArrayList<Partida> partidas;
   public static Torneo torneo1;
 
   
   @BeforeAll
   public static void setUpClass() {
-    torneo1 = new Torneo(null, name, sede, jugadores, partidas);
+
     Jugador jugador1 = new Jugador();
     Jugador jugador2 = new Jugador();
     Jugador jugador3 = new Jugador();
-    jugadores.add(e)
+    jugador1.setId("1");
+    jugador1.setName("Pepe");
+    jugador2.setId("2");
+    jugador2.setName("Juan");
+    jugador3.setId("3");
+    jugador3.setName("Pedro");
+    System.out.println("test id jugador: " + jugador2.getId());
+    jugadores.add(jugador1.getId());
+    jugadores.add(jugador2.getId());
+    jugadores.add(jugador3.getId()); 
+    torneo1 = new Torneo(null, name, sede, jugadores, partidas);
+    System.out.println(torneo1);
 
   }
 
   @Test
-  void testCrearPartidasTorneo() {
-
-		Torneo bug2 = TorneoFactory.getInstance().create(bug1);
+  void testCreate() throws Exception {
+		Torneo torneo2 = TorneoFactory.getInstance().create(torneo1);
 		
-		TorneoFactoryTest.id = bug1.getId();
+		TorneoFactoryTest.id = torneo1.getId();
 		
 		assertNotNull(TorneoFactoryTest.id);
-		assertEquals(bug1.getIssueName(), bug2.getIssueName());
-		assertEquals(bug1.getIssueMessage(), bug2.getIssueMessage());
-
-  }
-
-  @Test
-  void testCreate() {
-
+		assertEquals(torneo1.getName(), torneo2.getName());
+		assertEquals(torneo1.getSede(), torneo2.getSede());
+		assertEquals(torneo1.getPartidas().size(),3);
   }
 }
  
