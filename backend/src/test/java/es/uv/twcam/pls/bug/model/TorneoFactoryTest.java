@@ -1,13 +1,7 @@
 package es.uv.twcam.pls.bug.model;
 
 import org.junit.jupiter.api.*;
-//import org.junit.jupiter.api.TestMethodOrder;
-//import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-//import org.junit.jupiter.api.Order;
-//import org.junit.jupiter.api.BeforeAll;
-//import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 
 public class TorneoFactoryTest {
