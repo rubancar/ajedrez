@@ -2,7 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ClubService } from 'src/app/services/club.service';
+import { EntrenadoresService } from 'src/app/services/entrenadores.service';
+import { FederacionesService } from 'src/app/services/federaciones.service';
 import { Club } from 'src/app/shared/entidades/club';
+import { Entrenador } from 'src/app/shared/entidades/entrenador';
+import { Federacion } from 'src/app/shared/entidades/federacion';
 
 @Component({
   selector: 'app-dialog-club',
@@ -13,6 +17,8 @@ export class DialogClubComponent implements OnInit {
 
   clubForm: FormGroup;
   club: Club;
+  entrenadores: Entrenador[];
+  federaciones: Federacion[];
 
   erroresForm: any = {
     'nombre':'',
@@ -29,6 +35,8 @@ export class DialogClubComponent implements OnInit {
   };
 
   constructor(private clubService:ClubService,
+    private entrenadorService:EntrenadoresService,
+    private federacionServicio:FederacionesService,
     public dialogRef: MatDialogRef<DialogClubComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Club) { 
 
@@ -36,7 +44,7 @@ export class DialogClubComponent implements OnInit {
         "id": new FormControl(''),
         "nombre": new FormControl('', Validators.required),
         "direccion": new FormControl('', Validators.required),
-        "usuario_entrenador": new FormControl(''),
+        "entrenador_id": new FormControl(''),
         "federacion_id": new FormControl('')
       });
 
@@ -46,6 +54,17 @@ export class DialogClubComponent implements OnInit {
     }
 
   ngOnInit() {
+    // Inicializar entrenadores en el formulario
+    this.entrenadorService.getEntrenadores().subscribe(response => {
+      this.entrenadores = response;
+      console.log(response);
+    })
+
+    // Inicializar federaciones en el formulario
+    this.federacionServicio.getFederaciones().subscribe(response => {
+      this.federaciones = response;
+      console.log(response);
+    })
   }
 
   onCambioValor(data?: any) {

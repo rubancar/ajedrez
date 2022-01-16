@@ -58,7 +58,11 @@ export class JugadoresComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.jugadorService.remove(element.id);
+        this.jugadorService.remove(element.id).subscribe(res => {
+          console.log(res);
+          this.refreshDataTable();
+          this._snackBar.open("Jugador removido de forma exitosa", "X");
+        })
       }
     });
   }

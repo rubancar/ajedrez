@@ -1,11 +1,13 @@
 package es.uv.twcam.pls.bug.model;
 
+import com.google.gson.annotations.Expose;
+
 public class Club {
 	
 	private String id;
 	private String nombre;
 	private String direccion;
-	private String usuario_entrenador;
+	private String entrenador_id;
 	private Federacion federacion;
 	
 	public Club() {
@@ -17,11 +19,10 @@ public class Club {
 		this.id = id;
 	}
 	
-	public Club(String nombre, String direccion, String usuario_entrenador, Federacion federacion) {
+	public Club(String nombre, String direccion, Federacion federacion) {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.usuario_entrenador = usuario_entrenador;
 		this.federacion = federacion;
 	}
 	
@@ -43,18 +44,22 @@ public class Club {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public String getUsuario_entrenador() {
-		return usuario_entrenador;
-	}
-	public void setUsuario_entrenador(String usuario_entrenador) {
-		this.usuario_entrenador = usuario_entrenador;
-	}
 	public Federacion getFederacion() {
 		return federacion;
 	}
 	public void setFederacion(Federacion federacion) {
 		this.federacion = federacion;
 	}
+
+	public String getEntrenador_id() {
+		return entrenador_id;
+	}
+
+	public void setEntrenador_id(String entrenador_id) {
+		this.entrenador_id = entrenador_id;
+	}
+	
+	
 	
 	
 

@@ -66,8 +66,8 @@ public class AjedrezContextListener implements ServletContextListener {
 		FederacionFactory.getInstance().create(federacion3);
 		
 		
-		Club club1 = new Club("Master TWCAM", "ETSE Burjassot", "Entrenador1", federacion1);
-		Club club2 = new Club("Valencia", "Carrer Valencia 214", "Entrenador2", federacion1);
+		Club club1 = new Club("Master TWCAM", "ETSE Burjassot", federacion1);
+		Club club2 = new Club("Valencia", "Carrer Valencia 214", federacion1);
 		ClubFactory.getInstance().create(club1);
 		ClubFactory.getInstance().create(club2);
 		
@@ -110,7 +110,12 @@ public class AjedrezContextListener implements ServletContextListener {
 		entrenamientosHoy.setEntrenamiento3(new Entrenamiento(jugador2, club1));
 		entrenamientos.add(entrenamientosHoy);
 		Entrenador entrenador1 = new Entrenador("Entrenador1", entrenamientos);
+		Entrenador entrenador2 = new Entrenador("Entrenador2", entrenamientos);
 		EntrenadorFactory.getInstance().create(entrenador1);
+		EntrenadorFactory.getInstance().create(entrenador2);
+		
+		club1.setEntrenador_id(entrenador1.getId());
+		club2.setEntrenador_id(entrenador2.getId());
 		
 			
 

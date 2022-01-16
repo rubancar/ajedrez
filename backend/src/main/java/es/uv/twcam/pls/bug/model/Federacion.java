@@ -1,9 +1,14 @@
 package es.uv.twcam.pls.bug.model;
 
+import com.google.gson.annotations.Expose;
+
 public class Federacion {
 
+	@Expose
 	private String id;
+	@Expose
 	private String nombre;
+	@Expose
 	private String direccion;
 
 	public Federacion() {

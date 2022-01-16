@@ -38,7 +38,8 @@ export class JugadoresService {
     return this.http.post<any>("/api/jugador/", jugador)
   }
 
-  remove(id): void {
-    console.log(id);
+  remove(id: string): Observable<any> {
+    console.log(`Deleting jugador`)
+    return this.http.delete<any>(`/api/jugador/${id}`)
   }
 }

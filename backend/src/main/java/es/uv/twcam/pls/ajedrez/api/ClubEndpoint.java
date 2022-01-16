@@ -18,6 +18,8 @@ import com.google.gson.JsonSyntaxException;
 
 import es.uv.twcam.pls.bug.model.Club;
 import es.uv.twcam.pls.bug.model.ClubFactory;
+import es.uv.twcam.pls.bug.model.Entrenador;
+import es.uv.twcam.pls.bug.model.EntrenadorFactory;
 import es.uv.twcam.pls.bug.model.ValidationException;
 
 /**
@@ -33,7 +35,7 @@ public class ClubEndpoint extends HttpServlet {
      */
     public ClubEndpoint() {
         super();
-        g = new GsonBuilder().create();;
+        g = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();;
 		System.out.println("CLub EndPoint creado");
     }
 
@@ -177,13 +179,20 @@ public class ClubEndpoint extends HttpServlet {
 		club = g.fromJson(new InputStreamReader(stream), Club.class);
 		System.out.println(club.getNombre());
 		System.out.println(club.getDireccion());
-		
-		// TODO: agregar validaciones en la creación de Clubes
+		System.out.println(club.getEntrenador_id());
 		
 		if(club.getNombre() == null || club.getDireccion() == null) {
 			System.out.println("Error validando datos de club!!");
 			throw new ValidationException("Error en datos de club"); 
 		}
+		
+		if(club.getEntrenador_id() != null) {
+			Entrenador entrenador = EntrenadorFactory.getInstance().find(club.getEntrenador_id());
+			System.out.println("Registrando entrenador a club!!");
+			//club.setEntrenador(entrenador);
+			club.setEntrenador_id(entrenador.getId());
+		}
+
 
 		return club;
 
