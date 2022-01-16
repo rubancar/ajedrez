@@ -19,33 +19,40 @@ import { DetalleTorneoComponent } from './modules/torneos/detalle-torneo/detalle
 const routes: Routes = [{
   path: '',
   component: DefaultComponent,
-  //canActivate: [AuthGuard],
+  canActivate: [ AuthorizatedGuard ],
   children: [{
     path: '',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [ AuthorizatedGuard ]
   }, {
     path: 'partidas',
-    component: PartidasComponent
+    component: PartidasComponent,
+    canActivate: [ AuthorizatedGuard ]
   }, {
     path: 'jugadores',
-    component: JugadoresComponent
+    component: JugadoresComponent,
+    canActivate: [ AuthorizatedGuard ]
   }, {
     path: 'entrenadores',
-    component: EntrenadoresComponent
+    component: EntrenadoresComponent,
+    canActivate: [ AuthorizatedGuard ]
   }, {
     path: 'federaciones',
     component: FederacionesComponent,
     canActivate: [ AuthorizatedGuard ]
   }, {
     path: 'torneos',
-    component: TorneosComponent
+    component: TorneosComponent,
+    canActivate: [ AuthorizatedGuard ]
   },{
     path: 'torneos/:id',
-    component: DetalleTorneoComponent
+    component: DetalleTorneoComponent,
+    canActivate: [ AuthorizatedGuard ]
   },
   {
     path: 'clubes',
-    component: ClubesComponent
+    component: ClubesComponent,
+    canActivate: [ AuthorizatedGuard ]
   }]
 },
 {

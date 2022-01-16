@@ -17,6 +17,7 @@ export class TorneosComponent implements OnInit {
   public dataSource: MatTableDataSource<Torneo>;
   displayedColumns: Array<any>;
   actionsFunctions: string[];
+  private isLoading : boolean;
   
   constructor(private torneoService: TorneoService,
     private router : Router,
@@ -44,6 +45,7 @@ export class TorneosComponent implements OnInit {
       refreshDataTable() {
         this.torneoService.getTorneos().subscribe(res => {
           this.dataSource.data = res;
+          this.isLoading = false;
         })
       }
 

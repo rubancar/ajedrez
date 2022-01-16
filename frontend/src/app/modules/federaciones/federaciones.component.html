@@ -6,6 +6,7 @@
 </section>
 <app-data-table [dataSource]="dataSource" 
     [displayedColumns]="displayedColumns"
-    [actionsFunctions]="actionsFunctions" 
+    [actionsFunctions]="actionsFunctions"
+    [isLoading]="isLoading" 
     (callAction)="callAction($event)">
 </app-data-table>

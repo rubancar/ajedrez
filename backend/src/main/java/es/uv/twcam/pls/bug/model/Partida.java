@@ -4,12 +4,9 @@ public class Partida {
 
 	private String id;
 	private String sede;
-//	TODO adicionar fecha de la partida
-//	private Date fecha;
 	private String torneoID;
 	private Jugador jugador1;
 	private Jugador jugador2;
-	// tablas = -1 || id del ganador
 	private String resultado;
 
 	public Partida(String id, String sede, String torneoID, Jugador jugador1, Jugador jugador2, String resultado) {

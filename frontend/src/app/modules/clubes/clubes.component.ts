@@ -18,6 +18,7 @@ export class ClubesComponent implements OnInit {
   public dataSource: MatTableDataSource<Club>;
   private actionsFunctions: any;
   private displayedColumns: Array<any>;
+  private isLoading : boolean;
 
   constructor(private clubService:ClubService,
     private entrenadorService:EntrenadoresService,
@@ -50,6 +51,7 @@ export class ClubesComponent implements OnInit {
         });
         console.log(res);
         this.dataSource.data = res;
+        this.isLoading = false;
       })
     })
     

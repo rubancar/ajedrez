@@ -19,6 +19,7 @@ export class EntrenadoresComponent implements OnInit {
   private serviceSubscribe: Subscription;
   private actionsFunctions: any;
   private displayedColumns: Array<any>;
+  private isLoading : boolean;
 
   constructor(private entrenadorService:EntrenadoresService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Entrenador>();
@@ -30,6 +31,7 @@ export class EntrenadoresComponent implements OnInit {
     this.serviceSubscribe = this.entrenadorService.getEntrenadores().subscribe(res => {
       console.log(res);
       this.dataSource.data = res;
+      this.isLoading = false;
     })
   }
 

@@ -15,9 +15,9 @@ export class DataTableComponent implements OnInit, AfterViewInit {
 
   //public 
   public columnsToDisplay: string[];
-
   public columnsFilters = {};
 
+  @Input() isLoading : boolean = true;
   @Input() dataSource;
   @Input() actionsFunctions: any[];
   @Input() displayedColumns: Array<any>;
@@ -34,6 +34,7 @@ export class DataTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.columnsToDisplay = [...this.displayedColumns.map(col => col.valueName), 'actions'];
+    this.isLoading = true;
   }
 
 }

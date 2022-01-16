@@ -24,6 +24,7 @@ export class PartidasComponent implements OnInit {
   displayedColumns: Array<any>;
   actionsFunctions: string[];
   partida? : Partida ;
+  private isLoading : boolean;
 
   constructor(private partidasService: PartidasService,
               public dialog: MatDialog,
@@ -56,6 +57,7 @@ export class PartidasComponent implements OnInit {
         partida.jugador2Item = jugador2Item
         return partida
       });
+      this.isLoading = false;
     })
 
   }
