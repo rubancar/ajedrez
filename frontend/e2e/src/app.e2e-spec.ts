@@ -9,8 +9,10 @@ describe('workspace-project App', () => {
   });
 
   it('should display welcome message', () => {
+    // 
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to dashboard!');
+    
+    expect(page.getTitleText()).toEqual('Login');
   });
 
   afterEach(async () => {

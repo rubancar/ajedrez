@@ -27,7 +27,7 @@ const routes: Routes = [{
   }, {
     path: 'partidas',
     component: PartidasComponent,
-    canActivate: [ AuthorizatedGuard ]
+    //canActivate: [ AuthorizatedGuard ]
   }, {
     path: 'jugadores',
     component: JugadoresComponent,

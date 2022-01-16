@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProcesaHttpmsjService } from './procesa-httpmsj.service';
+import { ProcesaHTTPMsjService } from './procesa-httpmsj.service';
 
-describe('ProcesaHttpmsjService', () => {
+describe('ProcesaHTTPMsjService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ProcesaHttpmsjService = TestBed.get(ProcesaHttpmsjService);
+    const service: ProcesaHTTPMsjService = TestBed.get(ProcesaHTTPMsjService);
     expect(service).toBeTruthy();
   });
 });

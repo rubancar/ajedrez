@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JugadoresService } from 'src/app/services/jugadores.service';
 import { Jugador } from 'src/app/shared/entidades/jugador';
-import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
