@@ -101,6 +101,7 @@ import { ResultadoPartidaPipe } from './shared/pipes/resultado-partida.pipe';
     MatGridListModule,
     MatToolbarModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
 
     // Modulos para implementar DataTable
     CdkTableModule,

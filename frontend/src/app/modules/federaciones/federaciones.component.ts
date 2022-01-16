@@ -18,6 +18,7 @@ export class FederacionesComponent implements OnInit {
   private serviceSubscribe: Subscription;
   private actionsFunctions: any;
   private displayedColumns: Array<any>;
+  private isLoading : boolean;
 
   constructor(private federacionService:FederacionesService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Federacion>();
@@ -29,6 +30,7 @@ export class FederacionesComponent implements OnInit {
     this.serviceSubscribe = this.federacionService.getFederaciones().subscribe(res => {
       console.log(res);
       this.dataSource.data = res;
+      this.isLoading = false;
     })
   }
 

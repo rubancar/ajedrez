@@ -18,6 +18,7 @@ export class JugadoresComponent implements OnInit {
   public dataSource: MatTableDataSource<Jugador>;
   private actionsFunctions: any;
   private displayedColumns: Array<any>;
+  private isLoading : boolean;
 
   constructor(private jugadorService:JugadoresService, public dialog: MatDialog,
     private _snackBar: MatSnackBar) {
@@ -36,6 +37,7 @@ export class JugadoresComponent implements OnInit {
     this.jugadorService.getJugadores().subscribe(res => {
       console.log(res);
       this.dataSource.data = res;
+      this.isLoading = false;
     })
   }
 

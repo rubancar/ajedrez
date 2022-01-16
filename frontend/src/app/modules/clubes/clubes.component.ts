@@ -17,6 +17,7 @@ export class ClubesComponent implements OnInit {
   public dataSource: MatTableDataSource<Club>;
   private actionsFunctions: any;
   private displayedColumns: Array<any>;
+  private isLoading : boolean;
 
   constructor(private clubService:ClubService, public dialog: MatDialog,
     private _snackBar: MatSnackBar) { 
@@ -38,6 +39,7 @@ export class ClubesComponent implements OnInit {
         element['federacion'] = element.federacion.nombre;
       });
       this.dataSource.data = res;
+      this.isLoading = false;
     })
   }
 

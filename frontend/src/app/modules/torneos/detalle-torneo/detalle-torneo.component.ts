@@ -22,6 +22,7 @@ export class DetalleTorneoComponent implements OnInit {
   dataSource: any;
   displayedColumns: Array<any>;
   actionsFunctions: string[];
+  private isLoading : boolean;
 
   constructor(private route : ActivatedRoute,
               private torneoService : TorneoService,
@@ -52,6 +53,7 @@ export class DetalleTorneoComponent implements OnInit {
           this.torneo.partidas = respP;
           // console.log("response del obsv:final ", this.torneo)
           this.dataSource.data = respP;
+          this.isLoading = false;
       })
     } else {
       console.log("error obteniendo el id del torneo")
