@@ -1,4 +1,4 @@
-package es.uv.twcam.pls.bug.model;
+package es.uv.twcam.pls.ajedrez.model;
 
 import com.google.gson.annotations.Expose;
 

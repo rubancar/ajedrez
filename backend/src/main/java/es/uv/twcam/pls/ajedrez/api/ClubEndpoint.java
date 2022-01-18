@@ -16,11 +16,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
-import es.uv.twcam.pls.bug.model.Club;
-import es.uv.twcam.pls.bug.model.ClubFactory;
-import es.uv.twcam.pls.bug.model.Entrenador;
-import es.uv.twcam.pls.bug.model.EntrenadorFactory;
-import es.uv.twcam.pls.bug.model.ValidationException;
+import es.uv.twcam.pls.ajedrez.model.Club;
+import es.uv.twcam.pls.ajedrez.model.ClubFactory;
+import es.uv.twcam.pls.ajedrez.model.EntityNotExistException;
+import es.uv.twcam.pls.ajedrez.model.Entrenador;
+import es.uv.twcam.pls.ajedrez.model.EntrenadorFactory;
+import es.uv.twcam.pls.ajedrez.model.Federacion;
+import es.uv.twcam.pls.ajedrez.model.FederacionFactory;
+import es.uv.twcam.pls.ajedrez.model.JugadorFactory;
+import es.uv.twcam.pls.ajedrez.model.ValidationException;
 
 /**
  * Servlet implementation class ClubEndpoint
@@ -83,11 +87,8 @@ public class ClubEndpoint extends HttpServlet {
 			StringBuffer msg = new StringBuffer();
 
 			msg.append("POST at:").append(request.getContextPath()).append(" with "+club);
-
-			System.out.println(msg.toString()); // <7>
-
-			EndpointUtils.addSecurityHeaders(response); // <2>
-
+			System.out.println(msg.toString());
+			EndpointUtils.addSecurityHeaders(response);
 			PrintWriter pw = response.getWriter();
 			response.setContentType("Application/JSON");
 			pw.println(g.toJson(club));
@@ -103,8 +104,8 @@ public class ClubEndpoint extends HttpServlet {
 			pw.flush();
 			pw.close();
 		} catch (Exception e) {
-			// TO-DO: Devolver el código HTTP adecuado
 			e.printStackTrace();
+			response.sendError(500);
 		} 
 		
 	}
@@ -136,6 +137,48 @@ public class ClubEndpoint extends HttpServlet {
 			pw.close();
 		}
 				
+	}
+	
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String id = "";
+		try {
+
+			id = getClubId(request);
+			ClubFactory.getInstance().delete(id);
+			
+			StringBuffer msg = new StringBuffer();
+			msg.append("DELETE at:").append(request.getContextPath()).append(" with id="+id);
+			System.out.println(msg.toString());
+			EndpointUtils.addSecurityHeaders(response);
+
+			PrintWriter pw = response.getWriter();
+			response.setContentType("Application/JSON");
+			pw.println("{\"mensaje\":\"Club con id "+ id +"  borrado correctamente\"}");
+			pw.flush();
+			pw.close();
+
+		} catch(EntityNotExistException e) {
+			
+			PrintWriter pw = response.getWriter();
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.setContentType("Application/JSON");
+			pw.println("{\"mensaje\":\"Club con id "+ id +" no existe \"}");
+			pw.flush();
+			pw.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.sendError(500);
+		}
+	}
+	
+	@Override
+	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		EndpointUtils.addSecurityHeaders(response);
+		super.doOptions(request, response);
+		
 	}
 	
 	private String getClubId(HttpServletRequest request) {  // <5>
@@ -180,6 +223,7 @@ public class ClubEndpoint extends HttpServlet {
 		System.out.println(club.getNombre());
 		System.out.println(club.getDireccion());
 		System.out.println(club.getEntrenador_id());
+		System.out.println(club.getFederacionId());
 		
 		if(club.getNombre() == null || club.getDireccion() == null) {
 			System.out.println("Error validando datos de club!!");
@@ -191,6 +235,13 @@ public class ClubEndpoint extends HttpServlet {
 			System.out.println("Registrando entrenador a club!!");
 			//club.setEntrenador(entrenador);
 			club.setEntrenador_id(entrenador.getId());
+		}
+		
+		if(club.getEntrenador_id() != null) {
+			Federacion federacion = FederacionFactory.getInstance().find(club.getFederacionId());
+			System.out.println("Registrando federacion a club!!");
+			//club.setEntrenador(entrenador);
+			club.setFederacionId(federacion.getId());
 		}
 
 

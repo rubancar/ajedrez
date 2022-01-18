@@ -14,9 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import es.uv.twcam.pls.bug.model.Federacion;
-import es.uv.twcam.pls.bug.model.FederacionFactory;
-import es.uv.twcam.pls.bug.model.ValidationException;
+
+import es.uv.twcam.pls.ajedrez.model.Federacion;
+import es.uv.twcam.pls.ajedrez.model.FederacionFactory;
+import es.uv.twcam.pls.ajedrez.model.ValidationException;
 
 /**
  * Servlet implementation class FederacionEndpoint

@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import es.uv.twcam.pls.bug.model.Partida;
-import es.uv.twcam.pls.bug.model.PartidaFactory;
-import es.uv.twcam.pls.bug.model.ValidationException;
+import es.uv.twcam.pls.ajedrez.model.Partida;
+import es.uv.twcam.pls.ajedrez.model.PartidaFactory;
+import es.uv.twcam.pls.ajedrez.model.ValidationException;
 
 /**
  * Servlet implementation class PartidasEndpoint

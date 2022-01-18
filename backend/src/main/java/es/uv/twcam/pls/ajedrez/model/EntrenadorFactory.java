@@ -1,4 +1,4 @@
-package es.uv.twcam.pls.bug.model;
+package es.uv.twcam.pls.ajedrez.model;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -30,7 +30,7 @@ public class EntrenadorFactory {
 
 	public Entrenador create(Entrenador entrenador) throws Exception {
 
-		if (entrenador != null && entrenador.getId() == null && entrenador.isEntrenamientosOk()) {
+		if (entrenador != null && (entrenador.getId() == null || "".equals(entrenador.getId())) && entrenador.isEntrenamientosOk()) {
 			entrenador.setId(UUID.randomUUID().toString());
 			dictionary.put(entrenador.getId(), entrenador);
 		} else {

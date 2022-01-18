@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import es.uv.twcam.pls.bug.model.Bug;
-import es.uv.twcam.pls.bug.model.BugFactory;
+
+import es.uv.twcam.pls.ajedrez.model.Bug;
+import es.uv.twcam.pls.ajedrez.model.BugFactory;
 
 /**
  * Servlet implementation of the BugEndpoint

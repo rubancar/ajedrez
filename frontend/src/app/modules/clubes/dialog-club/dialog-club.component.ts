@@ -36,7 +36,7 @@ export class DialogClubComponent implements OnInit {
 
   constructor(private clubService:ClubService,
     private entrenadorService:EntrenadoresService,
-    private federacionServicio:FederacionesService,
+    private federacionService:FederacionesService,
     public dialogRef: MatDialogRef<DialogClubComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Club) { 
 
@@ -61,7 +61,7 @@ export class DialogClubComponent implements OnInit {
     })
 
     // Inicializar federaciones en el formulario
-    this.federacionServicio.getFederaciones().subscribe(response => {
+    this.federacionService.getFederaciones().subscribe(response => {
       this.federaciones = response;
       console.log(response);
     })
@@ -110,7 +110,7 @@ export class DialogClubComponent implements OnInit {
       "id": "",
       "nombre": "",
       "direccion": "",
-      "usuario_entrenador": "",
+      "entrenador_id": "",
       "federacion_id": ""
     });
   }

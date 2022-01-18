@@ -1,4 +1,4 @@
-package es.uv.twcam.pls.bug.model;
+package es.uv.twcam.pls.ajedrez.model;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -59,6 +59,17 @@ private static ClubFactory the;
 
 	public Club find(String id) {
 		return dictionary.get(id);
+	}
+
+	public void delete(String id) throws EntityNotExistException {
+		
+		if (dictionary.containsKey(id)) {
+			dictionary.remove(id);
+		} else {
+			throw new EntityNotExistException(id);
+		}
+		
+		
 	}
 
 }

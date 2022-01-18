@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import es.uv.twcam.pls.bug.model.Usuario;
-import es.uv.twcam.pls.bug.model.UsuarioFactory;
-import es.uv.twcam.pls.bug.model.ValidationException;
+import es.uv.twcam.pls.ajedrez.model.Usuario;
+import es.uv.twcam.pls.ajedrez.model.UsuarioFactory;
+import es.uv.twcam.pls.ajedrez.model.ValidationException;
 
 /**
  * Servlet implementation class UsuarioEndpoint

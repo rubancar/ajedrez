@@ -28,13 +28,6 @@
         <tr>
             <td>
                 <div>
-                    <!--<mat-form-field appearance="outline">
-                      <mat-label>Entrenador</mat-label>
-                      <input matInput type="text" name="usuario_entrenador" formControlName="usuario_entrenador">
-                      <mat-error *ngIf="
-                      clubForm.controls['usuario_entrenador']?.errors?.required">campo requerido</mat-error>
-                    </mat-form-field>-->
-
                     <mat-form-field class="fullWidth" appearance="outline">
                       <mat-label>Entrenador</mat-label>
                       <mat-select name="entrenador_id" formControlName="entrenador_id">
@@ -49,9 +42,15 @@
             </td>
             <td>
                 <div>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Federación</mat-label>
-                      <input matInput type="text" name="federacion_id" formControlName="federacion_id">
+                    <mat-form-field class="fullWidth" appearance="outline">
+                      <mat-label>Federacion</mat-label>
+                      <mat-select name="federacion_id" formControlName="federacion_id">
+
+                        <ng-template ngFor let-federacion [ngForOf]="federaciones" let-i="index" [ngForTrackBy]="trackByFn">
+                          <mat-option value="{{federacion.id}}">{{federacion.nombre}}</mat-option>
+                        </ng-template>
+
+                      </mat-select>
                     </mat-form-field>
                   </div>
             </td>

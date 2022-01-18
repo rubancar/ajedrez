@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import es.uv.twcam.pls.bug.model.Entrenador;
-import es.uv.twcam.pls.bug.model.EntrenadorFactory;
-import es.uv.twcam.pls.bug.model.ValidationException;
+import es.uv.twcam.pls.ajedrez.model.Entrenador;
+import es.uv.twcam.pls.ajedrez.model.EntrenadorFactory;
+import es.uv.twcam.pls.ajedrez.model.ValidationException;
 
 /**
  * Servlet implementation class EntrenadorEndpoint
@@ -80,6 +80,7 @@ public class EntrenadorEndpoint extends HttpServlet {
 			Entrenador entrenador = getEntrenadorFromInputStream(request.getInputStream());
 			entrenador = EntrenadorFactory.getInstance().create(entrenador);
 
+			System.out.println("DEspues de tener al entrenador");
 			StringBuffer msg = new StringBuffer();
 			msg.append("POST at:").append(request.getContextPath()).append(" with " + entrenador);
 			System.out.println(msg.toString()); // <7>
@@ -174,7 +175,7 @@ public class EntrenadorEndpoint extends HttpServlet {
 
 		Entrenador entrenador = null;
 		entrenador = g.fromJson(new InputStreamReader(stream), Entrenador.class);
-
+		System.out.println("despues de json parsing!!");
 		if (entrenador.getNombre() == null) {
 			System.out.println("Error validando datos del entrenador!!");
 			throw new ValidationException("Error en datos del entrenador");

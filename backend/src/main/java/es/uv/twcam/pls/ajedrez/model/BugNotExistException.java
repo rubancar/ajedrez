@@ -1,4 +1,4 @@
-package es.uv.twcam.pls.bug.model;
+package es.uv.twcam.pls.ajedrez.model;
 
 public class BugNotExistException extends BugException {
 

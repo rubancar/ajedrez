@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DialogClubComponent } from './dialog-club/dialog-club.component';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { EntrenadoresService } from 'src/app/services/entrenadores.service';
+import { FederacionesService } from 'src/app/services/federaciones.service';
 
 @Component({
   selector: 'app-clubes',
@@ -21,6 +22,7 @@ export class ClubesComponent implements OnInit {
   private isLoading : boolean;
 
   constructor(private clubService:ClubService,
+    private federacionesService: FederacionesService,
     private entrenadorService:EntrenadoresService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar) { 
@@ -35,25 +37,31 @@ export class ClubesComponent implements OnInit {
   }
 
   refreshDataTable() {
-    this.entrenadorService.getEntrenadores().subscribe(entrenadores => {
+    this.federacionesService.getFederaciones().subscribe(federaciones => {
 
-      this.clubService.getClubes().subscribe(res => {
-        console.log(res);
-        res.forEach(element => {
-          const { federacion: { id="", nombre="" } = {}, entrenador_id = "" } = element;
+      this.entrenadorService.getEntrenadores().subscribe(entrenadores => {
 
-          const entrenador = entrenadores.find(ent => ent.id == entrenador_id);
-
-          element['federacion_id'] = id;
-          element['federacion'] = nombre;
-          element['entrenador'] = entrenador.nombre;
-          element['entrenador_id'] = entrenador_id;
-        });
-        console.log(res);
-        this.dataSource.data = res;
-        this.isLoading = false;
+        this.clubService.getClubes().subscribe(res => {
+          console.log(res);
+          res.forEach(element => {
+            const { federacion_id = "", entrenador_id = "" } = element;
+  
+            const entrenador = entrenadores.find(ent => ent.id == entrenador_id);
+            const federacion_ = federaciones.find(ent => ent.id == federacion_id);
+  
+            element['federacion_id'] = federacion_id;
+            element['federacion'] = federacion_.nombre;
+            element['entrenador'] = entrenador.nombre;
+            element['entrenador_id'] = entrenador_id;
+          });
+          console.log(res);
+          this.dataSource.data = res;
+          this.isLoading = false;
+        })
       })
+
     })
+  
     
   }
 
@@ -94,7 +102,7 @@ export class ClubesComponent implements OnInit {
   edit(element: any) {
     const dialogRef = this.dialog.open(DialogClubComponent, {
       width: '60%',
-      data: new Club(element.id, element.nombre, element.direccion, element.entrenador_id, element.federacion)
+      data: new Club(element.id, element.nombre, element.direccion, element.entrenador_id, element.federacion_id)
     });
     
     this.actionAfterClosingDialog(dialogRef);

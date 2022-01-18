@@ -4,28 +4,26 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.UUID;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import es.uv.twcam.pls.bug.model.Club;
-import es.uv.twcam.pls.bug.model.ClubFactory;
-import es.uv.twcam.pls.bug.model.Entrenador;
-import es.uv.twcam.pls.bug.model.EntrenadorFactory;
-import es.uv.twcam.pls.bug.model.Entrenamiento;
-import es.uv.twcam.pls.bug.model.EntrenamientosDia;
-import es.uv.twcam.pls.bug.model.Federacion;
-import es.uv.twcam.pls.bug.model.FederacionFactory;
-import es.uv.twcam.pls.bug.model.Jugador;
-import es.uv.twcam.pls.bug.model.JugadorFactory;
-import es.uv.twcam.pls.bug.model.Partida;
-import es.uv.twcam.pls.bug.model.PartidaFactory;
-import es.uv.twcam.pls.bug.model.Torneo;
-import es.uv.twcam.pls.bug.model.TorneoFactory;
-import es.uv.twcam.pls.bug.model.Usuario;
-import es.uv.twcam.pls.bug.model.UsuarioFactory;
+import es.uv.twcam.pls.ajedrez.model.Club;
+import es.uv.twcam.pls.ajedrez.model.ClubFactory;
+import es.uv.twcam.pls.ajedrez.model.Entrenador;
+import es.uv.twcam.pls.ajedrez.model.EntrenadorFactory;
+import es.uv.twcam.pls.ajedrez.model.Entrenamiento;
+import es.uv.twcam.pls.ajedrez.model.EntrenamientosDia;
+import es.uv.twcam.pls.ajedrez.model.Federacion;
+import es.uv.twcam.pls.ajedrez.model.FederacionFactory;
+import es.uv.twcam.pls.ajedrez.model.Jugador;
+import es.uv.twcam.pls.ajedrez.model.JugadorFactory;
+import es.uv.twcam.pls.ajedrez.model.Partida;
+import es.uv.twcam.pls.ajedrez.model.PartidaFactory;
+import es.uv.twcam.pls.ajedrez.model.Torneo;
+import es.uv.twcam.pls.ajedrez.model.TorneoFactory;
+import es.uv.twcam.pls.ajedrez.model.Usuario;
+import es.uv.twcam.pls.ajedrez.model.UsuarioFactory;
 
 /**
  * Application Lifecycle Listener implementation class AjedrezContextListener
@@ -66,8 +64,8 @@ public class AjedrezContextListener implements ServletContextListener {
 		FederacionFactory.getInstance().create(federacion3);
 		
 		
-		Club club1 = new Club("Master TWCAM", "ETSE Burjassot", federacion1);
-		Club club2 = new Club("Valencia", "Carrer Valencia 214", federacion1);
+		Club club1 = new Club("Master TWCAM", "ETSE Burjassot", federacion1.getId());
+		Club club2 = new Club("Valencia", "Carrer Valencia 214", federacion1.getId());
 		ClubFactory.getInstance().create(club1);
 		ClubFactory.getInstance().create(club2);
 		

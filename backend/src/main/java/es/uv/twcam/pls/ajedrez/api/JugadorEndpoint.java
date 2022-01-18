@@ -13,11 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import es.uv.twcam.pls.bug.model.Club;
-import es.uv.twcam.pls.bug.model.ClubFactory;
-import es.uv.twcam.pls.bug.model.Jugador;
-import es.uv.twcam.pls.bug.model.JugadorFactory;
-import es.uv.twcam.pls.bug.model.ValidationException;
+
+import es.uv.twcam.pls.ajedrez.model.BugFactory;
+import es.uv.twcam.pls.ajedrez.model.Club;
+import es.uv.twcam.pls.ajedrez.model.ClubFactory;
+import es.uv.twcam.pls.ajedrez.model.EntityNotExistException;
+import es.uv.twcam.pls.ajedrez.model.Jugador;
+import es.uv.twcam.pls.ajedrez.model.JugadorFactory;
+import es.uv.twcam.pls.ajedrez.model.ValidationException;
 
 /**
  * Servlet implementation class JugadorEndpoint
@@ -77,7 +80,6 @@ public class JugadorEndpoint extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	try {
 		
 			Jugador jugador = getJugadorFromInputStream(request.getInputStream());
@@ -86,10 +88,8 @@ public class JugadorEndpoint extends HttpServlet {
 
 			msg.append("POST at:").append(request.getContextPath()).append(" with "+jugador);
 
-			System.out.println(msg.toString()); // <7>
-
-			EndpointUtils.addSecurityHeaders(response); // <2>
-
+			System.out.println(msg.toString());
+			EndpointUtils.addSecurityHeaders(response);
 			PrintWriter pw = response.getWriter();
 			response.setContentType("Application/JSON");
 			pw.println(g.toJson(jugador));
@@ -105,8 +105,8 @@ public class JugadorEndpoint extends HttpServlet {
 			pw.flush();
 			pw.close();
 		} catch (Exception e) {
-			// TO-DO: Devolver el código HTTP adecuado
 			e.printStackTrace();
+			response.sendError(500);
 		} 
 	}
 	
@@ -139,6 +139,50 @@ public class JugadorEndpoint extends HttpServlet {
 		}
 				
 	}
+	
+
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String id = "";
+		try {
+
+			id = getJugadorId(request);
+			JugadorFactory.getInstance().delete(id);
+			
+			StringBuffer msg = new StringBuffer();
+			msg.append("DELETE at:").append(request.getContextPath()).append(" with id="+id);
+			System.out.println(msg.toString());
+			EndpointUtils.addSecurityHeaders(response);
+
+			PrintWriter pw = response.getWriter();
+			response.setContentType("Application/JSON");
+			pw.println("{\"mensaje\":\"Jugador con id "+ id +"  borrado correctamente\"}");
+			pw.flush();
+			pw.close();
+
+		} catch(EntityNotExistException e) {
+			
+			PrintWriter pw = response.getWriter();
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			response.setContentType("Application/JSON");
+			pw.println("{\"mensaje\":\"Jugador con id "+ id +" no existe \"}");
+			pw.flush();
+			pw.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.sendError(500);
+		}
+	}
+	
+	@Override
+	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		EndpointUtils.addSecurityHeaders(response);
+		super.doOptions(request, response);
+		
+	}
+
 	
 	
 	private String getJugadorId(HttpServletRequest request) {  // <5>

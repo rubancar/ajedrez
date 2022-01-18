@@ -1,6 +1,4 @@
-package es.uv.twcam.pls.bug.model;
-
-import com.google.gson.annotations.Expose;
+package es.uv.twcam.pls.ajedrez.model;
 
 public class Club {
 	
@@ -8,7 +6,7 @@ public class Club {
 	private String nombre;
 	private String direccion;
 	private String entrenador_id;
-	private Federacion federacion;
+	private String federacion_id;
 	
 	public Club() {
 		super();
@@ -19,11 +17,11 @@ public class Club {
 		this.id = id;
 	}
 	
-	public Club(String nombre, String direccion, Federacion federacion) {
+	public Club(String nombre, String direccion, String federacionId) {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.federacion = federacion;
+		this.federacion_id = federacionId;
 	}
 	
 	public String getId() {
@@ -44,11 +42,11 @@ public class Club {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public Federacion getFederacion() {
-		return federacion;
+	public String getFederacionId() {
+		return federacion_id;
 	}
-	public void setFederacion(Federacion federacion) {
-		this.federacion = federacion;
+	public void setFederacionId(String federacion_id) {
+		this.federacion_id = federacion_id;
 	}
 
 	public String getEntrenador_id() {

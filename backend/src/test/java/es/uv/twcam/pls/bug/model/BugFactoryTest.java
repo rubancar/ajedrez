@@ -4,6 +4,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+
+import es.uv.twcam.pls.ajedrez.model.Bug;
+import es.uv.twcam.pls.ajedrez.model.BugException;
+import es.uv.twcam.pls.ajedrez.model.BugFactory;
+
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;

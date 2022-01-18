@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import es.uv.twcam.pls.bug.model.Torneo;
-import es.uv.twcam.pls.bug.model.TorneoFactory;
-import es.uv.twcam.pls.bug.model.ValidationException;
+import es.uv.twcam.pls.ajedrez.model.Torneo;
+import es.uv.twcam.pls.ajedrez.model.TorneoFactory;
+import es.uv.twcam.pls.ajedrez.model.ValidationException;
 
 /**
  * Servlet implementation class TorneosEndpoint
